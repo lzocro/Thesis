@@ -1,0 +1,114 @@
+% Thesis.tex (Modification of ClemsonThesis - Andrew R. Dalton)
+% Universidad Nacional de Ingeniería Thesis/Dissertation file
+% Developed by Erick Chacon Montalvan, School of Statistics
+% Edited by Lorenzo Croissant Department of Mathematics Lancaster U.
+
+% ============================================================================
+% HEADING OF TEX FILE (DEFINING PARAMETERS)
+% ============================================================================
+
+\documentclass[12pt,a4paper,onecolumn]{LancsThesis}
+\input{Thesis_preamble1.tex}
+%\usepackage{blindtext}				% Lorem Ipsum
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-25pt}{40pt}
+
+\university{\href{http://www.lancaster.ac.uk/}{Lancaster University}}
+\department{Mathematics and Statistics}
+\title{Multi-Armed Bandits}
+\subtitle{Sequential Decision Agents in Reinforcement Learning}
+
+
+\documentType{Dissertation }
+\major{Master of Science in Mathematics \& Statistics}
+\author{Lorenzo Croissant}
+\supervisor{Dr. Azadeh Khaleghi}
+\location{Lancaster - United Kingdom}
+\thesisYear{June 2018}
+\logo{
+\includegraphics[scale=0.3, right]{stats.png}
+}
+
+% PDF Setup -- most of this you do not need to touch 
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue},
+    filecolor={black},
+    urlcolor={black},
+    pdftitle={\theTitle},
+    pdfauthor={\theAuthor},
+    pdfsubject={\theDocumentType},
+    pdfkeywords={\theUniversity, \theDepartment, \theDocumentType, \theMajor},
+    pdfstartpage={1},
+}
+
+
+% ============================================================================
+% BODY OF THE DOCUMENT
+% ============================================================================
+
+
+\begin{document}
+%  ============================================================================
+    \frontmatter % Begin front matter (pages are numbered with Roman numerals)
+%  ============================================================================
+    \maketitle                                       % Generate the title page
+    \doublespacing                                   % Text should be double spaced
+    %\setlength{\parskip}{1em}                        % Space before a paragraph
+    \setcounter{page}{1}                             % Dedication begins on page 2
+    %\addtotoc{Dedication}{\input{dedication.tex}} % Insert dedication.tex file
+    %\addtotoc{Acknowledgments}{\input{acknowledgments.tex}} % Insert acknowledgments.tex file
+    %\addtotoc{Abstract}{\input{abstract.tex}}  	 % Generate the abstract
+    \singlespacing                             		 % Single space the lists
+	\tableofcontents %\clearpage                	 % Generate the Table of Contents
+    %\addtotoc{Index of Tables}{\listoftables}        % Generate the List of Tables
+    %\addtotoc{Index of Figures}{\listoffigures}		 % Generate the List of Figures
+    
+    
+%  ===========================================================================
+    \mainmatter % Begin main matter (pages are numbered with Arabic numerals)
+%  ===========================================================================
+
+
+    %\doublespacing % Text should be double spaced
+
+%    \addtotoc{Introduction}{\input{introduction.tex}}  % Generate the introduction
+    \inputfile{introduction.tex}
+    %\lettrine[lines=4,slope=1pt]{A}{ll} \blindtext \\
+    %\lettrine[lines=3,slope=1pt]{\textcolor{red}{A}}{n} \blindtext
+    \inputfile{sec1.tex}
+    \inputfile{sec2.tex}
+    %\inputfile{sec3.tex}
+    %\inputfile{sec4.tex}
+    %\inputfile{sec5.tex}
+    %\inputfile{sec6.tex}
+   
+    
+%  ===========================================================================
+    \backmatter % Begin back matter (pages are numbered with Arabic numerals)
+%  ===========================================================================
+
+
+    % The appendices are optional.  This is the format for two or more.
+    % If you do not wish to include an appendix, comment out these lines.
+%    \begin{appendices}
+%        \begin{subappendices}
+%            \inputfile{appendixA.tex}
+%            \inputfile{appendixB.tex}
+%        \end{subappendices}
+%    \end{appendices}
+\nocite{*}
+    \singlespacing                             % Single space the Bibliography
+    \hackplain								   % Do not enumerate first bibliography page
+    \addtotoc{Bibliography}{\bibliography{BibThesis}} % Adding bibliography
+
+    
+    
+    
+    
+    
+    
+\end{document}
