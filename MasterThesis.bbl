@@ -1,0 +1,57 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{knu}{}]{knuthwebsite}
+\leavevmode\nopagebreak\newline.
+
+\bibitem[\protect\astroncite{Ash}{1965}]{Ash:1965}
+Ash, R.~B.\leavevmode\nopagebreak\newline 1965.
+\newblock {\em Information Theory}.
+\newblock New York: Wiley.
+
+\bibitem[\protect\astroncite{Auer et~al.}{2002}]{auer:2002}
+Auer, P., N.~Cesa-Bianchi, and P.~Fischer\leavevmode\nopagebreak\newline 2002.
+\newblock Finite-time analysis of the multiarmed bandit problem.
+\newblock {\em Machine learning}, 47(2-3):235--256.
+
+\bibitem[\protect\astroncite{Bubeck et~al.}{2012}]{bubeck:2012}
+Bubeck, S., N.~Cesa-Bianchi, et~al.\leavevmode\nopagebreak\newline 2012.
+\newblock Regret analysis of stochastic and nonstochastic multi-armed bandit
+  problems.
+\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
+  5(1):1--122.
+
+\bibitem[\protect\astroncite{Feinstein}{1958}]{Feinstein:1958}
+Feinstein, A.\leavevmode\nopagebreak\newline 1958.
+\newblock {\em Foundations of information theory}.
+\newblock McGraw-Hill.
+
+\bibitem[\protect\astroncite{Kullback}{1997}]{Kullback:1997}
+Kullback, S.\leavevmode\nopagebreak\newline 1997.
+\newblock {\em Information theory and statistics}.
+\newblock Courier Corporation.
+
+\bibitem[\protect\astroncite{Lai and Robbins}{1985}]{lai-robbins:1985}
+Lai, T.~L. and H.~Robbins\leavevmode\nopagebreak\newline 1985.
+\newblock Asymptotically efficient adaptive allocation rules.
+\newblock {\em Advances in applied mathematics}, 6(1):4--22.
+
+\bibitem[\protect\astroncite{Leadbetter et~al.}{2014}]{leadbetter:2014}
+Leadbetter, R., S.~Cambanis, and V.~Pipiras\leavevmode\nopagebreak\newline
+  2014.
+\newblock {\em A basic course in measure and probability: Theory for
+  applications}.
+\newblock Cambridge university press.
+
+\bibitem[\protect\astroncite{Shannon}{2001}]{Shannon:1948}
+Shannon, C.~E.\leavevmode\nopagebreak\newline 2001.
+\newblock A mathematical theory of communication.
+\newblock {\em ACM SIGMOBILE Mobile Computing and Communications Review},
+  5(1):3--55.
+
+\bibitem[\protect\astroncite{Thompson}{1933}]{thompson:1933}
+Thompson, W.~R.\leavevmode\nopagebreak\newline 1933.
+\newblock On the likelihood that one unknown probability exceeds another in
+  view of the evidence of two samples.
+\newblock {\em Biometrika}, 25(3/4):285--294.
+
+\end{thebibliography}

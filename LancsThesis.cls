@@ -30,7 +30,7 @@
 
 
 \usepackage[plainpages=false,pdfpagelabels,hidelinks,breaklinks=true]{hyperref} % Get nice PDF document links 
-\usepackage[letterpaper, top=3cm,bottom=3cm,right=2.5cm,left=3cm]{geometry}      % Easily set margins
+\usepackage[letterpaper, top=3cm,right=3cm,left=3cm,lines=42]{geometry}      % Easily set margins
 \usepackage[toc,title,page]{appendix}                 % Configure appendix formatting
 \usepackage{tocloft}                                  % Configure ToC Lo{F,T} formatting
 \usepackage{indentfirst}                              % Always indent first paragraph
