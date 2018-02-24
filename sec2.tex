@@ -3,24 +3,34 @@
 
 \chapter{Stochastic Bandits}
 
-\lettrine[lines=4]{\textcolor{red}{T}}{he} first and most straightforward bandit setting is the \textit{stochastic bandit}. In this bandit problem, we consider the environment to be stationary, and the rewards for an arm to be drawn independently at random from the same underlying distribution. 
+\lettrine[lines=4]{\textcolor{red}{M}}{odelling} complex, partially unknown real world systems is typically done by replacing unknown mechanics with random approximations. This is the case of the one-armed bandit for instance, one gambles against a seemingly random slot machine. The slot machine however, is wholly deterministic. It is therefore natural to study first the problem of sequential action allocation in a stochastic environment. In this \textit{stochastic bandit} problem, we further restrict study to the case of a stationary environment, with $K$ arms, which form a set $\mathcal{K}$, each with an underlying distributions from which rewards are drawn independently at random, until a fixed time horizon $N$. There are many further assumptions to be made in this precise problem, for example that rewards are observed without bias or delay. Many different sets of assumptions have been studied in stochastic bandits, which relax one or several of these assumptions, or adding further assumptions to extract higher performance in specific settings. 
+%ref bandits on graphs, ref with delay, ref infinite arms etc. 
+Notwithstanding, we restrict ourselves here to the simplest case, and encourage the reader to explore further resources should they wish to challenge the assumptions of this framework. In this chapter, we will establish some mathematical foundations which we will use to evaluate the performance of two algorithms which we will study. While the first, explore-then-commit is an intuitive strategy, it has many flaws which will highlight the difficulty of bandit problems, and will motivate the more advanced upper confidence bound algorithm. 
+
+
 
 %
 %
 \section{Mathematical notes}\label{sec:Maths}
 %
 %
+\lettrine[lines=3]{T}{he} main element of mathematical interest in this thesis is the concept of regret. Like in other machine learning problems, bandits are motivated by the optimisation of a loss function, equivalent to the maximisation of obtained rewards. As the rewards are random variables, it will be natural to consider the expectation of accumulated rewards as a function of time. The question is what to compare rewards to, in order to obtain a meaningful loss which the algorithm can learn from. This will motivate our definitions of regret, after which we will show a quintessential theorem called the regret decomposition identity. After this, we will turn our attention to the problem of concentration inequalities on the mean of certain random variables. We will define sub-gaussianity, then show two important concentration inequalities.  
 
 %
-\subsection{Regret Properties}
+\subsection{Regret Properties}\label{subsec:regret-prop}
 %
+
+\par What is referred to as the \textit{regret} can be confusing, as such we will begin by clarifying its exact definitions used in this thesis. Afterwards we will formulate the Regret Decomposition identity, which will prove very important later. 
+The \textit{regret} is a random variable $R_n$, defined as the difference between repeating the action of highest summed rewarded and the received sum of rewards\cite{bubeck:2012}:
+\[ R_n = \max_{i\in\mathcal{K}}\sum_{t=1}^n X_{i,t}-\sum_{t=1}^nX_{I_t,t}\,. \] 
+It would be natural to examine the \text{expected regret} $\mathbb{E}[R_n]$, where the agent competes against the expected value of the maximal reward obtainable by playing the same arm repeatedly. In practice however, we will tend to examine the weaker notion of \text{pseudo-regret}, as defined in definition \ref{def:PRSB-1}, where one competes only against the sequence which is optimal in expectation.
 
 \begin{definition}[Pseudo-Regret of a stochastic bandit]\label{def:PRSB-1}
 In a stochastic bandit with $K$ arms, for round $0<n\leq N$, we define the pseudo-regret as:
 \[\bar{R}_n=\max_{i\in\mathcal{K}}\left\{\mathbb{E}\left[\sum_{t=1}^n X_{i,t}-X_{I_t,t}\right]\right\}\, . \]
 \end{definition}
 
-\par It is straightforwards to reorder this definition into a more tractable form by defining $\mu^*=\max_{i\in\mathcal{K}}\{\mu_i\}$ to be the expected payoff of the optimal arm.
+\par It is straightforward to reorder this definition into a more tractable form by defining $\mu^*=\max_{i\in\mathcal{K}}\{\mu_i\}$ to be the expected payoff of the optimal arm.
 
 \begin{definition}[Tractable pseudo-regret of a stochastic bandit]\label{def:PRSB-2}
 \[\bar{R}_n= n\mu^* - \mathbb{E}\left[ \sum_{i=1}^n X_{I_t,t}\right]\, . \]
@@ -34,6 +44,8 @@ Starting with definition \ref{def:PRSB-1} we rewrite the formula for $R_n$:
 &= n\mu^*-\sum_{t=1}^n\mu_{I_t}\,. 
 \end{align*}
 \end{proof}
+
+\par These two definitions are all we need to introduce the main result of this section, whose proof will be immediately given thereafter. 
 
 \begin{theorem}[Regret Decomposition Identity]\label{thm:RDI}
 In a stochastic bandit with $K$ arms, for $0<n\leq N$, let $\Delta_k=\mu^*-\mu_k$ be the sub-optimality gap for arm $k$, and let $T_k(n):=\sum_{t=1}^n \mathbb{I}\{I_t=k \}$ be the random variable counting the number of times arm $k$ is chosen in $n$ rounds. We can now decompose the pseudo-regret in terms of $\Delta_k$ and $\mathbb{E}[T_k(n)]$.
@@ -79,15 +91,25 @@ Let $X$ be a sub-gaussian random variable.
 \end{list}
 \end{lemma}
 
-\begin{proof}
+\begin{proof}\hfil
 \begin{list}{$\circ$}{}
-\item 
+\item We consider $\lambda\neq0$, as this is a vacuous case. Note that we can expand the definition as
+\begin{align*}
+\mathbb{E}[\exp(\lambda X)]&\leq\exp\left( \frac{\lambda^2}{2\sigma^2}\right)\\
+\mathbb{E}\left[ \sum_{n=0}^\infty \frac{(\lambda X)^n}{n!}\right]&\leq\sum_{n=0}^\infty \frac{1}{n!}\left(\frac{\lambda^2}{2\sigma^2}\right)^n\,.
+\intertext{Using the second order taylor expansion, we obtain for all $\lambda\in\mathbb{R}$:}
+\lambda\mathbb{E}[X]+ \lambda^2\mathbb{E}[X^2] &\leq \frac{\lambda^2}{2\sigma^2} + R_2(\lambda)\,.
+\intertext{We separate cases where $\lambda>0$ and $\lambda<0$, and divide by $\lambda$. Taking the limit to $0$ gives:
+\[E(X)\geq 0 \text{ if}\,\lambda<0 \text{ and}\,E(X)\leq 0 \text{ if $\lambda>0$} \Rightarrow E(X)=0\,.\]}
+\intertext{For the variance we divide instead by $\frac{t^2}{2}>0$, and take the limit as $\lambda\to0$:
+\[\var{X}=\mathbb{E}[X^2]-\mathbb{E}[X]^2\leq \frac{1}{\sigma^2}\,.\]}
+\end{align*}
 \item Letting $\lambda'=\lambda c \in \mathbb{R}$ in the definition gives the result.
 \item A simple computation gives:
 \begin{align*}
 \mathbb{E}[\exp(\lambda(X_1+X_2))]&=\mathbb{E}[\exp(\lambda X_1)]\mathbb{E}[\exp(\lambda X_2)]\\
-&\leq\exp\left(\frac{\lambda_2\sigma_1^2}{2}\right)\exp\left(\frac{\lambda_2\sigma_2^2}{2}\right) \\
-&=\exp\left(\frac{\lambda_2(\sigma_1^2+\sigma_2^2)}{2}\right)\,.
+&\leq\exp\left(\frac{\lambda\sigma_1^2}{2}\right)\exp\left(\frac{\lambda\sigma_2^2}{2}\right) \\
+&=\exp\left(\frac{\lambda(\sigma_1^2+\sigma_2^2)}{2}\right)\,.
 \end{align*}
 Thus $X_1+X_2$ is $(\sigma_1^2+\sigma_2^2)$-sub-gaussian.
 \end{list}
@@ -111,7 +133,9 @@ P(X\geq \epsilon)&\leq \exp\left( -\frac{\epsilon^2}{2\sigma^2}\right)\, .
 \end{align*}
 \end{proof}
 
-\begin{corollary}[Hoeffding's bound]
+From theoreom \ref{thm:concentrationSGRV}, we can derive a bound for the sample mean we were interested in. 
+
+\begin{corollary}[Hoeffding's bound]\label{cor:Hoeffding}
 Let $X_i-\mu$ be independent $\sigma^2$-sub-gaussian random variables. Then $\hat{\mu}$ has tail probability bounds:
 \[P(\hat{\mu}\geq \mu +\epsilon)\leq \exp\left(-\frac{n\epsilon}{2\sigma^2}\right)\text{ and } P(\hat{\mu}\leq \mu -\epsilon)\leq \exp\left(-\frac{n\epsilon}{2\sigma^2}\right)\, .\] %combine into both are bounded by 
 \end{corollary}
@@ -130,25 +154,84 @@ Let $X_i-\mu$ be independent $\sigma^2$-sub-gaussian random variables. Then $\ha
 \subsection{Algorithm}
 %
 
+\par Before introducing the explore-then-commit (ETC) algorithm we need to clarify a few details. First, we want our exploration to be uniform over the arms, thus we will choose a deterministic exploration and take $M=mK$, for some $m\in\mathbb{N}$. Second, we must consider the case of a tie for best arm at round $M$, where we will break the tie in a deterministic way, say by choosing the arm of least index. Finally, we will assume that the noise in the rewards of our stochastic bandit is $\sigma^2$-subgaussian, with $\sigma^2$ known. Throughout this thesis we will study cases of $1$-subgaussian random noise, for simplicity, but the results will hold for all valid $\sigma^2$. The formal algorithm is presented in Algorithm \ref{alg:ETC}
+
+\begin{algorithm}
+\KwIn{$m$}
+\While{$t\leq N$}{%
+\For{$t\leq mK$}{%
+$A_t\gets t\,  [\text{mod }K]+1$\;}
+\For{$t>mK$}{$A_t\gets  \argmax_{i\in\mathcal{K}}\left\{ \hat{\mu}_i(mK)\right\}$}
+Take action $A_t$\;
+Store reward $X_t$\;}
+\caption{Pseudo-code for the ETC algorithm}\label{alg:ETC}
+\end{algorithm}
+
+\par ETC is a simplistic strategy, but as an intuitive solution to the stochastic bandit problem it will help us introduce regret bounds using the tools from section \ref{sec:Maths}, and better understand why more flexible approaches can offer better solutions to this bandit problem.
+
+
 %
 \subsection{Regret Analysis}
 %
+
+\par The pseudo-regret is referred to simply as regret in this section, but the reader should recall the differences outlined in subsection \ref{subsec:regret-prop}. First, we shall present a general formula for the regret of the ETC strategy. After discussion this result we will use a simple case as an example, deriving an upper bound for the regret of ETC in a two-armed stochastic bandit.
+
+
+\begin{theorem}[General ETC regret]\label{thm:etc-regret}
+In a stochastic bandit setting  with $1$-subgaussian noise the pseudo-regret of the ETC algorithm satisfies for $n\geq M$:
+\[ \bar{R}_n\leq m\sum_{i\in\mathcal{K}}\Delta_i + (n-mK)\sum_{i\in\mathcal{K}}\Delta_i\exp\left( -\frac{m\Delta^2_i}{4}\right)\,.\]
+\end{theorem}
+
+\begin{proof}
+We begin with the regret decomposition identity, and separate the two phases of the algorithm, denoting $i'$ the arm committed to and $i^*$ the optimal arm: 
+\begin{align*}
+\bar{R}_n&= \sum_{i\in\mathcal{K}}\Delta_i\mathbb{E}[T_i(n)]\\
+&= \sum_{t=1}^{m}\sum_{i\in\mathcal{K}}\Delta_i + \sum_{t=M}^n\sum_{i\in\mathcal{K}}\Delta_i\mathbb{E}[\mathbb{I}\{i=i'\}]\\
+&=m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(i=i')\\  
+&=m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)=\max_{j\in\mathcal{K}}\hat{\mu}_j(M))\\
+&\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)\geq 0)\\
+&\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)-\Delta_i\geq \Delta_i)
+\end{align*}
+See that $\hat{\mu}_i(M)-\mu_i-\hat{\mu}^*(M)+\mu^*$ is $\frac{2}{m}$-sub-gaussian, as the difference of two $\frac{1}{m}$-sub-gaussian variables, which allows us to apply Hoeffding's bound form corollary \ref{cor:Hoeffding}, completing the proof. 
+
+\end{proof}
+
+\par This bound is not easily interpretable, and it can't be directly compared to other algorithms due to its dependence on $m$. We can however, outline within it the problems ETC suffers from. In the exploration phase, the agent has incurred regret linear in $m$, but which decreases with smaller sub-optimality gaps. In the exploitation phase, the agent chooses the right arm which decreases with smaller gaps, and increases with greater $m$. This is a good illustration of the exploration-exploitation trade-off. More exploration leads to less regret by increasing confidence, but also incurs a necessary penalty by taking sub-optimal arms. The parameter that controls this trade-off in ETC is $m$, but to choose a good $m$ we need knowledge of, at least, $N$ and preferably of the $\Delta_i$. While the horizon may be, the sub-optimality gaps are scarcely known in practice, if they were there would be no need for a bandit. An instance where we can consider the gap known, and also the simplest stochastic bandit is the two-armed bandit. Here, one can take arm $1$ to be optimal, and arm $2$ to have gap $\Delta$, as there is only one gap. 
+
+\begin{corollary}[ETC regret for two-armed bandits]
+In the case of a two-armed stochastic bandit with $1$-subgaussian noise, the ETC algorithm satisfies:
+\[ \bar{R}_n \leq  \frac{\Delta}{2}\left( 1+ \ln\frac{n\Delta^2}{2} \right) \, . \]
+\end{corollary}
+
+\begin{proof}
+We apply theorem \ref{thm:etc-regret} to the two-armed bandit case:
+\begin{align*}
+\bar{R}_n&\leq \frac{m}{2} \Delta + (n-2m)\Delta\exp\left(-\frac{m\Delta^2}{4} \right) \\
+&\leq  \frac{m}{2} \Delta + n\Delta\exp\left(-\frac{m\Delta^2}{4} \right)\,.
+\intertext{Now we choose $m$ dependent on $n$ and $\Delta$ that minimises this bound, by differentiating, and we obtain:}
+m&=\frac{4}{\Delta^2}\ln\left( \frac{n\Delta^2}{2}\right)\,\\
+\bar{R}_n &\leq  \frac{2}{\Delta}\ln\left(\frac{n\Delta^2}{2}\right) + \frac{2}{\Delta}\\
+ &\leq \frac{2}{\Delta}\left(1+ \ln\left(\frac{n\Delta^2}{2}\right)\right)\,.\\
+\end{align*}
+\end{proof}
+
+\par 
 
 %
 %
 \section{Upper Confidence Bound}
 %
 %
-\par \lettrine[lines=3]{I}{mprovements} to the explore-then-commit method are less obvious but can be understood as a different way of approaching the uncertainty in the means of arms. While we have so far attempted to quash uncertainty by finding the best arm with high confidence, in this section we will embrace the uncertainty. Note that in ETC, while exploring we sampled all arms equally. This is not necessary as the confidence intervals for two arms don't overlap, there is good reason to simply abandon the lower one. Thinking about the bounds of intervals instead of their centre is the key to understanding the Upper Confidence Bound (UCB) algorithm. This algorithm values the highest upper bound on the arm mean, in this sense it is an optimistic algorithm. 
+\par \lettrine[lines=3]{I}{mprovements} to the explore-then-commit method are less obvious but can be understood as a different way of approaching the uncertainty in the means of arms. While we have so far attempted to quash uncertainty by finding the best arm with high confidence, in this section we will embrace the uncertainty. Note that in ETC, while exploring we sampled all arms equally. This is not necessary as if the confidence intervals for two arms don't overlap, there is good reason to simply abandon the lower one. Thinking about the bounds of intervals instead of their centre is the key to understanding the Upper Confidence Bound (UCB) algorithm. This algorithm values the highest upper bound on the arm means rather than the highest estimate, in this sense it is an optimistic algorithm. 
 %
 \subsection{Algorithm}
 %
 \par An interesting fact the reader might note right away is that in the UCB algorithm as it has been simply presented above it is entirely possible for the preferred arm to change over time, which takes a two stage approach to exploration and exploitation off the table. We will explore and exploit simultaneously, but to insure our algorithm performs well we will add to it a component which forces us to explore arms which have not been played often. This may seem like a burden, but is in fact what will allow us to always asymptotically choose the right arm, unlike ETC. Before writing out the algorithm our first task is to find this tempered confidence interval and explain it. 
 
-\par Recall Hoeffding's bound, which implies that for $\epsilon$ we have $P(\hat{\mu}\geq \epsilon)\leq\exp\left(\frac{n\epsilon^2}{2}\right)$. Letting $\delta:=\exp\left(\frac{n\epsilon^2}{2}\right)$, we have $P\left(\hat{\mu}\geq\sqrt{\frac{2}{n}\ln\left(\frac{1}{\delta}\right)}\right)\leq \delta$. This is a plausible interval which we can adjust using the parameter $\delta$, which requires us to assume that the $X_i-\mu$ are sub-gaussian\footnote{Hereon, we will no longer specify $\sigma^2$ and simply consider ($1$-) sub-gaussian variable. This is simply to make this thesis more readable. It is not necessary to focus on scaling by the variance, of interest is rather how every other component of error behaves as they are not instance-dependent like the variance.}. 
+\par Recall Hoeffding's bound, which implies that for $\epsilon$ we have $P(\hat{\mu}\geq \epsilon)\leq\exp\left(\frac{n\epsilon^2}{2}\right)$. Letting $\delta:=\exp\left(\frac{n\epsilon^2}{2}\right)$, we have $P\left(\hat{\mu}\geq\sqrt{\frac{2}{n}\ln\left(\frac{1}{\delta}\right)}\right)\leq \delta$. This is a plausible interval which we can adjust using the parameter $\delta$, which requires us to assume that the $X_i-\mu$ are sub-gaussian. 
 We can now deduce the smallest plausible (w.r.t. $\delta$) upper bound for $\hat{\mu}$ to be 
 \[ U_i(t-1):=\hat{\mu}_i(t-1)+\sqrt{\frac{2}{T_i(t)}\ln\left(\frac{1}{\delta}\right)}\, .\]
-We can continue this thread and choose a convenient $\delta$, so that the probability of ignoring the optimal arm at time $t$ is approximately proportional to $t^{-1}$. This specific choice will grant us constant instead of linear regret in case we mistakenly disregard the best arm. We will not discuss this until the next section however. It can be seen that we require $\delta^{-1}=f(t):=1+t\log^2(t)$. We are now ready to introduce the UCB algorithm, whose pseudo-code is included in algorithm \ref{alg:UCB}.
+We can continue this thread and choose a convenient $\delta$, so that the probability of ignoring the optimal arm at time $t$ is approximately proportional to $t^{-1}$. This specific choice will grant us constant instead of linear regret in case we mistakenly disregard the best arm. We will not discuss this until the next section, however, it can be seen that we require $\delta^{-1}=f(t):=1+t\log^2(t)$. We are now ready to introduce the UCB algorithm, whose pseudo-code is included in algorithm \ref{alg:UCB}.
 
 \begin{algorithm}
 \KwIn{$0<\delta<1$}
@@ -159,15 +242,16 @@ Store reward $X_t$\;}
 \caption{Pseudo-code for the UCB algorithm}\label{alg:UCB}
 \end{algorithm}
 
+\par It is important to note that while algorithm \ref{alg:UCB} is referred to as {\em the} UCB algorithm in this thesis, UCB algorithms are a family, of which this algorithm is simply an example. More general formulations take several arguments\cite{bubeck:2012}, and expand the range of confidence bounds and exploration bonuses used. We will analyse the regret only of this formulation of UCB, but more general results exist. 
+
 
 %transition
-
 
 %
 \subsection{Regret Analysis}
 %
 
-\par Using the tools developed in section \ref{sec:Maths} we will now prove several results about the regret of the UCB algorithm. 
+\par Using the tools developed in section \ref{sec:Maths} we will now prove several results about the regret of the UCB algorithm. We focus mostly in this section on instance dependent worst-case regrets, beginning with theorem \ref{thm:UCB_regret}, which gives a bound on the regret and an asymptotic bound on the factor of logarithmic growth of the regret. These bounds together give us a good idea of the behaviour of the regret for the two most relevant domains of $n$.
 
 \begin{theorem}[UCB Regret Bounds]\label{thm:UCB_regret}
 The pseudo-regret of the UCB algorithm in a stochastic bandit satisfies:
@@ -179,7 +263,7 @@ The pseudo-regret of the UCB algorithm in a stochastic bandit satisfies:
 \end{enumerate}
 \end{theorem}
 
-Before proving this theorem, we present and prove a lemma which will be required during the proof.
+Before proving this theorem, we present and prove a lemma which will be required during the proof. This lemma provides a bound on the expectation of the sum of indicator variables of the form {\em a confidence interval's upper bound is greater than a value}. The astute reader might 
 
 \begin{lemma}\label{lem:proofUCB}
 Let $X_i-\mu$ be IID sub-gaussian random variables, take $\epsilon>0$ and let:
@@ -203,8 +287,8 @@ Let $u=2a\epsilon^{-2}$, starting with the definition of $\kappa$ we have:
 \begin{proof}
 %
 \begin{enumerate}
-\item This proof is based upon the regret decomposition identity (\ref{thm:RDI}), where we will bound $\mathbb{E}[T_k(n)]$.
-We will argue by separation of cases between the two possible scenarios leading to playing the suboptimal arm. First it is possible that our upper bound $U_i(t)$ is under the true value of $\mu_i(t)-\epsilon$: we have vastly underestimated the payoff of the optimal arm. In the second possible case there is a suboptimal arm whose exploration penalty leads it to be chose over the optimal arm. Formally we will separate $T_i(n)=\sum_{t=1}^n\mathbb{I}\{A_t=i\}$ into $S_1$ and $S_2$ corresponding to each case. Let $\mu_o$ denote the mean of the optimal arm.
+\item This proof is based upon the regret decomposition identity (theorem \ref{thm:RDI}), where we will bound $\mathbb{E}[T_k(n)]$.
+We will investigate seperately the two possible scenarios leading to playing the suboptimal arm. First it is possible that our upper bound $U_i(t)$ is under the true value of $\mu_i(t)-\epsilon$: we have vastly underestimated the payoff of the optimal arm. In the second possible case there is a suboptimal arm whose exploration penalty leads it to be chose over the optimal arm. Formally we will separate $T_i(n)=\sum_{t=1}^n\mathbb{I}\{A_t=i\}$ into $S_1$ and $S_2$ corresponding to each case. Let $\mu_o$ denote the mean of the optimal arm.
 %
 \begin{align*}
 S_1&=\sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \leq \mu_o -\epsilon\right\}\, . \\
@@ -217,6 +301,7 @@ S_1&=\sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i
 &\leq \sum_{t=1}^n \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right)\\
 &\leq \sum_{t=1}^\infty \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
 &\leq \frac{5}{2}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
+&\leq \frac{5}{2}\int_0^\infty \exp\left\{ \frac{s\epsilon^2}{2}\right\}\de s\\
 &\leq \frac{5}{\epsilon^2}\,.
 %
 \end{align*}
@@ -224,7 +309,7 @@ S_1&=\sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i
 Rearranging $S_2$ into a form to which we can apply lemma \ref{lem:proofUCB} yields:
 %
 \begin{align*}
-S_2&= \sum_{t=1}^n \mathbb{I}\left\{ \hat{\mu}_i(t-1)+\sqrt{\frac{2\ln f(t)}{T_i(t-1)}\geq \mu_o-\epsilon, A_t=i}\right\}\\
+S_2&= \sum_{t=1}^n \mathbb{I}\left\{ \hat{\mu}_i(t-1)+\sqrt{\frac{2\ln f(t)}{T_i(t-1)}}\geq \mu_o-\epsilon, A_t=i\right\}\\
 \mathbb{E}[S_2]&\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}+\sqrt{\frac{2\ln f(t)}{s}}\geq \mu_o-\epsilon\right\}\right]\\
 &\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}-\mu_i+\sqrt{\frac{2\ln f(t)}{s}}\geq \Delta_i-\epsilon\right\}\right]\\
 &\leq 1+ \frac{2}{(\Delta_i-\epsilon)^2}\left(\ln f(n)+\sqrt{\pi\ln f(n)}+1\right)\, .
@@ -238,22 +323,25 @@ Taking $\epsilon=\ln^{-1/4}(n)$ in the first part of the theorem gives:
 \bar{R}_n&\leq \sum_{i:\Delta_i>0}\inf_{\ln^{-\frac{1}{4}}(n)\in(0,\Delta_i)}\left\{1+5\ln^{\frac{1}{4}} + \frac{2}{\left(\Delta_i-\ln^{-\frac{1}{4}}(n)\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
 &\leq \sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\left( \Delta_i\sqrt[4]{\ln(n)} -1\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
 &\leq\sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\Delta_i\sqrt{\ln(n)}} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
-\intertext{Dividing by $\ln(n)$ and taking the limit superior yields the result.}
+\intertext{Substituting in $f(t)$ and dividing by $\ln(n)$ and taking the limit superior yields the result.}
 \end{align*}
 \end{enumerate}
 \end{proof}
 
-\begin{corollary}[UCB Regret Bounds (Simplified)]
+The bonds of theorem \ref{thm:UCB_regret} can be simplified trivially by a clever choice of $\epsilon$, which is given in corollary \ref{cor:UCB_regret}. 
+
+\begin{corollary}[UCB Regret Bounds (Simplified)]\ref{cor:UCB_regret}
 Choosing $\epsilon=\frac{\Delta_i}{2}$ in theorem \ref{thm:UCB_regret} gives:
 \[ \bar{R}_n\leq \sum_{i:\Delta_i>0}\left[ \Delta_i +\frac{8}{\Delta_i}\left(\ln f(n)+\sqrt{\pi\ln f(n)} +\frac{7}{2}\right) \right]\,.\]
 Furthermore, for all $n\geq2$, there is some strictly positive universal constant $C$ such that:
 \[\bar{R}_n\leq \sum_{i:\Delta_i>0}\left(\Delta_i + \frac{C\ln(n)}{\Delta_i} \right) \, .\]
 \end{corollary}
 
+The second bound is particularly interesting, as it shows that the logarithmic growth of the regret of UCB is controlled by the sum inverse of the sub-optimality gaps, without the notion of limit superior outlined in theorem \ref{thm:UCB_regret}. To complete this overview of the regret of UCB, we will derive its order, in theorem \ref{thm:UCB_order}. 
 
 \begin{theorem}[Order of UCB Regret]\label{thm:UCB_order}
 The pseudo-regret of an instance of the UCB algorithm with $\Delta_i$ not small for all $i$ satisfies:
-\[\bar{R}_n=\mathcal{O}\left(\sqrt{CKnln(n)}\right)\,.\]
+\[\bar{R}_n=\mathcal{O}\left(\sqrt{Kn\ln(n)}\right)\,.\]
 \end{theorem}
 \begin{proof}
 Fixing $\Delta$, gives $\mathbb{E}[T_i(n)]\leq C\ln(n)\Delta_i^{-1}$ from which we obtain a distribution free bound:
@@ -274,7 +362,7 @@ Fixing $\Delta$, gives $\mathbb{E}[T_i(n)]\leq C\ln(n)\Delta_i^{-1}$ from which 
 
 %recall def of minimax 
 
-
+\par The {\em minimax} regret is a fundamental quantity of the difficulty of the stochastic bandit problem. It represents the smallest regret achievable in the worst case problem by any policy or algorithm. If the particular instance in $\mathcal{E}_K$ we are working with is reasonably well behaved, we can achieve lower regrets, but if we are in the worst possible instance, the minimax is a meaningful lower bound for the best performance of our algorithm.
 
 \begin{theorem}
 The worst case pseudo-regret of any bandit in the class $\mathcal{E}_K$, given $n>K-1$ is:
@@ -283,7 +371,7 @@ The worst case pseudo-regret of any bandit in the class $\mathcal{E}_K$, given $
 
 \begin{proof}
 Let $\mathcal{G}_K$ denote the class of bandits within $\mathcal{E}_K$ where specifically the distributions of the arms are exactly gaussian with unit variance. Throughout, let $\pi$ be a given policy. The idea behind the proof is to make $\pi$, which performs well on one bandit fail on another by designing the second environment entirely to trap the agent performing $\pi$. We begin with the first environment. Let $0\leq r\leq \frac{1}{2}$, the first environment in $\mathcal{G}_K$ has means $r$ for arm $1$ and $0$ otherwise. In this environment we denote $\mathbb{P}_1$ the distribution on the %canonical bandit H_n,F_n
-\par For the second environment we take the optimal arm $i$ to be arm least taken by $\pi$ in $1$: $i=\argmin_{j\neq1}\mathbb{E}_1[T_j(n)]$. We can now engineer a loss on this instance by taking the mean rewards from the first case and changing the reward for arm $i$ to $2r$. It remains now to combine these to show a bound. First we will rewrite both regrets $\bar{R}_n^1(\pi)$ and $\bar{R}_n^2(\pi)$, then apply the high probability Pinsker lemma and finally the divergence decomposition lemma.
+\par For the second environment we take the optimal arm $i$ to be arm least taken by $\pi$ in $1$: $i=\argmin_{j\neq1}\mathbb{E}_1[T_j(n)]$. We can now engineer a loss on this instance by taking the mean rewards from the first case and changing the reward for arm $i$ to $2r$. It remains now to combine these to show a bound. First we will rewrite both regrets $\bar{R}_n^1(\pi)$ and $\bar{R}_n^2(\pi)$, then apply the Pinsker-type inequality (theorem \ref{thm:PTI}) and finally the divergence decomposition lemma.
 
 \begin{align}
 \bar{R}_n^1+ \bar{R}_n^2 &> \frac{nr}{2}\left( \mathbb{P}_1(T_1(n)\leq \frac{n}{2}) + \mathbb{P}_1(T_1(n)> \frac{n}{2})\right)\notag\\
@@ -293,12 +381,12 @@ Now, we use the divergence decomposition lemma to bound $D_{KL}(\mathbb{P}_1\Ver
 \[ D_{KL}(\mathbb{P}_1\Vert \mathbb{P}_2)= 2r^2\mathbb{E}_1[T_i(n)]\, . \]
 Here we use the fact that $\sum_{j>1}\mathbb{E}_1[T_j(n)]\leq n \Rightarrow \mathbb{E}_1[T_i(n)]\leq \frac{n}{K-1}$ to further complete our bound, which upon replacement in \ref{eq:DKL} yields:
 \[ \bar{R}_n^1+ \bar{R}_n^2 \geq \frac{nr}{4}\exp\left(-\frac{2nr^2}{K-1}\right)\,.\]
-Finally, to obtain the result we take $r=\sqrt{\frac{K-1}{4n}}$, which means $n>K-1$ as $r<\frac{1}{2}$, then look at $\bar{R}_n^*=\max\{\bar{R}_n^1,\bar{R}_n^2\}\geq \frac{1}{2}(\bar{R}_n^1+\bar{R}_n^2)$.
+Finally, to obtain the result we take $r=\sqrt{\frac{K-1}{4n}}$, which means $n>K-1$ as $r<\frac{1}{2}$.
 \begin{align*}
  \bar{R}_n^1+ \bar{R}_n^2 &\geq \frac{1}{8}\sqrt{n(K-1)}\exp\left(-\frac{1}{2}\right)\\
  &\geq \sqrt{n(K-1)}\times \frac{1}{8} \times \frac{29}{48}\\
  &\geq \frac{29}{384}\sqrt{n(K-1)}\,. 
-\intertext{The second line follows from the power series expansion of $\exp(-\frac{1}{2})$ up to the fourth term. Finally:}
+\intertext{The second line follows from the power series expansion of $\exp(-\frac{1}{2})$ up to the fourth term. Finally, from $\bar{R}_n^*=\max\{\bar{R}_n^1,\bar{R}_n^2\}\geq \frac{1}{2}(\bar{R}_n^1+\bar{R}_n^2)$, we recover:}
 \bar{R}_n^*&\geq \frac{29}{768}\sqrt{n(K-1)}\\
 &\geq \frac{1}{27}\sqrt{n(K-1)}\, . 
 \end{align*}

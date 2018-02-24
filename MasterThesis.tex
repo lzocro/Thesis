@@ -9,7 +9,7 @@
 
 \documentclass[12pt,a4paper,onecolumn]{LancsThesis}
 \input{Thesis_preamble1.tex}
-%\usepackage{blindtext}				% Lorem Ipsum
+%\usepackage{blindtext}
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
 {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
@@ -75,10 +75,7 @@
 
     %\doublespacing % Text should be double spaced
 
-%    \addtotoc{Introduction}{\input{introduction.tex}}  % Generate the introduction
-    \inputfile{introduction.tex}
-    %\lettrine[lines=4,slope=1pt]{A}{ll} \blindtext \\
-    %\lettrine[lines=3,slope=1pt]{\textcolor{red}{A}}{n} \blindtext
+    \addtotoc{Introduction}{\input{introduction.tex}}  % Generate the introduction and label it apart from chapters
     \inputfile{sec1.tex}
     \inputfile{sec2.tex}
     %\inputfile{sec3.tex}
@@ -100,15 +97,13 @@
 %            \inputfile{appendixB.tex}
 %        \end{subappendices}
 %    \end{appendices}
+
+%appendix of notation + index of terminology 
+
 \nocite{*}
     \singlespacing                             % Single space the Bibliography
     \hackplain								   % Do not enumerate first bibliography page
     \addtotoc{Bibliography}{\bibliography{BibThesis}} % Adding bibliography
 
-    
-    
-    
-    
-    
-    
+
 \end{document}
