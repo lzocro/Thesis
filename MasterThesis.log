@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.6)  22 FEB 2018 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.6)  19 MAR 2018 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -580,6 +580,16 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 Package: bigints 2010/02/15 Writing big integrals
 Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
 )
+(/usr/local/texlive/2016/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup8
+)
 (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
@@ -903,21 +913,81 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count168
 )
-\c@lemma=\count169
-\c@definition=\count170
-\c@remark=\count171
+(/usr/local/texlive/2016/texmf-dist/tex/latex/nomencl/nomencl.sty
+Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
+\nomlabelwidth=\dimen282
+\nom@tempdim=\dimen283
+\nomitemsep=\skip117
+)
+\@nomenclaturefile=\write4
+\openout4 = `MasterThesis.nlo'.
+
+
+Writing nomenclature file MasterThesis.nlo
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
+\c@tracingmulticols=\count169
+\mult@box=\box55
+\multicol@leftmargin=\dimen284
+\c@unbalance=\count170
+\c@collectmore=\count171
+\doublecol@number=\count172
+\multicoltolerance=\count173
+\multicolpretolerance=\count174
+\full@width=\dimen285
+\page@free=\dimen286
+\premulticols=\dimen287
+\postmulticols=\dimen288
+\multicolsep=\skip118
+\multicolbaselineskip=\skip119
+\partial@page=\box56
+\last@line=\box57
+\maxbalancingoverflow=\dimen289
+\mult@rightbox=\box58
+\mult@grightbox=\box59
+\mult@gfirstbox=\box60
+\mult@firstbox=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\c@columnbadness=\count175
+\c@finalcolumnbadness=\count176
+\last@try=\dimen290
+\multicolovershoot=\dimen291
+\multicolundershoot=\dimen292
+\mult@nat@firstbox=\box79
+\colbreak@box=\box80
+\mc@col@check@num=\count177
+)
+\c@lemma=\count178
+\c@definition=\count179
+\c@remark=\count180
 )
 (/usr/local/texlive/2016/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
-\ttl@box=\box55
-\beforetitleunit=\skip117
-\aftertitleunit=\skip118
-\ttl@plus=\dimen282
-\ttl@minus=\dimen283
+\ttl@box=\box81
+\beforetitleunit=\skip120
+\aftertitleunit=\skip121
+\ttl@plus=\dimen293
+\ttl@minus=\dimen294
 \ttl@toksa=\toks47
-\titlewidth=\dimen284
-\titlewidthlast=\dimen285
-\titlewidthfirst=\dimen286
+\titlewidth=\dimen295
+\titlewidthlast=\dimen296
+\titlewidthfirst=\dimen297
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 46.
 
@@ -943,7 +1013,7 @@ LaTeX Font Info:    Try loading font information for OT1+ppl on input line 54.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-\AtBeginShipoutBox=\box56
+\AtBeginShipoutBox=\box82
 Package hyperref Info: Link coloring ON on input line 54.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -952,15 +1022,15 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count172
+\c@section@level=\count181
 )
 LaTeX Info: Redefining \ref on input line 54.
 LaTeX Info: Redefining \pageref on input line 54.
 LaTeX Info: Redefining \nameref on input line 54.
 
 (./MasterThesis.out) (./MasterThesis.out)
-\@outlinefile=\write4
-\openout4 = `MasterThesis.out'.
+\@outlinefile=\write5
+\openout5 = `MasterThesis.out'.
 
 
 *geometry* driver: auto-detecting
@@ -987,7 +1057,7 @@ LaTeX Info: Redefining \nameref on input line 54.
 * \footskip=30.0pt
 * \marginparwidth=38.0pt
 * \marginparsep=7.0pt
-* \columnsep=10.0pt
+* \columnsep=28.45274pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
@@ -1000,16 +1070,16 @@ LaTeX Info: Redefining \nameref on input line 54.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count173
-\scratchdimen=\dimen287
-\scratchbox=\box57
-\nofMPsegments=\count174
-\nofMParguments=\count175
+\scratchcounter=\count182
+\scratchdimen=\dimen298
+\scratchbox=\box83
+\nofMPsegments=\count183
+\nofMParguments=\count184
 \everyMPshowfont=\toks48
-\MPscratchCnt=\count176
-\MPscratchDim=\dimen288
-\MPnumerator=\count177
-\makeMPintoPDFobject=\count178
+\MPscratchCnt=\count185
+\MPscratchDim=\dimen299
+\MPnumerator=\count186
+\makeMPintoPDFobject=\count187
 \everyMPtoPDFconversion=\toks49
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1030,7 +1100,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count179
+\c@lstlisting=\count188
 
 ABD: EveryShipout initializing macros
 *geometry* verbose mode - [ newgeometry ] result:
@@ -1054,7 +1124,7 @@ ABD: EveryShipout initializing macros
 * \footskip=30.0pt
 * \marginparwidth=38.0pt
 * \marginparsep=7.0pt
-* \columnsep=10.0pt
+* \columnsep=28.45274pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
@@ -1066,7 +1136,7 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-<stats.png, id=91, 799.98875pt x 140.525pt>
+<stats.png, id=107, 799.98875pt x 140.525pt>
 File: stats.png Graphic file (type png)
  <use stats.png>
 Package pdftex.def Info: stats.png used on input line 58.
@@ -1082,55 +1152,88 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <17.28> not available
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./stats
 .png>]
+(./acknowledgments.tex
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 19.
+
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 19.
+
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 19.
+
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 19.
+
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 19.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 19.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 12.50409pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 9.37807pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.29405pt on input line 19.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 19.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 19.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 19.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 19.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 19.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 6.25204pt on input line 19.
+) [2]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 66.
 
 (./MasterThesis.toc
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 2.
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 2.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omlzplm.fd
-File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 2.
+\tf@toc=\write6
+\openout6 = `MasterThesis.toc'.
 
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omszplm.fd
-File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
-)
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 2.
+ [3
 
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omxzplm.fd
-File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
-)
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 2.
+] (./introduction.tex
+Overfull \hbox (5.57567pt too wide) in paragraph at lines 1--2
+[][] \OT1/ppl/m/n/12 should one al-lo-cate fi-nite re-sources amongst mul-ti-pl
+e dif-fer-ent projects
+ []
 
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1zplm.fd
-File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-)
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 2.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 2.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 2.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 2.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 2.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 2.
-)
-\tf@toc=\write5
-\openout5 = `MasterThesis.toc'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.72     \mainmatter
-                     % Begin main matter (pages are numbered with Arabic num...
-[1] (./introduction.tex)
+Overfull \hbox (0.1624pt too wide) in paragraph at lines 3--4
+[]\OT1/ppl/m/n/12 Bandit the-ory is one of the fields of math-e-mat-ics blessed
+ with an eyebrow-raising
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1139,15 +1242,29 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1
 
-] (./sec1.tex
+]
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 9.
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3] (./sec1.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 20.
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 30.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ufplmbb.fd
-File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
-) [2
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 26.
+[4
 
 
 ]
@@ -1157,26 +1274,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
 [5]
-Overfull \hbox (5.07259pt too wide) in paragraph at lines 116--117
-\OT1/ppl/m/n/12 overview of mea-sure the-ory. We will use the no-ta-tion, def-i
--ni-tions and re-sults through-
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1191,6 +1289,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7]
+Overfull \hbox (5.07259pt too wide) in paragraph at lines 120--121
+\OT1/ppl/m/n/12 overview of mea-sure the-ory. We will use the no-ta-tion, def-i
+-ni-tions and re-sults through-
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1204,33 +1307,41 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9])
+[9]
+Overfull \hbox (6.2545pt too wide) in paragraph at lines 157--158
+[]\OT1/ppl/b/n/12 Theorem 1.2.1 \OT1/ppl/m/n/12 (Pinsker--type in-equal-ity$[]$
+)\OT1/ppl/b/n/12 . []\OT1/ppl/m/it/12 Let $\OML/zplm/m/it/12 ^^U[]\OT1/ppl/m/n/
+12 , \OML/zplm/m/it/12 ^^U[]$ \OT1/ppl/m/it/12 be prob-a-bil-ity mea-sures on $
+\OT1/zplm/m/n/12 (
+\OT1/ppl/m/n/12 , \OMS/zplm/m/n/12 F\OT1/zplm/m/n/12 )$\OT1/ppl/m/it/12 .
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10] (./sec2.tex
+[10]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12] (./sec2.tex
 Chapter 2.
-[11
+[13
 
 
 ]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[12]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[13]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1245,6 +1356,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [15]
+Overfull \hbox (3.73914pt too wide) in paragraph at lines 81--82
+[]\OT1/ppl/b/n/12 Lemma 2.1.2 \OT1/ppl/m/n/12 (Prop-er-ties of sub---gaus-sian 
+ran-dom vari-ables$[]$)\OT1/ppl/b/n/12 . []\OT1/ppl/m/it/12 Let $\OML/zplm/m/it
+/12 X$ \OT1/ppl/m/it/12 be a sub-gaussian
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1273,13 +1390,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
-Overfull \hbox (8.8515pt too wide) in paragraph at lines 231--233
-[]\OT1/ppl/m/n/12 Recall Ho-effd-ing's bound, which im-plies that for $\OML/zpl
-m/m/it/12 ^^O$ \OT1/ppl/m/n/12 we have $\OML/zplm/m/it/12 P\OT1/zplm/m/n/12 ([]
- \OMS/zplm/m/n/12 ^^U \OML/zplm/m/it/12 ^^O\OT1/zplm/m/n/12 ) \OMS/zplm/m/n/12 
-^^T [] []$\OT1/ppl/m/n/12 .
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1287,12 +1397,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [20]
-Overfull \hbox (5.53186pt too wide) in paragraph at lines 257--259
-[]\OT1/ppl/b/n/12 Theorem 2.3.1 \OT1/ppl/m/n/12 (UCB Re-gret Bounds)\OT1/ppl/b/
-n/12 . []\OT1/ppl/m/it/12 The pseudo-regret of the UCB al-go-rithm in a stochas
--
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1300,15 +1404,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [21]
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 18.00587pt on input line 284.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 284.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 18.00587pt on input line 284.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 284.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1323,18 +1418,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [23]
-Overfull \hbox (18.64293pt too wide) in paragraph at lines 327--327
-[] 
- []
-
-
-LaTeX Warning: Reference `cor:UCB_regret' on page 24 undefined on input line 33
-1.
-
-
-LaTeX Warning: Reference `cor:UCB_regret' on page 24 undefined on input line 33
-3.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1355,69 +1438,230 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[26])
+[26]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[27] (./MasterThesis.bbl
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 20.
+[27])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[28] (./sec3.tex
+Chapter 3.
+[29
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[30]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[31]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[32]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[33]
+Overfull \hbox (0.62378pt too wide) in paragraph at lines 130--131
+[]\OT1/ppl/m/n/12 Variations on the theme of UCB of-ten re-volve around the spe
+-cific in-dex (UCB1$[]$)
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[34]
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 150.
+
+
+Package natbib Warning: Citation `banditsalgs:4' on page 35 undefined on input 
+line 150.
+
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 18.00587pt on input line 168.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 18.00587pt on input line 168.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[35]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[36]
+Overfull \hbox (18.64293pt too wide) in paragraph at lines 211--211
+[] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[37])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[38] (./notation.tex (./MasterThesis.nls
+Underfull \hbox (badness 8056) in paragraph at lines 42--44
+[]\OT1/ppl/m/n/12 The hori-zon, or num-ber of
+ []
+
+
+Overfull \vbox (23.5pt too high) has occurred while \output is active []
+
+ [39
+
+
+
+]
+Underfull \hbox (badness 6708) in paragraph at lines 90--92
+[]\OT1/ppl/m/n/12 The ex-tended real line $\U/fplmbb/m/n/12 R \OMS/zplm/m/n/12 
+[
+ []
+
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[40]) (./MasterThesis.bbl
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 45.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
-) [28
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+ [41
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
 
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 145--149
+\OT1/ppl/m/n/12 2016e.  More in-for-ma-tion the-ory and min-i-max
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--149
+\OT1/ppl/m/n/12 lower bounds.  [][]$\OT1/cmtt/m/n/12 http : / / banditalgs . co
+m / 2016 / 09 / 28 /
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[43])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[44]
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
 (./MasterThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 109.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 109.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
 Package rerunfilecheck Info: File `MasterThesis.out' has not changed.
-(rerunfilecheck)             Checksum: B2AED61258CA0BA4D346827C59AE7D22;1378.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
+(rerunfilecheck)             Checksum: D1E22C0413D5C90C00E4ABDE60323AC9;1665.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 23434 strings out of 493014
- 412588 string characters out of 6133352
- 529995 words of memory out of 5000000
- 26385 multiletter control sequences out of 15000+600000
- 43764 words of font info for 123 fonts, out of 8000000 for 9000
+ 24050 strings out of 493014
+ 421583 string characters out of 6133352
+ 536197 words of memory out of 5000000
+ 26881 multiletter control sequences out of 15000+600000
+ 55437 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,19n,54p,1189b,14193s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc
-}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/local/texlive/2016/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/t
-exlive/2016/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texli
-ve/2016/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2016
-/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2016/texmf-
-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on MasterThesis.pdf (30 pages, 236686 bytes).
+ 57i,21n,54p,1937b,14534s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced bu
+t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2016/t
+exmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2016/texmf-
+dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2016/texmf-dist
+/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
+ype1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
+e1/urw/palatino/uplb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/
+palatino/uplr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/palatin
+o/uplri8a.pfb>
+Output written on MasterThesis.pdf (47 pages, 324596 bytes).
 PDF statistics:
- 396 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 98 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 676 PDF objects out of 1000 (max. 8388607)
+ 602 compressed objects within 7 object streams
+ 166 named destinations out of 1000 (max. 500000)
+ 218 words of extra memory for PDF output out of 10000 (max. 10000000)
 

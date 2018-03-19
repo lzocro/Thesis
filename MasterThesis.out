@@ -1,21 +1,25 @@
-\BOOKMARK [0][-]{section*.1}{Introduction}{}% 1
-\BOOKMARK [0][-]{chapter.1}{Measure and Information Theory}{}% 2
-\BOOKMARK [1][-]{section.1.1}{Measure Theory}{chapter.1}% 3
-\BOOKMARK [2][-]{subsection.1.1.1}{Measures}{section.1.1}% 4
-\BOOKMARK [2][-]{subsection.1.1.2}{The Radon-Nikodym theorem}{section.1.1}% 5
-\BOOKMARK [1][-]{section.1.2}{Information Theory}{chapter.1}% 6
-\BOOKMARK [2][-]{subsection.1.2.1}{Information and Divergence}{section.1.2}% 7
-\BOOKMARK [2][-]{subsection.1.2.2}{Pinsker-type Inequalities}{section.1.2}% 8
-\BOOKMARK [0][-]{chapter.2}{Stochastic Bandits}{}% 9
-\BOOKMARK [1][-]{section.2.1}{Mathematical notes}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.1.1}{Regret Properties}{section.2.1}% 11
-\BOOKMARK [2][-]{subsection.2.1.2}{Estimation of a Mean}{section.2.1}% 12
-\BOOKMARK [1][-]{section.2.2}{Explore-Then-Commit}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.2.1}{Algorithm}{section.2.2}% 14
-\BOOKMARK [2][-]{subsection.2.2.2}{Regret Analysis}{section.2.2}% 15
-\BOOKMARK [1][-]{section.2.3}{Upper Confidence Bound}{chapter.2}% 16
-\BOOKMARK [2][-]{subsection.2.3.1}{Algorithm}{section.2.3}% 17
-\BOOKMARK [2][-]{subsection.2.3.2}{Regret Analysis}{section.2.3}% 18
-\BOOKMARK [2][-]{subsection.2.3.3}{Minimax Regret}{section.2.3}% 19
-\BOOKMARK [2][-]{subsection.2.3.4}{Lower Bounds}{section.2.3}% 20
-\BOOKMARK [0][-]{section*.4}{Bibliography}{}% 21
+\BOOKMARK [0][-]{section*.1}{Acknowledgments}{}% 1
+\BOOKMARK [0][-]{section*.2}{Introduction}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Foundational Preliminaries}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Elements of Measure Theory}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.1}{Measures}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.2}{Integration and Density}{section.1.1}% 6
+\BOOKMARK [1][-]{section.1.2}{Elements of Information Theory}{chapter.1}% 7
+\BOOKMARK [2][-]{subsection.1.2.1}{Information and Divergence}{section.1.2}% 8
+\BOOKMARK [2][-]{subsection.1.2.2}{Pinsker-type Inequalities}{section.1.2}% 9
+\BOOKMARK [0][-]{chapter.2}{Stochastic Bandits}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Mathematical notes}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.1.1}{Regret Properties}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.2}{Estimation of a Mean}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Characterising the Stochastic Bandit Problem}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Optimal Asymptotic Regret Growth}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{Minimax Regret bound}{section.2.2}% 16
+\BOOKMARK [0][-]{chapter.3}{Algorithms}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Explore-Then-Commit}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.1.1}{Algorithm}{section.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.1.2}{Regret Analysis}{section.3.1}% 20
+\BOOKMARK [1][-]{section.3.2}{Upper Confidence Bound}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.2.1}{Algorithm}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.2}{Regret Analysis}{section.3.2}% 23
+\BOOKMARK [0][-]{section*.5}{Index of Notation}{}% 24
+\BOOKMARK [0][-]{section*.7}{Bibliography}{}% 25

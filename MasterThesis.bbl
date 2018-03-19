@@ -1,17 +1,42 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\astroncite{knu}{}]{knuthwebsite}
-\leavevmode\nopagebreak\newline.
+\bibitem[\protect\astroncite{Agrawal and Goyal}{2012}]{agrawal:2012}
+Agrawal, S. and N.~Goyal\leavevmode\nopagebreak\newline 2012.
+\newblock Analysis of thompson sampling for the multi-armed bandit problem.
+\newblock In {\em Proceedings of the 25th Annual Conference on Learning
+  Theory}, S.~Mannor, N.~Srebro, and R.~C. Williamson, eds., volume~23 of {\em
+  Proceedings of Machine Learning Research}, Pp.~ 39.1--39.26, Edinburgh,
+  Scotland. PMLR.
 
 \bibitem[\protect\astroncite{Ash}{1965}]{Ash:1965}
 Ash, R.~B.\leavevmode\nopagebreak\newline 1965.
 \newblock {\em Information Theory}.
 \newblock New York: Wiley.
 
+\bibitem[\protect\astroncite{Audibert and Bubeck}{2009}]{bubeck:2009}
+Audibert, J.-Y. and S.~Bubeck\leavevmode\nopagebreak\newline 2009.
+\newblock Minimax policies for adversarial and stochastic bandits.
+\newblock In {\em COLT}, Pp.~ 217--226.
+
 \bibitem[\protect\astroncite{Auer et~al.}{2002}]{auer:2002}
 Auer, P., N.~Cesa-Bianchi, and P.~Fischer\leavevmode\nopagebreak\newline 2002.
 \newblock Finite-time analysis of the multiarmed bandit problem.
 \newblock {\em Machine learning}, 47(2-3):235--256.
+
+\bibitem[\protect\astroncite{Auer et~al.}{1995}]{auer:1995}
+Auer, P., N.~Cesa-Bianchi, Y.~Freund, and R.~E.
+  Schapire\leavevmode\nopagebreak\newline 1995.
+\newblock Gambling in a rigged casino: The adversarial multi-armed bandit
+  problem.
+\newblock In {\em Foundations of Computer Science, 1995. Proceedings., 36th
+  Annual Symposium on}, Pp.~ 322--331. IEEE.
+
+\bibitem[\protect\astroncite{Awerbuch and Kleinberg}{2004}]{awerbuch:2004}
+Awerbuch, B. and R.~D. Kleinberg\leavevmode\nopagebreak\newline 2004.
+\newblock Adaptive routing with end-to-end feedback: Distributed learning and
+  geometric approaches.
+\newblock In {\em Proceedings of the thirty-sixth annual ACM symposium on
+  Theory of computing}, Pp.~ 45--53. ACM.
 
 \bibitem[\protect\astroncite{Bubeck et~al.}{2012}]{bubeck:2012}
 Bubeck, S., N.~Cesa-Bianchi, et~al.\leavevmode\nopagebreak\newline 2012.
@@ -20,20 +45,127 @@ Bubeck, S., N.~Cesa-Bianchi, et~al.\leavevmode\nopagebreak\newline 2012.
 \newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
   5(1):1--122.
 
+\bibitem[\protect\astroncite{Burnetas and Katehakis}{1996}]{burnetas:1996}
+Burnetas, A.~N. and M.~N. Katehakis\leavevmode\nopagebreak\newline 1996.
+\newblock Optimal adaptive policies for sequential allocation problems.
+\newblock {\em Advances in Applied Mathematics}, 17(2):122--142.
+
+\bibitem[\protect\astroncite{Cover and Thomas}{2012}]{Cover:2012}
+Cover, T.~M. and J.~A. Thomas\leavevmode\nopagebreak\newline 2012.
+\newblock {\em Elements of information theory}.
+\newblock John Wiley \& Sons.
+
+\bibitem[\protect\astroncite{Dud{\'{\i}}k et~al.}{2011}]{dudik:2011}
+Dud{\'{\i}}k, M., D.~J. Hsu, S.~Kale, N.~Karampatziakis, J.~Langford,
+  L.~Reyzin, and T.~Zhang\leavevmode\nopagebreak\newline 2011.
+\newblock Efficient optimal learning for contextual bandits.
+\newblock {\em CoRR}, abs/1106.2369.
+
 \bibitem[\protect\astroncite{Feinstein}{1958}]{Feinstein:1958}
 Feinstein, A.\leavevmode\nopagebreak\newline 1958.
 \newblock {\em Foundations of information theory}.
 \newblock McGraw-Hill.
+
+\bibitem[\protect\astroncite{Garivier and Capp{\'e}}{2011}]{Garivier:2011}
+Garivier, A. and O.~Capp{\'e}\leavevmode\nopagebreak\newline 2011.
+\newblock The kl-ucb algorithm for bounded stochastic bandits and beyond.
+\newblock In {\em Proceedings of the 24th Annual Conference on Learning
+  Theory}, S.~M. Kakade and U.~von Luxburg, eds., volume~19 of {\em Proceedings
+  of Machine Learning Research}, Pp.~ 359--376. PMLR.
+
+\bibitem[\protect\astroncite{Garivier et~al.}{2016}]{garivier_ETC:2016}
+Garivier, A., T.~Lattimore, and E.~Kaufmann\leavevmode\nopagebreak\newline
+  2016.
+\newblock On explore-then-commit strategies.
+\newblock In {\em Advances in Neural Information Processing Systems}, Pp.~
+  784--792.
+
+\bibitem[\protect\astroncite{{Garivier} et~al.}{2016}]{Garivier:2016}
+{Garivier}, A., P.~{M{\'e}nard}, and G.~{Stoltz}\leavevmode\nopagebreak\newline
+  2016.
+\newblock Explore first, exploit next: The true shape of regret in bandit
+  problems.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[\protect\astroncite{Gittins et~al.}{2011}]{gittins:1989}
+Gittins, J., K.~Glazebrook, and R.~Weber\leavevmode\nopagebreak\newline 2011.
+\newblock {\em Multi-armed bandit allocation indices}.
+\newblock John Wiley \& Sons.
+
+\bibitem[\protect\astroncite{Gittins}{1979}]{gittins:1979}
+Gittins, J.~C.\leavevmode\nopagebreak\newline 1979.
+\newblock Bandit processes and dynamic allocation indices.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 41(2):148--177.
 
 \bibitem[\protect\astroncite{Kullback}{1997}]{Kullback:1997}
 Kullback, S.\leavevmode\nopagebreak\newline 1997.
 \newblock {\em Information theory and statistics}.
 \newblock Courier Corporation.
 
+\bibitem[\protect\astroncite{Kveton et~al.}{2014}]{kveton:2014}
+Kveton, B., Z.~Wen, A.~Ashkan, H.~Eydgahi, and
+  M.~Valko\leavevmode\nopagebreak\newline 2014.
+\newblock Polymatroid bandits.
+\newblock {\em CoRR, abs/1405.7752}.
+
 \bibitem[\protect\astroncite{Lai and Robbins}{1985}]{lai-robbins:1985}
 Lai, T.~L. and H.~Robbins\leavevmode\nopagebreak\newline 1985.
 \newblock Asymptotically efficient adaptive allocation rules.
 \newblock {\em Advances in applied mathematics}, 6(1):4--22.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016a}]{banditalgs:1}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016a.
+\newblock Bandits: A new beginning.
+\newblock \url{http://www.banditalgs.com/2016/09/04/bandits-a-new-beginning/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016b}]{banditalgs:2}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016b.
+\newblock Finite-armed stochastic bandits: Warming up.
+\newblock \url{http://banditalgs.com/2016/09/04/stochastic-bandits-warm-up/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016c}]{banditalgs:3}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016c.
+\newblock First steps: Explore-then-commit.
+\newblock
+  \url{http://banditalgs.com/2016/09/14/first-steps-explore-then-commit/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016d}]{banditalgs:7}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016d.
+\newblock Instance dependent lower bounds.
+\newblock
+  \url{http://banditalgs.com/2016/09/30/instance-dependent-lower-bounds/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016e}]{banditalgs:6}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016e.
+\newblock More information theory and minimax lower bounds.
+\newblock
+  \url{http://banditalgs.com/2016/09/28/more-information-theory-and-minimax-lower-bounds/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016f}]{banditalgs:5}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016f.
+\newblock Optimality concepts and information theory.
+\newblock
+  \url{http://banditalgs.com/2016/09/22/optimality-concepts-and-information-theory/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016g}]{banditalgs:11}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016g.
+\newblock Stochastic linear bandits and ucb.
+\newblock \url{http://banditalgs.com/2016/10/19/stochastic-linear-bandits/}.
+
+\bibitem[\protect\astroncite{Lattimore and
+  Szepesv{\'a}ri}{2016h}]{banditalgs:4}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016h.
+\newblock The upper confidence bound algorithm.
+\newblock
+  \url{http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/}.
 
 \bibitem[\protect\astroncite{Leadbetter et~al.}{2014}]{leadbetter:2014}
 Leadbetter, R., S.~Cambanis, and V.~Pipiras\leavevmode\nopagebreak\newline
@@ -42,16 +174,92 @@ Leadbetter, R., S.~Cambanis, and V.~Pipiras\leavevmode\nopagebreak\newline
   applications}.
 \newblock Cambridge university press.
 
+\bibitem[\protect\astroncite{Mannor and Shamir}{2011}]{mannor:2011}
+Mannor, S. and O.~Shamir\leavevmode\nopagebreak\newline 2011.
+\newblock From bandits to experts: On the value of side-observations.
+\newblock {\em CoRR}, abs/1106.2436.
+
+\bibitem[\protect\astroncite{Maurice}{1957}]{Maurice:1957}
+Maurice, R.~J.\leavevmode\nopagebreak\newline 1957.
+\newblock A minimax procedure for choosing between two populations using
+  sequential sampling.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 19(2):255--261.
+
+\bibitem[\protect\astroncite{Minsky}{1961}]{minsky:1961}
+Minsky, M.\leavevmode\nopagebreak\newline 1961.
+\newblock Steps toward artificial intelligence.
+\newblock {\em Proceedings of the IRE}, 49(1):8--30.
+
+\bibitem[\protect\astroncite{Perchet et~al.}{2016}]{Perchet:2016}
+Perchet, V., P.~Rigollet, S.~Chassang, E.~Snowberg,
+  et~al.\leavevmode\nopagebreak\newline 2016.
+\newblock Batched bandit problems.
+\newblock {\em The Annals of Statistics}, 44(2):660--681.
+
+\bibitem[\protect\astroncite{Robbins}{1985}]{robbins:1952}
+Robbins, H.\leavevmode\nopagebreak\newline 1985.
+\newblock Some aspects of the sequential design of experiments.
+\newblock In {\em Herbert Robbins Selected Papers}, Pp.~ 169--177.
+\newblock Springer.
+
+\bibitem[\protect\astroncite{Rosenblatt}{1958}]{rosenblatt:1958}
+Rosenblatt, F.\leavevmode\nopagebreak\newline 1958.
+\newblock The perceptron: a probabilistic model for information storage and
+  organization in the brain.
+\newblock {\em Psychological review}, 65(6):386.
+
+\bibitem[\protect\astroncite{Samuel}{1959}]{samuel:1959}
+Samuel, A.~L.\leavevmode\nopagebreak\newline 1959.
+\newblock Some studies in machine learning using the game of checkers.
+\newblock {\em IBM Journal of research and development}, 3(3):210--229.
+
 \bibitem[\protect\astroncite{Shannon}{2001}]{Shannon:1948}
 Shannon, C.~E.\leavevmode\nopagebreak\newline 2001.
 \newblock A mathematical theory of communication.
 \newblock {\em ACM SIGMOBILE Mobile Computing and Communications Review},
   5(1):3--55.
 
+\bibitem[\protect\astroncite{Somerville}{1954}]{Somerville:1954}
+Somerville, P.~N.\leavevmode\nopagebreak\newline 1954.
+\newblock Some problems of optimum sampling.
+\newblock {\em Biometrika}, 41(3/4):420--429.
+
+\bibitem[\protect\astroncite{Sutton and Barto}{1998}]{sutton:1998}
+Sutton, R.~S. and A.~G. Barto\leavevmode\nopagebreak\newline 1998.
+\newblock {\em Reinforcement learning: An introduction}, volume~1.
+\newblock MIT press Cambridge.
+
 \bibitem[\protect\astroncite{Thompson}{1933}]{thompson:1933}
 Thompson, W.~R.\leavevmode\nopagebreak\newline 1933.
 \newblock On the likelihood that one unknown probability exceeds another in
   view of the evidence of two samples.
 \newblock {\em Biometrika}, 25(3/4):285--294.
+
+\bibitem[\protect\astroncite{Valko et~al.}{2014}]{valko:2014}
+Valko, M., R.~Munos, B.~Kveton, and T.~Kocák\leavevmode\nopagebreak\newline
+  2014.
+\newblock Spectral bandits for smooth graph functions.
+\newblock In {\em Proceedings of the 31st International Conference on Machine
+  Learning}, E.~P. Xing and T.~Jebara, eds., volume~32 of {\em Proceedings of
+  Machine Learning Research}, Pp.~ 46--54, Bejing, China. PMLR.
+
+\bibitem[\protect\astroncite{Vaswani and Lakshmanan}{2015}]{vaswani:2015}
+Vaswani, S. and L.~V.~S. Lakshmanan\leavevmode\nopagebreak\newline 2015.
+\newblock Influence maximization with bandits.
+\newblock {\em CoRR}, abs/1503.00024.
+
+\bibitem[\protect\astroncite{Vernade et~al.}{2017}]{vernade:2017}
+Vernade, C., O.~Capp{\'{e}}, and V.~Perchet\leavevmode\nopagebreak\newline
+  2017.
+\newblock Stochastic bandit models for delayed conversions.
+\newblock {\em CoRR}, abs/1706.09186.
+
+\bibitem[\protect\astroncite{Yue and Joachims}{2009}]{yue:2009}
+Yue, Y. and T.~Joachims\leavevmode\nopagebreak\newline 2009.
+\newblock Interactively optimizing information retrieval systems as a dueling
+  bandits problem.
+\newblock In {\em Proceedings of the 26th Annual International Conference on
+  Machine Learning}, Pp.~ 1201--1208. ACM.
 
 \end{thebibliography}

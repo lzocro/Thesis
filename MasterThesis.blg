@@ -3,52 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MasterThesis.aux
 The style file: humannat.bst
 Database file #1: BibThesis.bib
-You're missing a field name---line 100 of file BibThesis.bib
- :   
- :   %  author    = "Donald Knuth",
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in knuthwebsite
-Warning--empty year in knuthwebsite
-You've used 10 entries,
+Warning--I didn't find a database entry for "banditsalgs:4"
+Warning--can't use both volume and number fields in sutton:1998
+Warning--can't use both volume and number fields in valko:2014
+You've used 43 entries,
             2155 wiz_defined-function locations,
-            570 strings with 5211 characters,
-and the built_in function-call counts, 3299 in all, are:
-= -- 317
-> -- 93
-< -- 6
-+ -- 36
-- -- 32
-* -- 286
-:= -- 580
-add.period$ -- 28
-call.type$ -- 10
-change.case$ -- 60
-chr.to.int$ -- 10
-cite$ -- 13
-duplicate$ -- 132
-empty$ -- 257
-format.name$ -- 43
-if$ -- 635
-int.to.chr$ -- 1
+            764 strings with 10602 characters,
+and the built_in function-call counts, 16678 in all, are:
+= -- 1655
+> -- 581
+< -- 44
++ -- 218
+- -- 199
+* -- 1410
+:= -- 2839
+add.period$ -- 136
+call.type$ -- 43
+change.case$ -- 302
+chr.to.int$ -- 36
+cite$ -- 45
+duplicate$ -- 675
+empty$ -- 1176
+format.name$ -- 280
+if$ -- 3319
+int.to.chr$ -- 8
 int.to.str$ -- 0
-missing$ -- 13
-newline$ -- 51
-num.names$ -- 27
-pop$ -- 61
+missing$ -- 42
+newline$ -- 219
+num.names$ -- 135
+pop$ -- 261
 preamble$ -- 1
-purify$ -- 65
+purify$ -- 309
 quote$ -- 0
-skip$ -- 93
+skip$ -- 539
 stack$ -- 0
-substring$ -- 226
-swap$ -- 19
-text.length$ -- 0
+substring$ -- 1083
+swap$ -- 168
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 52
+type$ -- 244
 warning$ -- 2
-while$ -- 28
+while$ -- 138
 width$ -- 0
-write$ -- 122
-(There was 1 error message)
+write$ -- 558
+(There were 3 warnings)

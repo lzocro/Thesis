@@ -1,42 +1,28 @@
+\lettrine[lines=4]{\textcolor{dropcap}{H}}{ow} should one allocate finite resources amongst multiple different projects whose progress is unpredictable in order to achieve the greatest success rate? What is the minimal amount of samples needed to identify the distribution of highest mean amongst a set of unknown distributions? How often should a recommender system suggest completely new objects in order to map out your preferences? Suppose the recommender only knows wether or not you viewed the specific item it suggested. What then is the cost of this information feedback system relative to a perfect information setting? How much more difficult is an allocation problem if the environment is markovian instead of stationary? All these problems can be formulated and answered in the machine learning framework of bandit theory. 
+
+\par Bandit theory is one of the fields of mathematics blessed with an eyebrow-raising name. The reader might find it amusing that this theory has nothing what-so-ever to do with banditry.  The seemingly esoteric name comes from a nickname for slot machines, which are sometimes called {\em one-armed bandits}, for their appearance and the efficiency with which they separate gamblers from their money. A {\em (multi-armed) bandit problem} consists formally of any sequential allocation problem where an {\em agent} receives {\em bandit feedback}, a small amount of information that depends on its actions. They are generally referred to as {\em $K$-armed bandits}, where an agent is faced with a row of $K$ proverbial slot-machines, some of which will have positive pay-off, and where its role becomes to effectively identify and profit from the arms with the highest pay-off. How it carries out this task, its {\em policy}, is the main object of bandit theory. One seeks to find an optimal policy for the specific problem considered
+
+\par There are a very wide range of problems in bandit theory, which fall into three natures. From the most general to the most specific, we first have {\em adversarial bandits}, where no assumptions are made about the slot machines, there reward is set at each round by an opponent which uses a possibly randomised procedure. Second, in {\em Markovian bandits}, each slot machine is a unknown Markov machine, whose state may change at each round. The final case is the special case of {\em stochastic bandits}, where each Markov machine is stationary. As is generally the case in mathematics, the specific case is a simpler problem than the more general formulation. Due to space limitations, this thesis will only provide an introduction to stochastic bandits, as the author feels that any survey of Markovian or adversarial bandits must be supported by a solid foundation in stochastic bandits. 
+
+\par In parallel, there are many settings one can consider in at least one of these three natures which give bandit theory a lot of flexibility to specialise to specific real-world problems. For example, in many real-world applications of information systems, the agent's decisions can be grounded in some external data, called a {\em context}. The family of bandit problems with contexts are thus called {\em contextual bandits}, and have been the subject of a lot of research\cite{banditalgs:11}. There are many other examples, which the reader may find of interest, such as: bandits with side observation\cite{mannor:2011}, bandits on combinatorial structures\cite{kveton:2014}, duelling bandits\cite{yue:2009}, bandits with delayed feedback\cite{dudik:2011}. We will not cover any specialised setting and simply present the regular stochastic bandit for the same reasons as our restriction to the stochastic case. 
+
+\par Having restricted ourselves to the simple stochastic bandit, let us now explicitly outline what this framework is. An {\em instance} of the stochastic $K$-armed bandit problem consists of an agent, which follows a {\em policy}, which takes each turn $t\in\NN$ exactly one action in a set $\mathcal{K}$ of size $K$, immediately receives a reward $X_t$ for the arm it played and then moves to round $t+1$. We will generally further assume that arms are independent and rewards from the same arm are also independent, that reward information is not altered, and that all arms are playable each round. We will also assume (unless otherwise specified) that rewards are bounded\footnote{This issue will be nuanced in section \ref{subsec:mean}, by a class of low variance random variables. However, in general we will state results for bandits with rewards bounded in $[0,1]$. Note that any bounded reward can be rescaled to $[0,1]$.}.
+\par We group together all such instances by their number of arms $K$ into the classes $\mathcal{E}_K$, and let $\mathcal{E}$ be the class of all these instances. There are a few implicit assumptions which relate more specifically to the situations where bandits can be used. For instance, note that for the reward distributions to remain the same the overall goal for which the agent was developed must not change either. These are mostly implementation issues, however, and we won't pay them much heed here. 
+
+%history section
+
+\par Before we begin the main discussion of this thesis, the author would like to invite the reader to pause with him and explore the history of the field of bandit theory. While inherently interesting, at least to the author, the reason to do so is to understand how bandit theory fits into the wide picture of machine learning, sampling and experimental design, project management, and control theory, to cite only a few. This review of the literature intends to highlight connections to other fields, evolutions of methods, and provide some answers to the questions which opened this text. 
+
+\par The first work in bandit theory is considered to be \citet{thompson:1933}, which involved the design of sequential clinical trials for two drugs with the goal of designing strategies to minimise the number of people given the least effective drug. Taking as reward the survival or death of each patient this is a stochastic $2$-armed bandit with Bernoulli arms. While Thompson's work did not lead to an immediate flurry of works in bandit theory, his bayesian approach proved remarkably effective and is still studied today\cite{agrawal:2012}. 
+The IID stochastic bandit, which is our subject in this thesis, was introduced in \citet{robbins:1952} building on the sequential design work of Wald. The most important result in stochastic bandits came three decades later in \citet{lai-robbins:1985}, which gives asymptotical guarantees for the performance of any policy an agent could use. This seminal work also proposed a policy which attains this optimality, we will discuss both these results in this thesis. This proof was then extended by \citet{burnetas:1996} to a larger family of distributions, while the policy was named UCB and improved by \citet{auer:2002}. From the 1990s onwards many settings of the bandit problem were explored. 
+
+\par The markovian bandit 
+
+%POMDP RL ML Control Theory bayesian vs frequentists markovian vs stoch vs adversary.
+%Gittins, Thompson, BAI for q
 
 
-
-%\lettrine[lines=4,slope=1pt]{A}{ll} 
-
-
-%title formatting 
-
-%\lettrine[lines=4]{\textcolor{red}{}}{}
- 
- 
-%Statistical Learning Problems in general 
-
-
-%Sequential decision making =/= eg. clustering
-\par Consider the problem of a clinical trial where several new drugs are tested to replace an existing drug. The most simple experimental framework would be to assign a fixed number of patients to the new drugs.  As new patients join the experiment they are allocated to one of the drugs until each has the required number of patients. If one of the drugs can be ruled to be ineffective with relatively high confidence early in the test, shouldn't we stop assigning patients to it in favour of the others? The key medical ethic ``do no harm'' would suggest that we should seek to find the most effective flexible procedure to ensure we do not needlessly put patients at risk in clinical trials. 
-
-%Online learning
-
-%supervised learning doesn't lead to a policy => makes it poor at sequential decision making where history is important. 
-%=> good for classifying independent facebook pictures
-
-%RL & POMDP framework, not covered here
-
-%Definition of a bandit
-
-%lai&robbins
-
-
-%
-
-
-
-
-
-
-
-
-
+\par In order to provide an exhaustive presentation of the regular stochastic bandit problem, we will begin by a quick outline of foundational material in measure theory which will allow us to redefine probability, random variables, integration and finally density. We will repeat this exercise with information theory, presenting a quantity of the difference between two distributions, and some inequalities related to it. With these foundational principles we will then cover general notions of bandit theory, our measure of performance and concentration inequalities, followed by general results for performance in the regular stochastic bandit problem. These general performance results will allow us to benchmark two classes of algorithms in the next section, with an analysis of their respective regrets.  Should the reader require them at any moment, a notational appendix and the bibliography are to be found at the end of this document. 
 
 
 

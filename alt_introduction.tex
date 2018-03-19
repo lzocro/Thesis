@@ -1,0 +1,127 @@
+\chapter*{Introduction}
+
+\lettrine[lines=4]{\textcolor{dropcap}{H}}{ow} should one allocate finite resources amongst multiple different projects whose progress is unpredictable in order to achieve the greatest success rate? What is the optimal way to sample from several populations to determine which one has the highest mean? What is the cost of a given information feedback system in these examples compared to a perfect information setting? How much more difficult is this allocation problem if feedback for an action is delayed? These problems are grouped under the mathematical discipline of {\em bandit theory}. %cite 
+Formally, bandit theory is a part of statistical machine learning, a discipline which began in the 1950s with the work of \citeauthor{rosenblatt:1958} and \citeauthor{samuel:1959}, building upon new work in computing and neurology. Early work, inspired by animal learning, used the language of {\em reinforcement}, borrowed from the Russian psychologist Ivan P. Pavlov. The paradigm of {\em reinforcement learning}, where a learner, the {\em agent}, took actions and obtained {\em rewards}, based on its performance, from the world at large, stood at the centre of this new field research. Over time, however, research drifted away from the idea of interactive reinforcement learning to focus on the other two main learning paradigms, {\em supervised} and {\em unsupervised} learning. 
+
+\par In supervised learning, the agent is given a set of covariates, and a {\em label}, for example the value of a quantity we are interested in, and tasked with identifying predictor patterns to then be able to predict the value of the quantity when given only the covariates of a new observation. This paradigm requires accurate learning examples, regardless of the algorithm used, which range from simple linear regression to complex artificial neural networks. In general this is a big drawback for supervised learning. In a complex task, such computer vision, where the agent must identify components of images, this may require a human painstakingly hand labelling many images. To reduce the work of supervisors, the paradigm of unsupervised learning provides a solution.
+
+\par In unsupervised learning, the agent is given large amounts of unlabelled data and asked to investigate patterns in the data that might provide interesting information. This process is often referred to as data mining, and methods such as clustering, have been the subject of much research, and are effective at finding interesting threads for further analysis. It does not require any human supervision to do its work, but it falls short of supervised learning's predictive ability simply because that is not what it is designed for. The problem for both supervised and unsupervised learning is that they do not design a {\em policy} for the agent, which would allow it to effectively use past actions to improve its decision making process. Reinforcement learning however, does generate a policy and is thus well suited for sequential decision problems, although the reader should note that it is not the only learning paradigm to do so.
+
+\par In the 1970s and 1980s the discipline of reinforcement learning was risen from its shallow grave by outsiders, initially by engineers and control theorists studying {\em Partially Observable Markov Decision Processes}, or how an agent can control a random, partially unknown, ever changing system without supervision. This complex problem lead them to devise simple learning algorithms, the first solutions to the {\em multi-armed bandit} problem. {\em Multi-armed bandits} belong to reinforcement learning, however we will not go into detail on the rich history and other research in this field. Should the reader desire to acquire their basics \citet{sutton:1998} is generally considered the go-to. 
+
+\par We have so far broken down machine learning into its paradigms and briefly outlined that multi-armed bandits are reinforcement agents meaning they obtain rewards for actions without a human intervention. But there is another interesting aspect of reinforcement learning and particular of multi-armed bandits, which is their {\em online} nature. ``Online'', in this context, doesn't refer to the internet, but rather to one of two simple ways for a machine to learn. In supervised methods the learning data is usually given all at once, the agent digests it, and then makes predictions without learning for the rest of its life. In comparison to this {\em batch learning}, online agents may be initialised by a batch, but then learn as they make predictions for their whole lifetime. The reader might notice that reinforcement learning and online learning are highly compatible, and indeed multi-armed bandits are almost all done online.  
+
+\par Online reinforcement learning is an attractive learning paradigm as it reduces the amount of human work needed, while maximising the amount of data the agent can learn from. It is also an intrinsic quality of animal and particular human learning, the imitation on which still provides an underlying ethos and end goal in human level machine intelligence. Moreover, situations where online reinforcement learning can shine have become ubiquitous with interaction over the internet. The textbook application for adversarial bandits for example is the serving of advertising to web-page visitors. Suppose your agent is an ad-space on a page and has several different ads to choose from and collects a small amount of information from the website about the user. Evidently, no-one but the user himself can label which ads would coax him into a purchase or a click, so supervised learning is impractical. This situation naturally calls for a reinforcement process (the reward is a click on the add or a purchase), with an online learning component to adapt to changes over time, which can take into account external information. Beyond ad-serving\cite{vernade:2017,dudik:2011}, multi-armed bandits have shown effectiveness for instance in recommender systems, sometimes using similarity graphs between items to improve performance\cite{valko:2014}, packet routing\cite{awerbuch:2004}, search engines\cite{yue:2009}, influence maximisation\cite{vaswani:2015}, project management\cite{gittins:1979}, and their original purpose: sequential clinical trials\cite{thompson:1933,lai-robbins:1985}. 
+% add things and cite one for each. PM is Gittins and P. Nash
+
+
+%%%%%%%%%%%%%%%%%%%%%%% missing something here 
+
+\par  Bandit theory is one of the fields of mathematics blessed with an eyebrow-raising name. The reader might find it amusing that this theory has nothing what-so-ever to do with banditry.  The seemingly esoteric name comes from a nick-name for slot machines, which were sometimes called {\em one-armed bandits}, for their appearance and the efficiency with which they separate gamblers from their money. Considering a row of different slot machines, collectively a {\em $K$-armed bandit}, some of which will have positive pay-off, the role of the gambler becomes to effectively identify and profit from arms with the best pay-off. This sheds some light on an otherwise curious name for the discipline. 
+
+\par The general bandit problem is broken down into several categories, the most important are: {\em stochastic}, {\em adversarial}, and {\em markovian}. In the stochastic case one assumes the environment to be random, each arm having its own distribution. While it is a good stepping stone, and a required one to understand more advanced topics, it is limited in practice by its strong assumptions. In contrast to the second category, which is closer to the namesake casino situation, which is purposefully light in assumptions. In this adversarial setting, the agent plays against a policy, which may use randomisation, and at each round this adversary decides the reward given by each arm. It might seem that this situation is hopeless, but in real-world situations, where the adversary is rather an indifferent unknown process, algorithms have been designed that achieve commendable performance. The final category is the markovian bandit, where each arm is underlain by a Markov process. The difference with the stochastic bandit is thus that each arm's reward distribution may change over time. While considered a different category, the astute reader will note that stochastic bandits are a particular stationary class of markovian bandits. 
+
+\par While it is clearly a reinforcement learning problem, bandit problems predate machine learning, owing to the fact that they can arise from very simple lines of questioning. \citeauthor{thompson:1933} is generally credited as the father of the discipline, his 1933 article {\em On the likelihood that one unknown probability exceeds another in view of the evidence of two samples}, dealt with differentiating two sample populations and specifically in the context of a sequential clinical trial. Thompson, while seeking to minimise fatalities in clinical trials, effectively presented a $2$-armed bandit problem. His solution, {\em Thompson sampling}, a bayesian method, is still subject to study today for its remarkable effectiveness\cite{agrawal:2012}. While his work did not spark a new discipline right away, it did set the framework of bandit theory to be clinical trials. Unsurprisingly therefore, when several seminal papers where published in the 1970s, they approached the problem from this angle.  %gittins' work with Jones >gittins index proof & transition to clinical trial being an application of a problem of it's own interest
+
+The multi-armed bandit problem now entrenched, 1985 saw the publication by \citeauthor{lai-robbins:1985} of a theorem describing optimal regret growth and of an index algorithm, based on upper confidence bounds. This proof however was only valid for single-parameter distributions and was generalised by \citet{burnetas:1996}. 
+
+So far these works have been focused on the stochastic case, although it was known to be a stationary markovian case, for example in \citet{gittins:1979} . The adversarial case was first explored by \citet{auer:1995} who introduced the {\em Exp3} and {\em Exp4} algorithms, standing for {\em exponential-weight algorithm for exploitation and exploration} and adding {\em with experts} for the latter. There has been a lot of research in the adversarial direction since, and it has seen many real world applications due to its very few assumptions.
+%History of BT/literature review:
+		%lai&robbins, thompson, Burnetas and katehakis? Auer, NCB et al? Gambling in a rigged casino
+		% o/			o/		o/				o/			--
+
+\par This is far from the whole wealth of all bandit problems. Indeed we have only viewed the problem from the angle of different environments. Another important motivator is the differing information situations one could encounter in the real world. In the simplest case we consider that agents in bandit problems only observe the reward of the arm played. This is the case we will study in this thesis for stochastic bandits. There has been research into contextual bandits\cite{banditalgs:11}, bandits with side observation\cite{mannor:2011}, bandits on various structures\cite{kveton:2014}, duelling bandits\cite{yue:2009}, bandits with delayed feedback\cite{dudik:2011}, etc. The breadth of sequential problems addressable by bandit theory is one of its key strengths. %cite ahoy!
+%add restless bandits? 
+
+
+%2 - Definition of a bandit
+	%Origin of the expression o/
+	%3 types of bandits o/
+	%Examples of real world bandits
+	%History of BT/literature review:
+		%lai&robbins, thompson, Burnetas and katehakis? Auer, NCB et al? Gambling in a rigged casino
+	%exploration exploitation components in the problem, and fundamental tradeoff 
+	% But many types of problems, rested/restless, dueling, combinatorial, with experts, contextual, etc. and ref o/
+	
+	
+\par Unfortunately, this thesis is limited in length and this wealth of information cannot be distilled in a rigorous manner into such a short space. We must make sacrifices and not all of these existing topics will be covered. To best serve the reader, who we do not hold to be familiar with the topic, we shall cover the introductory regular stochastic bandit case. It is not a trivial problem, but it is a more approachable one. Should we not cover this topic,  we would of course not be able to cover markovian bandits, or variants of stochastic bandits. Furthermore, a presentation of the adversarial setting without the comparison to the stochastic case would lose a frustrating amount of depth.  
+
+\par Since we will only talk about the regular stochastic case, we should make a clear inventory of the assumptions this entails. We will assume our {\em instances}, are defined by the following set-up:
+\begin{list}{$\circ$}{}
+\item The agent pulls exactly one arm per time index $t\in\NN$.
+\item The agent receives each round only the reward drawn from the arm it played.
+\item Arms are independent of each other.
+\item Each arm $i$ has a fixed distribution $P_i$ from which rewards are drawn independently. 
+\item All arms are playable each round.
+\item Reward information is not censored or modified, and is observed immediately.
+\item Rewards are bounded, unless otherwise specified\footnote{This issue will be nuanced later, by a class of low variance random variables. However, in general we will state results for bandits with rewards bounded in $[0,1]$. Note that any bounded reward can be rescaled to $[0,1]$.}.
+\end{list}
+We group together all such instances by their number of arms $K$ into the classes $\mathcal{E}_K$, and let $\mathcal{E}$ be the class of all these instances. There are a few implicit assumptions which relate more specifically to the situations where bandits can be used. For instance, note that for the reward distributions to remain the same the overall goal for which the agent was developed must not change either. These are mostly implementation issues, however, and we won't pay them much heed here. 
+
+
+%3 - Assumptions and restrictions of the thesis and references for relaxing assumptions?
+	
+	%limit to $sub-gaussian$ bounded reward cases implicitely. makes sense in real world problems though o/
+	%Arm indep assumptions etc. o/
+	%Instant feedback o/
+	%Stationary arms (and resting vs restless) o/
+	%bounded arms or gaussian o/
+
+
+\par In order to provide an exhaustive presentation of the regular stochastic bandit problem, we will begin by a quick outline of foundational material in measure theory which will allow us to redefine probability, random variables, integration and finally density. We will repeat this exercise with information theory, presenting a quantity of the difference between two distributions, and some inequalities related to it. With these foundational principles we will then cover general notions of bandit theory, our measure of performance and concentration inequalities, followed by general results for performance in the regular stochastic bandit problem. These general performance results will allow us to benchmark two classes of algorithms in the next section, with an analysis of their respective regrets.  Should the reader require them at any moment, a notational appendix and the bibliography are to be found at the end of this document. 
+
+
+%4 - Structure & explanation o/
+ 	%Chapter 1: background not part of bandit theory
+		%1>measure theory
+			%1>redefining probability
+			%2>redefining density and integration
+		%2>Information theory
+			%1>Divergence
+			%2>Inequalities related to divergence
+	%Chapter 2: Properties of the problem
+		%1> Simple mathematical notes needed throughout
+			%1>about regret
+			%2>about means, Hoeffding's lemma
+		%2> Advanced regret optimality properties of the problem
+			%1> Assymptotic behaviour
+			%2> Worst case behaviour
+	%Chapter 3: 2 main classes of Algorithms
+		%1>An intuitive solution and %2> A fully sequential solution :
+			%1> Algorithm
+			%2> Regret behaviour
+	%Index and citations to be found at the end
+
+
+
+
+
+
+% for intro: \lettrine[lines=4]{\textcolour{red}{B}}{andit theory} has been a prolific field of research, and the last two decades have seen an explosion in new applications and methods. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\par Consider the problem of a clinical trial where several new drugs are tested to replace an existing drug. The most simple experimental framework would be to assign a fixed number of patients to the new drugs.  As new patients join the experiment they are allocated to one of the drugs until each has the required number of patients. If one of the drugs can be ruled to be ineffective with relatively high confidence early in the test, shouldn't we stop assigning patients to it in favour of the others? The key medical ethic ``do no harm'' would suggest that we should seek to find the most effective flexible procedure to ensure we do not needlessly put patients at risk in clinical trials. 
