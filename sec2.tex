@@ -1,29 +1,26 @@
 %\lettrine[lines=4,slope=1pt]{A}{ll} 
  %\lettrine[lines=3,slope=1pt]{\textcolor{red}{A}}{n} 
 
-\chapter{Stochastic Bandits}
+\chapter{Stochastic Bandits}\label{chap:2}
 
-\lettrine[lines=4]{\textcolor{red}{M}}{odelling} complex, partially unknown real world systems is typically done by replacing unknown mechanics with random approximations. This is the case of the one-armed bandit for instance, one gambles against a seemingly random slot machine. The slot machine however, is wholly deterministic. It is therefore natural to study first the problem of sequential action allocation in a stochastic environment. In this \textit{stochastic bandit} problem, we further restrict study to the case of a stationary environment, with $K$ arms, which form a set $\mathcal{K}$, each with an underlying distributions from which rewards are drawn independently at random, until a fixed time horizon $N$. There are many further assumptions to be made in this precise problem, for example that rewards are observed without bias or delay. Many different sets of assumptions have been studied in stochastic bandits, which relax one or several of these assumptions, or adding further assumptions to extract higher performance in specific settings. 
-%ref bandits on graphs, ref with delay, ref infinite arms etc. 
-Notwithstanding, we restrict ourselves here to the simplest case, and encourage the reader to explore further resources should they wish to challenge the assumptions of this framework. In this chapter, we will establish some mathematical foundations which we will use to evaluate the performance of two algorithms which we will study. While the first, explore-then-commit is an intuitive strategy, it has many flaws which will highlight the difficulty of bandit problems, and will motivate the more advanced upper confidence bound algorithm. 
-
-
+\lettrine[lines=4]{\textcolor{dropcap}{M}}{odelling} complex, partially unknown real world systems is typically done by replacing unknown mechanics with random approximations. This is the case of the one-armed bandit for instance, one gambles against a seemingly random slot machine. The slot machine however, is wholly deterministic. It is therefore natural to study first the problem of sequential action allocation in a stochastic environment. In this chapter, we will establish some mathematical foundations which we will use to evaluate the performance of algorithms in chapter \ref{chap:algs}. We will begin by outlining mathematical concepts which will be needed to study the performance of bandit algorithms, and then by characterising the general properties of the stochastic bandit problem.
 
 %
 %
 \section{Mathematical notes}\label{sec:Maths}
 %
 %
-\lettrine[lines=3]{T}{he} main element of mathematical interest in this thesis is the concept of regret. Like in other machine learning problems, bandits are motivated by the optimisation of a loss function, equivalent to the maximisation of obtained rewards. As the rewards are random variables, it will be natural to consider the expectation of accumulated rewards as a function of time. The question is what to compare rewards to, in order to obtain a meaningful loss which the algorithm can learn from. This will motivate our definitions of regret, after which we will show a quintessential theorem called the regret decomposition identity. After this, we will turn our attention to the problem of concentration inequalities on the mean of certain random variables. We will define sub-gaussianity, then show two important concentration inequalities.  
+
+\lettrine[lines=3]{T}{he} main quantity of mathematical interest in this thesis is the concept of regret. Like in all other machine learning problems, bandits are motivated by the optimisation of a loss function, equivalent to the maximisation of obtained rewards. As the rewards are random variables, it will be natural to consider the expectation of accumulated rewards as a function of time. The question is what to compare rewards to, in order to obtain a meaningful loss which the algorithm can learn from. This will motivate our definitions of regret, after which we will show a quintessential theorem called the regret decomposition identity. After this, we will turn our attention to the problem of concentration inequalities on the mean of certain random variables. We will define sub-gaussianity, then show two important concentration inequalities.  
 
 %
 \subsection{Regret Properties}\label{subsec:regret-prop}
 %
 
-\par What is referred to as the \textit{regret} can be confusing, as such we will begin by clarifying its exact definitions used in this thesis. Afterwards we will formulate the Regret Decomposition identity, which will prove very important later. 
-The \textit{regret} is a random variable $R_n$, defined as the difference between repeating the action of highest summed rewarded and the received sum of rewards\cite{bubeck:2012}:
+\par What is referred to as the \textit{regret} can be confusing, as such we will begin by clarifying its exact definitions used in this thesis. Afterwards we will formulate the regret decomposition identity, which will prove to be a fundamental result. 
+The regret is a random variable, $R_n$, defined as the difference between repeating the action of highest summed rewarded and the received sum of rewards\cite{bubeck:2012}. In a way, the regret represents the loss in the bandit setting relative to a perfect information setting. Mathematically:
 \[ R_n = \max_{i\in\mathcal{K}}\sum_{t=1}^n X_{i,t}-\sum_{t=1}^nX_{I_t,t}\,. \] 
-It would be natural to examine the \text{expected regret} $\mathbb{E}[R_n]$, where the agent competes against the expected value of the maximal reward obtainable by playing the same arm repeatedly. In practice however, we will tend to examine the weaker notion of \text{pseudo-regret}, as defined in definition \ref{def:PRSB-1}, where one competes only against the sequence which is optimal in expectation.
+It would be natural to examine the \textit{expected regret} $\mathbb{E}[R_n]$, where the agent competes against the expected value of the maximal reward obtainable by playing the same arm repeatedly. In practice however, we will tend to examine the weaker notion of {\em pseudo-regret}, as defined in definition \ref{def:PRSB-1}, where one competes only against the sequence which is optimal in expectation. The pseudo-regret is colloquially referred to as the regret in literature, for simplicity, and will sometimes henceforth be referred by this simplification. The reader should, however, bear in mind this terminological sloth. 
 
 \begin{definition}[Pseudo-Regret of a stochastic bandit]\label{def:PRSB-1}
 In a stochastic bandit with $K$ arms, for round $0<n\leq N$, we define the pseudo-regret as:
@@ -48,7 +45,7 @@ Starting with definition \ref{def:PRSB-1} we rewrite the formula for $R_n$:
 \par These two definitions are all we need to introduce the main result of this section, whose proof will be immediately given thereafter. 
 
 \begin{theorem}[Regret Decomposition Identity]\label{thm:RDI}
-In a stochastic bandit with $K$ arms, for $0<n\leq N$, let $\Delta_k=\mu^*-\mu_k$ be the sub-optimality gap for arm $k$, and let $T_k(n):=\sum_{t=1}^n \mathbb{I}\{I_t=k \}$ be the random variable counting the number of times arm $k$ is chosen in $n$ rounds. We can now decompose the pseudo-regret in terms of $\Delta_k$ and $\mathbb{E}[T_k(n)]$.
+In a stochastic bandit with $K$ arms, for $0<n\leq N$, let $\Delta_k=\mu^*-\mu_k$ be the sub-optimality gap for arm $k$, and let $T_k(n):=\sum_{t=1}^n \mathbb{I}\{I_t=k \}$ be the random variable counting the number of times arm $k$ is chosen in $n$ rounds. We can now decompose the pseudo-regret in terms of $\Delta_k$ and $\mathbb{E}[T_k(n)]$:
 \[\bar{R}_n=\sum_{k\in\mathcal{K}}\Delta_k\mathbb{E}[T_k(n)]\, .\]
 \end{theorem}
 
@@ -64,16 +61,14 @@ Recalling from the tractable pseudo-regret, we will re-index the sums from the n
 \end{align*}
 \end{proof}
 
+\par Theorem \ref{thm:RDI} concludes the list of regret properties we need to review, and we will now move on to a discussion of the estimation of a mean, which will allow us to derive tail probability bounds we will need.
+
 %
-\subsection{Estimation of a Mean}
+\subsection{Estimation of a Mean}\label{subsec:mean}
 %
 
-\par In order to set-up algorithms for stochastic bandits it is necessary to effectively estimate the mean pay-off of each arm. Indeed, each time we pull a sub-optimal arm to refine its mean, we incur a penalty $\Delta_k$. This seems like a straightforward task, after-all there is an unbiased estimator for the mean, the sample mean which we can adapt: $\hat{\mu}_k:= \frac{1}{n_k}\sum_{t=1}^{n} X_{I_t,t}\mathbb{I}\{I_t=k\}$. However, being unbiased is not the paramount property in the case of a bandit problem. If the estimator is unbiased but has high variance it will be difficult to determine which arm has the highest true mean. Recall that the variance (i.e. error) of the sample mean is $\frac{\sigma^2}{n}$, where $n$ is the number of samples and $\sigma^2$ is the variance of their underlying distribution. 
-\par We would like to define a framework to describe the distribution of $\hat{\mu}$, which is unknown. To do so we will look at the tail probabilities $P(\hat{\mu}\geq \mu + \epsilon)$ and $P(\hat{\mu}\leq \mu - \epsilon)$ and attempt to bound them.
-We could use Chebyshev's inequality or the central limit theorem, but the first one is a weak bound and the second one is asymptotic which forbids its use as $N<\infty$. Instead we will define a new property of a random variable which will allow us to derive new properties about its tail probabilities. 
-
-% First the form of these would encourage us to use Chebyshev's inequality, which gives the bound: $P(\vert\hat{\mu}-\mu\vert\geq \epsilon)\leq \frac{\sigma^2}{n\epsilon}$. Could we improve this bound further?
-
+\par In order to set-up algorithms for stochastic bandits it is necessary to effectively estimate the mean pay-off of each arm. Indeed, each time we pull a sub-optimal arm to refine its mean, we incur a penalty with expectation $\Delta_k$. This seems like a straightforward task, after-all there is an unbiased estimator for the mean, the sample mean, which we can adapt: $\hat{\mu}_k:= \frac{1}{n_k}\sum_{t=1}^{n} X_{I_t,t}\mathbb{I}\{I_t=k\}$. However, being unbiased is not the paramount property in the case of a bandit problem. If the estimator is unbiased but has high variance it will be difficult to determine which arm has the highest true mean. Recall that the variance (i.e. error) of the sample mean is $\frac{\sigma^2}{n}$, where $n$ is the number of samples and $\sigma^2$ is the variance of their underlying distribution. 
+\par We would like to define a framework to describe the distribution of $\hat{\mu}$, which is unknown. To do so we will look at the tail probabilities $P(\hat{\mu}\geq \mu + \epsilon)$ and $P(\hat{\mu}\leq \mu - \epsilon)$ and attempt to bound them. We could use Chebyshev's inequality or the central limit theorem, but the first one is a weak bound and the second one is asymptotic which forbids its use. Instead we will define a new property of a random variable which will allow us to derive new properties about its tail probabilities. 
 
 \begin{definition}[Sub-gaussianity]
 A random variable $X$ is $\sigma^2$-sub-gaussian if it satisfies:
@@ -82,7 +77,7 @@ A random variable $X$ is $\sigma^2$-sub-gaussian if it satisfies:
 
 \par Intuitively $X$ is sub-gaussian if its tails are lighter than the gaussian distribution, which is to say that it has lower tail probabilities. We follow this with some simple results about independent sub-gaussian random variables.
 
-\begin{lemma}[Properties of sub-gaussian random variables]
+\begin{lemma}[Properties of sub-gaussian random variables\cite{banditalgs:3}]
 Let $X$ be a sub-gaussian random variable.
 \begin{list}{$\circ$}{}
 \item We have $\mathbb{E}(X)=0$ and $\var{X}\leq \sigma^2$. 
@@ -101,7 +96,7 @@ Let $X$ be a sub-gaussian random variable.
 \lambda\mathbb{E}[X]+ \lambda^2\mathbb{E}[X^2] &\leq \frac{\lambda^2}{2\sigma^2} + R_2(\lambda)\,.
 \intertext{We separate cases where $\lambda>0$ and $\lambda<0$, and divide by $\lambda$. Taking the limit to $0$ gives:
 \[E(X)\geq 0 \text{ if}\,\lambda<0 \text{ and}\,E(X)\leq 0 \text{ if $\lambda>0$} \Rightarrow E(X)=0\,.\]}
-\intertext{For the variance we divide instead by $\frac{t^2}{2}>0$, and take the limit as $\lambda\to0$:
+\intertext{For the variance we divide instead by $\frac{\lambda^2}{2}>0$, and take the limit as $\lambda\to0$:
 \[\var{X}=\mathbb{E}[X^2]-\mathbb{E}[X]^2\leq \frac{1}{\sigma^2}\,.\]}
 \end{align*}
 \item Letting $\lambda'=\lambda c \in \mathbb{R}$ in the definition gives the result.
@@ -117,7 +112,7 @@ Thus $X_1+X_2$ is $(\sigma_1^2+\sigma_2^2)$-sub-gaussian.
 
 \par To formalise our intuition of the lightness of tails of sub-gaussian random variables we introduce the following concentration inequality, which we prove using Chernoff's method. 
 
-\begin{theorem}[Concentration of Sub-gaussian Random Variables]\label{thm:concentrationSGRV}
+\begin{theorem}[Concentration of Sub-gaussian Random Variables\cite{banditalgs:3}]\label{thm:concentrationSGRV}
 If $X$ is a $\sigma^2$-sub-gaussian, then $P(X\geq \epsilon)\leq \exp\left(-\frac{\epsilon^2}{2\sigma^2}\right)$.
 \end{theorem}
 
@@ -141,243 +136,217 @@ Let $X_i-\mu$ be independent $\sigma^2$-sub-gaussian random variables. Then $\ha
 \end{corollary}
 
 
-\par This concludes our discussion of estimation of means as we have found satisfactory bounds on tail probabilities for the sample mean. In this next section we will design and review our first algorithm for competing in the stochastic bandit environment.
-%
-%
-\section{Explore-Then-Commit}
-%
-%
-\par \lettrine[lines=3]{F}{ollowing} these mathematical notes, we have the tools required to begin designing and evaluating algorithms. Recalling the stochastic bandit problem, we begin by designing a simple and intuitive strategy, and then analyse its regret performance. What is the simplest strategy that comes to mind? Intuitively we need to do two things in sequence: find the best arm, repeatedly exploit it. Why not simply explore for a given number of rounds $M<N$, then take the arm with highest mean and play that arm the remaining $N-M$ rounds? This strategy is valid, and is called the explore-then-commit strategy. 
+\par This concludes our discussion of estimation of means as we have found satisfactory bounds on tail probabilities for the sample mean. We now outline the general characteristics of the stochastic bandit problem in terms of the regret properties which we will use to compare competing algorithms. 
+
+\section{Characterising the Stochastic Bandit Problem}\label{sec:chars}
+
+\lettrine[lines=3]{G}{eneral} results about the regret behaviour of algorithms in the stochastic bandit problem will allow us to establish benchmarks against which we can compare the effective performance of the algorithms which will be discussed in chapter \ref{chap:algs}. We will present the key behaviour of regret growth, characterising the types of policies which we will take as valid, and then proving a tight lower bound on the general-case asymptotic regret growth attainable, the seminal result in bandit theory. This first analysis will focus on what can be achieved on nice instances, the first benchmark, while the second will analyse the best-achievable worst case regret, a concept borrowed from game theory, which will be defined. This second benchmark allows us to compare performance of algorithms in the most gruelling environments, where the random distributions are virtually equivalent to playing against an adversary, bent on tricking the algorithm. 
 
 
-%
-\subsection{Algorithm}
-%
+\subsection{Optimal Asymptotic Regret Growth}
 
-\par Before introducing the explore-then-commit (ETC) algorithm we need to clarify a few details. First, we want our exploration to be uniform over the arms, thus we will choose a deterministic exploration and take $M=mK$, for some $m\in\mathbb{N}$. Second, we must consider the case of a tie for best arm at round $M$, where we will break the tie in a deterministic way, say by choosing the arm of least index. Finally, we will assume that the noise in the rewards of our stochastic bandit is $\sigma^2$-subgaussian, with $\sigma^2$ known. Throughout this thesis we will study cases of $1$-subgaussian random noise, for simplicity, but the results will hold for all valid $\sigma^2$. The formal algorithm is presented in Algorithm \ref{alg:ETC}
+\par The key result in this section will show that any strategy which is {\em consistent} achieves at most logarithmic asymptotic regret growth in terms of the number of rounds, up to a universal constant which will make this bound tight. It is not trivial however to see why this is, nor to understand it. It is important firstly, that this behaviour is asymptotic, and must only be considered if $N$ is large in regards to the difficulty of the instance, and the number of arms. Since we must intuitively explore the whole action space to hope to find the optimal arm, algorithms often start by pulling each arm one or more times, denoted $m$. This leads to a linear regret term for the first $mK$ rounds, which does not interfere with the result. A further problem with asymptotic bounds, is that in a finite time instance, the asymptotic domain may never be reached\cite{Garivier:2016}, leading to non logarithmic growth. Notwithstanding, asymptotic guarantees are still a valuable measure for algorithms, even if they must be taken with the usual caution for asymptotic results. 
 
-\begin{algorithm}
-\KwIn{$m$}
-\While{$t\leq N$}{%
-\For{$t\leq mK$}{%
-$A_t\gets t\,  [\text{mod }K]+1$\;}
-\For{$t>mK$}{$A_t\gets  \argmax_{i\in\mathcal{K}}\left\{ \hat{\mu}_i(mK)\right\}$}
-Take action $A_t$\;
-Store reward $X_t$\;}
-\caption{Pseudo-code for the ETC algorithm}\label{alg:ETC}
-\end{algorithm}
+\par In deriving a general result for all acceptable policies, the next issue we are faced with is exactly how to define an acceptable policy. Of course we can eliminate trivial policies which are inapplicable in practice, such as $\pi(t)=\argmax_{k\in\mathcal{K}}\mu_k$, which requires knowledge of the best arm ahead of time, while achieving 0 regret. Thus our policy $\pi$ must not take into account the means $\mu_i$, and therefore not the sub-optimality gaps $\Delta_i$ either. Inversely, we are only interested in strategies which have some intelligence. We are not interested in bounding the regret growth of a policy which simply plays an arm at random each round, forever. Just as the previous class had inapplicable knowledge, this class has inapplicable linear regret.  Surprisingly to the reader, perhaps, these classes aren't so different. Note that any policy that has knowledge of an instance $\nu$ will perform linearly on an instance $\nu'$. Take the policy, $\pi(t)=\argmax_{k\in\mathcal{K}(\nu)}\mu_k(\nu)$ given above, in an instance with another optimal arm it suddenly incurs linear regret. Thus, we would want to simply restrict ourselves to strategies which are sub-linear. For historical reasons, in the literature the condition is made slightly more stringent, requiring sub-polynomial growth. This was the setting chosen by \citet{lai-robbins:1985}, and remains in practice today. Note, however, that this is not a monolithic reverence for the fathers of bandit theory, this requirement is well grounded in fact. Without elaborating on the contents of the next section, there are abstract policies which are sub-polynomial with fractional powers over all instances, and this will be proven. Therefore, we might sensibly limit ourselves to sub-polynomial policies in our analysis, as they are uniformly better than ones which are simply sub-linear.
 
-\par ETC is a simplistic strategy, but as an intuitive solution to the stochastic bandit problem it will help us introduce regret bounds using the tools from section \ref{sec:Maths}, and better understand why more flexible approaches can offer better solutions to this bandit problem.
+\begin{definition}[Consistency]
+A policy $\pi$ is consistent if for any stochastic bandit in $\mathcal{E}$, and for all $\alpha>0$, we have that:
+\[R_n^\nu(\pi) = \mathcal{O}(n^\alpha) \, \text{as}\, n\to\infty\,.\]
+\end{definition}
 
+\par This definition, and its justification out of the way, we may proceed to the main result of this section, theorem \ref{thm:LR}. This theorem gives an instance dependent lower bound for the asymptotic regret growth, with remarkable elegance. This result connects the intuitive difficulty of the problem, the number of arms, (the length of the sum), and the gaps between arms with the Kullback-Leibler divergence between the means of each arm. For large gaps, thus extremely different distributions, the resulting regret will be small as the arms are easily distinguished. Even for small gaps, the regret is small if arms are very different, but likely moderate if the arms are quite similar. The divergence really highlights the intrinsic difficulty of the problem.
 
-%
-\subsection{Regret Analysis}
-%
-
-\par The pseudo-regret is referred to simply as regret in this section, but the reader should recall the differences outlined in subsection \ref{subsec:regret-prop}. First, we shall present a general formula for the regret of the ETC strategy. After discussion this result we will use a simple case as an example, deriving an upper bound for the regret of ETC in a two-armed stochastic bandit.
-
-
-\begin{theorem}[General ETC regret]\label{thm:etc-regret}
-In a stochastic bandit setting  with $1$-subgaussian noise the pseudo-regret of the ETC algorithm satisfies for $n\geq M$:
-\[ \bar{R}_n\leq m\sum_{i\in\mathcal{K}}\Delta_i + (n-mK)\sum_{i\in\mathcal{K}}\Delta_i\exp\left( -\frac{m\Delta^2_i}{4}\right)\,.\]
+\begin{theorem}[{Assymptotic Growth Lower-Bound\cite[thm.~1]{lai-robbins:1985}}]\label{thm:LR}
+For all consistent policies $\pi$, for all instances $\nu\in\mathcal{E}$, we have:
+\[ \liminf_{n\to\infty} \frac{R_n^\nu(\pi)}{\ln(n)} \geq \sum_{i:\Delta_i>0}\frac{\Delta_i}{D_{KL}(P_i\Vert P_{i^*})}\,.\]
 \end{theorem}
 
 \begin{proof}
-We begin with the regret decomposition identity, and separate the two phases of the algorithm, denoting $i'$ the arm committed to and $i^*$ the optimal arm: 
-\begin{align*}
-\bar{R}_n&= \sum_{i\in\mathcal{K}}\Delta_i\mathbb{E}[T_i(n)]\\
-&= \sum_{t=1}^{m}\sum_{i\in\mathcal{K}}\Delta_i + \sum_{t=M}^n\sum_{i\in\mathcal{K}}\Delta_i\mathbb{E}[\mathbb{I}\{i=i'\}]\\
-&=m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(i=i')\\  
-&=m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)=\max_{j\in\mathcal{K}}\hat{\mu}_j(M))\\
-&\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)\geq 0)\\
-&\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)-\Delta_i\geq \Delta_i)
-\end{align*}
-See that $\hat{\mu}_i(M)-\mu_i-\hat{\mu}^*(M)+\mu^*$ is $\frac{2}{m}$-sub-gaussian, as the difference of two $\frac{1}{m}$-sub-gaussian variables, which allows us to apply Hoeffding's bound form corollary \ref{cor:Hoeffding}, completing the proof. 
+The essence of this proof, as it is in the original document is to focus on bounding the limit inferior of the expected number of samples from sub-optimal arms by consistent policies. We want to show in an instance $\nu\in\mathcal{E}$ that for all $i\in\mathcal{K}$, except for $i^*$ the optimal arm: 
+\[\liminf_{n\to\infty} \frac{E[T_i(n)]}{\ln(n)} \geq \frac{1}{D_{KL}(P_i\Vert P_{i^*})}\,.\]
+As then the regret decomposition inequality yields our result trivially.
 
+\par In the proof we will consider two instances $\nu$ and $\nu'$ in $\mathcal{E}_K$, and we will prove the result above for the first arm. In the first instance the first arm will have distribution $P_1^{\nu}$ with mean $\mu_1$, and will be suboptimal, with the optimal arm being $P_2^\nu$, with mean $\mu_2$. In the second instance arm one will have $P_1^{\nu'}$ with mean $\lambda>\mu_2$, and all other arms will be identical to $\nu$. We require some technical conditions to move forward with the proof, adapted from \citet{lai-robbins:1985} for greater readability and less dense, updated notation.
+
+\par We will require that the space $\mathscr{S}$ of distributions to which our arms belong is such that for any $\delta>0$, and for any distribution $P_\lambda$ in the space with mean $\mu_\lambda$, there is a distribution $P_\lambda'$ with mean $\mu_\lambda'$ such that $\mu_\lambda<\mu_\lambda'<\mu_\lambda+\delta$. This is the case for any family of distributions where the mean of any member belongs to a real interval, like a gaussian, exponential or poisson distribution. Since it is a technical quirk which does not really influence the theorem, it is given here instead. This condition is very similar to another one, we require, for all $P_\lambda,P_\theta$ with means $\mu_\lambda>\mu_\theta$, and for all $\epsilon>0$, there is $\delta>0$ such that $\vert D_{KL}(P_\theta\Vert P_\lambda)-D_{KL}(P_\theta\Vert P_\lambda')\vert<\epsilon$ when $\mu_\lambda\leq\mu_\lambda'\le\mu_\lambda+\delta$. This is simply continuity of the divergence over $\mathscr{S}$. We will require one final condition, that for arms $i$, and $j$ with $\mu_i > \mu_j$ the Kullback-Leibler divergence from $j$ to $i$ is neither $0$ nor infinite, i.e. that no arms are identical and that they do not violate absolute continuity conditions.
+
+\par Our above requirements, allow us to choose $P_1^{\nu'}$ such that $\lambda>\mu_2$ and such that the following holds:
+\begin{equation}
+\vert D_{KL}(P_1^\nu\Vert P_1^{\nu'})-D_{KL}(P_1^\nu\Vert P_2^\nu)\vert <\delta D_{KL}(P_1^\nu\Vert P_2^\nu)\,.\label{eq:pfLR-1}
+\end{equation}
+
+Since we are restricted to consistent policies, we have, for some $0<\alpha<\delta$:
+\[\EE_{\nu'}[n-T_1(n)]=\sum_{i\neq1}\EE_{\nu'}[T_n(i)]=\mathcal{O}(n^\alpha)\,.\]
+Now, picking up steam we give successive lower bounds: %RAPID FIRE ROUND!! 
+\begin{align*}
+\EE_{\nu'}[n-T_1(n)]&\geq \EE_{\nu'}\left[ n - \mathbb{I}\left\{ T_1(n)\ln(n) \leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})}\right\}\right]\\
+\mathcal{O}(n^\alpha)&\geq \EE_{\nu'}\left[ n - \mathcal{O}(\ln(n))\mathbb{I}\left\{ T_1(n) \leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})}\right\}\right]\\
+&\geq  \EE_{\nu'}\left[ (n - \mathcal{O}(\ln(n)))\mathbb{I}\left\{ T_1(n) \leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})}\right\}\right]\\
+&\geq (n - \mathcal{O}(\ln(n))) P_{\nu'}\left( T_1(n) \leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})}\right)\\
+\end{align*}
+Now, define $L_m:= \sum_{t=1}^m f(X_t;P_1^\nu)/f(X_t;P_1^{\nu'})$, the empirical divergence estimate where $X_t$ are observed rewards from arm $1$, with $m\leq T_1(n)$, of course. Then, relate both instances $\nu,\nu'$ by defining the event:
+\[C_n:=\left\{T_1(n)\leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})},L_{T_1(n)}\leq (1-\alpha)\ln(n)\right\}\,.\]
+One can see that $P_{\nu'}(C_n)=\mathcal{O}(n^{\alpha-1})$. We have shown the first part of $C_n$ to be $\mathcal{O}(n^{\alpha})$, we can see that the second part, while dependent, reduces the probability by at least a factor of $\frac{1}{n}$. Further scrutiny highlights that $C_n$ is a disjoint union of events of the form:
+\[  \mathcal{C}:=\bigcap_{i=1}^k(\{T_n(i)=n_i\} )\cap\{L_{n_1}\leq (1-\alpha)\ln(n)\}\,.\]
+Under constraints that:
+\[\sum_{i=1}^k n_i = n \text{ and } n_1\leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})}\,.\]
+We want to now find a bound relating $P_{\nu'}(C_n)$ and $P_{\nu}(C_n)$. To do so, using the above formulation of $C_n$, notice that:
+\begin{align}
+P_{\nu'}(C_n)&=\int_{T_1(n)=n_1,\dots,T_n(k)=n_k,L_{n_1}\leq (1-\alpha)\ln(n)}\prod_{t=1}^{n_1} \frac{f(X_t;P_1^\nu)}{f(X_t;P_1^{\nu'})}\de \PP_\nu\notag\\
+&=\int_{\mathcal{C}}\exp\left( \ln\left( \prod_{t=1}^{n_1} \frac{f(X_t;P_1^\nu)}{f(X_t;P_1^{\nu'})}\right)\right)\de \PP_\nu\notag\\
+&=\int_{\mathcal{C}}\exp\left( -L_{n_1}\right)\de \PP_\nu\notag\\
+&\geq \exp(-(1-\alpha)\ln(n))\int_{\mathcal{C}}\de\PP_\nu\label{eq:pfLR-2}\,.
+\end{align}
+Then, asymptotically, $P_{\nu'}(C_n)\geq n^{\alpha-1}P_\nu(C_n)$, as we desired. Now we present some asymptotical probability results related to $C_n$, which will bring us to the conclusion of our proof up to a small substitution. 
+\[\lim_{n\to \infty}P_\nu\left\{\exists i \geq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})} : L_i>(1-\alpha)\ln(n)\right\}=0\,.\]
+Then, combining with equation \ref{eq:pfLR-2}, 
+\[ \lim_{n\to\infty}P_\nu\left\{ T_1(n) \leq \frac{(1-\delta)\ln(n)}{D_{KL}(P_1^\nu\Vert P_1^{\nu'})} \right\}=0\,.\]
+Finally, using our choice of $P_1^{\nu'}$ from equation \ref{eq:pfLR-1}, we have:
+\[ \lim_{n\to\infty}P_\nu\left\{ T_1(n) \leq \frac{(1-\delta)\ln(n)}{(1+\delta)D_{KL}(P_1^\nu\Vert P_2^{\nu})} \right\}=0\,.\]
+Taking the limiting case for $\delta$, as it can be arbitrarily small, and rearranging terms gives us:
+\[\liminf_{n\to\infty} \frac{\EE_\nu[T_1(n)]}{\ln(n)} \geq \frac{1}{D_{KL}(P_1^\nu\Vert P_2^\nu)}\,.\]
+This has proven the theorem for an arbitrary sub-optimal arm, specifically $1$, thus it holds for all sub-optimal arms in all environments, and combining with the regret decomposition identity, as stated at the beginning of the proof, gives the regret bound.  
 \end{proof}
 
-\par This bound is not easily interpretable, and it can't be directly compared to other algorithms due to its dependence on $m$. We can however, outline within it the problems ETC suffers from. In the exploration phase, the agent has incurred regret linear in $m$, but which decreases with smaller sub-optimality gaps. In the exploitation phase, the agent chooses the right arm which decreases with smaller gaps, and increases with greater $m$. This is a good illustration of the exploration-exploitation trade-off. More exploration leads to less regret by increasing confidence, but also incurs a necessary penalty by taking sub-optimal arms. The parameter that controls this trade-off in ETC is $m$, but to choose a good $m$ we need knowledge of, at least, $N$ and preferably of the $\Delta_i$. While the horizon may be, the sub-optimality gaps are scarcely known in practice, if they were there would be no need for a bandit. An instance where we can consider the gap known, and also the simplest stochastic bandit is the two-armed bandit. Here, one can take arm $1$ to be optimal, and arm $2$ to have gap $\Delta$, as there is only one gap. 
+%
+%
+%
+%
+%Weaker version for Gaussian bandits (Csaba)
+%
+%
+%
+%
 
-\begin{corollary}[ETC regret for two-armed bandits]
-In the case of a two-armed stochastic bandit with $1$-subgaussian noise, the ETC algorithm satisfies:
-\[ \bar{R}_n \leq  \frac{\Delta}{2}\left( 1+ \ln\frac{n\Delta^2}{2} \right) \, . \]
+
+
+%\par We begin by considering another instance $\nu'\in\mathcal{E}$, where $i^*$ is no longer optimal. We take interest in the sum of the regret over both instances of a consistent policy $\pi$. We will look in particular at the probability of the event that arm $i$ is chosen more or less than half the time in each instance. See that if $T_i(n)$ is greater than $\frac{n}{2}$, then the regret $R_n^\nu(\pi)$ will be reasonably low. Conversely, if $T_i(n)$ is less than $\frac{n}{2}$, then the regret of $R_n^{\nu'}(\pi)$\footnote{Henceforth, we will drop references to the policy $\pi$, as it is unique throughout our analysis, and clutters up already dense formulations of results.} will also be low. This motivates an approach using the Pinsker-type inequality (theorem \ref{thm:PTI}). Let us proceed, with what we have, for all sub-optimal arm $i$:
+%\[R_n^\nu\geq \frac{n\Delta_{i}}{2}\PP_\nu\left(T_i(n)\geq \frac{n}{2}\right) \text{, and } R_n^{\nu'}\geq \frac{n(\lambda-\Delta_i)}{2}\PP_{\nu'}\left(T_i(n)<\frac{n}{2}\right)\,.\]
+%Thus, letting $\kappa_i:=\min(\Delta_i,\lambda-\Delta_i)$:
+%\begin{align*}
+%R_n^\nu + R_n^{\nu'} &\geq \frac{n\kappa_i}{2}\left(\PP_\nu\left(T_i(n)\geq \frac{n}{2}\right)+ \PP_{\nu'}\left(\{T_i(n)\geq \frac{n}{2}\}^c\right)\right)\\
+%\frac{2(R_n^\nu + R_n^{\nu'} )}{n\kappa_i}&\geq \PP_\nu\left(T_i(n)\geq \frac{n}{2}\right)+ \PP_{\nu'}\left(\{T_i(n)\geq \frac{n}{2}\}^c\right)\,.\\
+%\intertext{Applying the Pinsker-type inequality and then reordering the terms to extract the Kullback-Leibler divergence gives us:}
+%\frac{2(R_n^\nu + R_n^{\nu'} )}{n\kappa_i}&\geq\frac{1}{2}\exp(-D_{KL}(\PP_\nu\Vert\PP_\nu'))\\
+%D_{KL}(\PP_\nu\Vert\PP_\nu')&\geq \ln\left(\frac{n\kappa_i}{4(R_n^\nu + R_n^{\nu'})}\right)\,.
+%\intertext{Now applying the divergence decompositions lemma (lemma \ref{lem:DivDecomp}), we have:}
+%D_{KL}(P_i^\nu\Vert P_i^{\nu'})\EE_\nu[T_i(n)]&\geq \ln\left(\frac{\kappa_i}{4}\right)+\ln(n)-\ln(R_n^\nu + R_n^{\nu'})\\
+%D_{KL}(P_i^\nu\Vert P_i^{\nu'})\frac{\EE_\nu[T_i(n)]}{\ln(n)}&\geq \frac{\ln(\kappa_i)-\ln(4)}{\ln(n)}+1 - \frac{\ln(R_n^\nu + R_n^{\nu'})}{\ln(n)}\,.
+%\end{align*}
+%The remaining step consists in taking the limit inferior and reordering. First we focus on bounding the term involving the regret, which is where the consistency of $\pi$ is required. As $\pi$ is consistent, there is $p$ arbitrarily small and $C>0$ such that $R_n^\nu + R_n^{\nu'}\leq Cn^p$. This implies $\ln(R_n^\nu + R_n^{\nu'})\leq \ln(C) +p\ln(n)$. We can take the limiting case where $p=0$, to obtain in the limit a vanishing term when divided by $\ln(n)$. Thus:
+%\begin{align*}
+%\liminf_{n\to\infty} D_{KL}(P_i^\nu\Vert P_i^{\nu'})\frac{\EE_\nu[T_i(n)]}{\ln(n)}&\geq 1 - \liminf_{n\to\infty}  \frac{\ln(R_n^\nu + %R_n^{\nu'})}{\ln(n)}\\
+%\liminf_{n\to\infty} D_{KL}(P_i^\nu\Vert P_i^{\nu'})\frac{\EE_\nu[T_i(n)]}{\ln(n)}&\geq 1 - \limsup_{n\to\infty}  \frac{\ln(R_n^\nu + %R_n^{\nu'})}{\ln(n)}\\
+%\liminf_{n\to\infty} D_{KL}(P_i^\nu\Vert P_i^{\nu'})\frac{\EE_\nu[T_i(n)]}{\ln(n)}&\geq 1 \\
+%\liminf_{n\to\infty}\frac{\EE_\nu[T_i(n)]}{\ln(n)}&\geq \frac{1}{D_{KL}(P_i^\nu\Vert P_i^{\nu'})}\,.
+%\end{align*}
+%This is as wanted, and as stated at the start of the proof, the regret decomposition identity trivially finishes the proof.
+%\end{proof}
+
+%
+%
+%
+
+\par This theorem only holds for single parameter distributions, but was extended to the multi-parameter case by \citet{burnetas:1996}. To complete this section, we present two simple corollaries applying theorem \ref{thm:LR} to two common cases, first the case of a multi-armed bandit where arms have gaussian reward distribution, and the second to a two-armed bandit, with Bernoulli rewards.
+
+\begin{corollary}[\citethm{banditalgs:7}]\label{cor:gaus}
+Given two gaussian distributions with variance $1$ and means $\mu$ and $\mu+\lambda$, their Kullback-Leibler divergence is $\frac{\lambda^2}{2}$. Choosing $\lambda=\Delta_i$ to maximise the bound, we have from theorem \ref{thm:LR}:
+\[ \liminf_{n\to\infty} \frac{R_n^\nu(\pi)}{\ln(n)} \geq \sum_{i:\Delta_i>0}\frac{2}{\Delta_i}\, .\]
 \end{corollary}
 
-\begin{proof}
-We apply theorem \ref{thm:etc-regret} to the two-armed bandit case:
-\begin{align*}
-\bar{R}_n&\leq \frac{m}{2} \Delta + (n-2m)\Delta\exp\left(-\frac{m\Delta^2}{4} \right) \\
-&\leq  \frac{m}{2} \Delta + n\Delta\exp\left(-\frac{m\Delta^2}{4} \right)\,.
-\intertext{Now we choose $m$ dependent on $n$ and $\Delta$ that minimises this bound, by differentiating, and we obtain:}
-m&=\frac{4}{\Delta^2}\ln\left( \frac{n\Delta^2}{2}\right)\,\\
-\bar{R}_n &\leq  \frac{2}{\Delta}\ln\left(\frac{n\Delta^2}{2}\right) + \frac{2}{\Delta}\\
- &\leq \frac{2}{\Delta}\left(1+ \ln\left(\frac{n\Delta^2}{2}\right)\right)\,.\\
-\end{align*}
-\end{proof}
+\begin{corollary}[{\citethm[thm.~2.2]{bubeck:2012}}]\label{cor:bern}
+In a stochastic bandit, with rewards from Bernoulli distributions, the bound from theorem \ref{thm:LR} becomes by Pinsker's inequality:
+\[\liminf_{n\to\infty} \frac{R_n^\nu(\pi)}{\ln(n)} \geq \sum_{i:\Delta_i>}\frac{1}{2\Delta_i}\,.\]
+\end{corollary}
 
-\par 
+\par As our first important result in the analysis of the stochastic bandit problem, we derived the optimal asymptotic growth rate for any policy. This will allow us to compare limiting performance upper bounds for our algorithms to a benchmark. The proof was also our first intense foray into the details for which we developed tools in chapter \ref{chap:FP}. It is somewhat different from the rest of the proofs in this thesis, as it maintains the older methods of \citet{lai-robbins:1985}, while updating the contents and expanding on them to facilitate understanding by the reader. Several other proofs exist, such as the one by \citet{bubeck:2012}, or the one by \citet{banditalgs:7}, but both restrict themselves to a sub-class of bandit problems, and prove respectively corollaries \ref{cor:bern} and \ref{cor:gaus} only, instead of the general case. The general case proof as given is more complex, and most likely the most complex proof in this thesis, but it is rewarding in the elegance of its result. The next section will give a finite time quantity to use as a regret benchmark.
 
 %
 %
-\section{Upper Confidence Bound}
+\subsection{Minimax Regret bound}
 %
 %
-\par \lettrine[lines=3]{I}{mprovements} to the explore-then-commit method are less obvious but can be understood as a different way of approaching the uncertainty in the means of arms. While we have so far attempted to quash uncertainty by finding the best arm with high confidence, in this section we will embrace the uncertainty. Note that in ETC, while exploring we sampled all arms equally. This is not necessary as if the confidence intervals for two arms don't overlap, there is good reason to simply abandon the lower one. Thinking about the bounds of intervals instead of their centre is the key to understanding the Upper Confidence Bound (UCB) algorithm. This algorithm values the highest upper bound on the arm means rather than the highest estimate, in this sense it is an optimistic algorithm. 
-%
-\subsection{Algorithm}
-%
-\par An interesting fact the reader might note right away is that in the UCB algorithm as it has been simply presented above it is entirely possible for the preferred arm to change over time, which takes a two stage approach to exploration and exploitation off the table. We will explore and exploit simultaneously, but to insure our algorithm performs well we will add to it a component which forces us to explore arms which have not been played often. This may seem like a burden, but is in fact what will allow us to always asymptotically choose the right arm, unlike ETC. Before writing out the algorithm our first task is to find this tempered confidence interval and explain it. 
 
-\par Recall Hoeffding's bound, which implies that for $\epsilon$ we have $P(\hat{\mu}\geq \epsilon)\leq\exp\left(\frac{n\epsilon^2}{2}\right)$. Letting $\delta:=\exp\left(\frac{n\epsilon^2}{2}\right)$, we have $P\left(\hat{\mu}\geq\sqrt{\frac{2}{n}\ln\left(\frac{1}{\delta}\right)}\right)\leq \delta$. This is a plausible interval which we can adjust using the parameter $\delta$, which requires us to assume that the $X_i-\mu$ are sub-gaussian. 
-We can now deduce the smallest plausible (w.r.t. $\delta$) upper bound for $\hat{\mu}$ to be 
-\[ U_i(t-1):=\hat{\mu}_i(t-1)+\sqrt{\frac{2}{T_i(t)}\ln\left(\frac{1}{\delta}\right)}\, .\]
-We can continue this thread and choose a convenient $\delta$, so that the probability of ignoring the optimal arm at time $t$ is approximately proportional to $t^{-1}$. This specific choice will grant us constant instead of linear regret in case we mistakenly disregard the best arm. We will not discuss this until the next section, however, it can be seen that we require $\delta^{-1}=f(t):=1+t\log^2(t)$. We are now ready to introduce the UCB algorithm, whose pseudo-code is included in algorithm \ref{alg:UCB}.
+%sub opt gaps must be bounded above, o.W we can have one arm pull fuck up the whole regret by being larger than the rest 
 
-\begin{algorithm}
-\KwIn{$0<\delta<1$}
-\While{$t\leq N$}{%
-\eIf{$t\leq K$}{$A_t\gets t $}{$A_t\gets  \argmax_{i\in\mathcal{K}}\left\{ \hat{\mu}_i(t-1)+ \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \right\}$}
-Take action $A_t$\;
-Store reward $X_t$\;}
-\caption{Pseudo-code for the UCB algorithm}\label{alg:UCB}
-\end{algorithm}
+%allows us to compare algorithms across all problems
 
-\par It is important to note that while algorithm \ref{alg:UCB} is referred to as {\em the} UCB algorithm in this thesis, UCB algorithms are a family, of which this algorithm is simply an example. More general formulations take several arguments\cite{bubeck:2012}, and expand the range of confidence bounds and exploration bonuses used. We will analyse the regret only of this formulation of UCB, but more general results exist. 
+%Canonical bandits etc. 
 
+\par The {\em minimax} regret is a fundamental quantity of the difficulty of the stochastic bandit problem. A term borrowed from game theory, it represents the smallest regret achievable in the worst case problem by any policy or algorithm. If the particular instance in $\mathcal{E}_K$ we are working with is reasonably well behaved, we can achieve lower regret, but if we are in the worst possible instance, the minimax is a meaningful lower bound for the best possible performance of any algorithm. To prove this bound we must first introduce a new framework for describing the stochastic bandit setting, and prove a lemma on the KL-divergence. 
 
-%transition
+\par This new canonical bandit model is a new angle from which to view the theory of multi-armed bandits. It is not the most obvious, but it can be very useful, and will be used in our proof of the minimax bound, thus we introduce it here. First we must define a new measurable space, in terms of a notion of {\em history}. It is natural, therefore, to begin with the following definition.
 
-%
-\subsection{Regret Analysis}
-%
+\begin{definition}\label{def:hist}[History]
+The collection of all past actions and rewards is called the history of the problem. There are several ways to consider the history, we give here three notations to clearly differentiate them. We denote the random variable $H_n:= (A_1,X_1, \dots, A_n, X_n)$, and a realisation $h_n:=(a_1,x_1,\dots, a_n,x_n)$. We are also interested in the sample space to which all $H_n$ belong, the {\em history space}, which we denote $\mathcal{H}_n$. See that this sample space is clearly composed of $n$ pairs each consisting of an integer less than $K$, the arm corresponding to the action, and a real valued reward. Thus, formally $H_n:=(\llbracket K\rrbracket \times \RR)^n$. Do note, that this definition implies we henceforth hold $K$ fixed.
+\end{definition}
 
-\par Using the tools developed in section \ref{sec:Maths} we will now prove several results about the regret of the UCB algorithm. We focus mostly in this section on instance dependent worst-case regrets, beginning with theorem \ref{thm:UCB_regret}, which gives a bound on the regret and an asymptotic bound on the factor of logarithmic growth of the regret. These bounds together give us a good idea of the behaviour of the regret for the two most relevant domains of $n$.
+\par To work in the history space $\mathcal{H}_n$, we would need to extend it to a measurable space, so that we can define measures rigorously in $\mathcal{H}_n$. To do so, we will use the Lebesgue $\sigma$-algebra, based on the Lebesgue measure mentioned in section \ref{subsec:Measures}. The Lebesgue $\sigma$-algebra on $S$, $\mathcal{L}(S)$ is the $\sigma$-algebra of all sets in $S$ measurable with respect to the Lebesgue measure. In our case, we take $\mathcal{L}_n:=\mathcal{L}(\mathcal{H}_n)$, which is equivalent to restricting the Lebesgue sigma-algebra of $R^{2n}$ to $\mathcal{H}_n$.
 
-\begin{theorem}[UCB Regret Bounds]\label{thm:UCB_regret}
-The pseudo-regret of the UCB algorithm in a stochastic bandit satisfies:
-\begin{enumerate}
-\item $\!
-\begin{aligned}\bar{R}_n\leq \sum_{i:\Delta_i>0}\inf_{\epsilon\in(0,\Delta_i)}\left\{1+\frac{5}{\epsilon} + \frac{2}{(\Delta_i-\epsilon)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\end{aligned}$
-\item$\!
-\begin{aligned}\limsup_{n\to\infty} \frac{\bar{R}_n}{\ln(n)}\leq 2\sum_{i:\Delta_i>0}\frac{1}{\Delta_i}\end{aligned}$
-\end{enumerate}
-\end{theorem}
+\par See that now, a single realisation from $\mathcal{H}_n$ gives us the entirety of the contents of an $n$ round run against a $K$-armed bandit. It is easily seen in fact that $\mathcal{H}_n$ consists precisely of any possible course of proverbial events in an $n$-round, $K$-armed, bandit. From this realisation we can see that the interaction of any instance $\nu\in\mathcal{E}_K$ and any policy $\pi$ is in $\mathcal{H}_n$. Since we now have a valid measurable space, the next logical step is to look at measures on this space. Consider the random variables $A_t$, $X_t$ for $t\leq n$, on the canonical bandit $(\mathcal{H}_n,\mathcal{L}_n)$, see that for all $h_n\in\mathcal{H}_n $, trivially $A_t(h_n)=a_t$ and $X_t(h_n)=x_t$. This means that in the canonical bandit model, these are fixed and no longer random. More interestingly still, they do not depend on an instance or policy. 
 
-Before proving this theorem, we present and prove a lemma which will be required during the proof. This lemma provides a bound on the expectation of the sum of indicator variables of the form {\em a confidence interval's upper bound is greater than a value}. The astute reader might 
+\par In this new canonical model, we now set out to prove two lemmas, \ref{lem:dPnu} and then \ref{lem:DivDecomp}, which will be used in the proof of our main result on the minimax regret. 
 
-\begin{lemma}\label{lem:proofUCB}
-Let $X_i-\mu$ be IID sub-gaussian random variables, take $\epsilon>0$ and let:
-\[ \hat{\mu}_t:=\frac{1}{t}\sum_{i=1}^tX_i, \, \kappa= \sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_t+ \sqrt{\frac{2a}{t}}\geq \epsilon\right\}\, .\]
-Then $\mathbb{E}[\kappa]\leq 1+ \frac{2(a+\sqrt{a\pi}+1)}{\epsilon^2}$.
+\begin{lemma}[\citethm{banditalgs:6}]\label{lem:dPnu}
+In a $K$-armed bandit instance $\nu$, with arms with distribution $P_i$ for $i\in\llbracket K\rrbracket$, we have:
+\[d\mathbb{P}_\nu (h_n) = \prod_{t=1}^n P(a_t\vert a_s,x_s : s\leq t,\pi) \de P_{a_t}(x_t)\de\rho(a_t)\, .\]
+Where $P_\pi(a_t\vert a_s,x_s : s\leq t)$ denotes the probability that under policy $\pi$ the next action taken given the history up to $t-1$ is $a_t$, and $\rho(a_t)$ is the counting measure. 
 \end{lemma}
 
 \begin{proof}
-Let $u=2a\epsilon^{-2}$, starting with the definition of $\kappa$ we have:
+Expanding, by conditioning, we have:
 \begin{align*}
-\mathbb{E}[\kappa]&=\sum_{t=1}^n\mathbb{E}\left[ \mathbb{I}\left\{\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon\right\}\right]\\
-&=\sum_{t=1}^nP\left(\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon \right)\\
-&\leq u+\sum_{t=\ceil{u}}^nP\left(\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon \right)\, .
-\intertext{From theorem \ref{thm:concentrationSGRV}, it follows that: }
-\mathbb{E}[\kappa]&\leq u + \sum_{t=\ceil{u}}^n\exp\left( -\frac{t}{2}\left(\epsilon-\sqrt{\frac{2a}{\epsilon}}\right)^2\right) \\
-&\leq 1+u + \bigintsss_u^\infty \exp\left( -\frac{t}{2}\left(\epsilon-\sqrt{\frac{2a}{\epsilon}}\right)^2\right) \de t \\
-&\leq 1+ \frac{2a}{\epsilon^2}+ \frac{2(\sqrt{a\pi}+1)}{\epsilon^2}\, . 
+\de\PP_\nu(h_n)&= \de\PP_\nu(h_n\vert h_{n-1})\de\PP_\nu(h_{n-1})\\
+&=\prod_{t=1}^n\de\PP_\nu(h_t\vert h_s :s<t)\\
+&=\prod_{t=1}^n\de A_t(h_t\vert h_s :s<t)\de X_t(h_t\vert h_s :s<t)\\
+&=\prod_{t=1}^n \de P(a_t\vert a_s,x_s : s<t,\pi)\de P_{a_t}(x_t)\de\rho(a_t)\,.
 \end{align*}
+The last step follows by defining the $\de P(\cdot)$ as the Radon-Nikodym derivatives with respect to an arbitrary measure, in this case, $\rho(a_t)$, the counting measure of $\llbracket K \rrbracket$. 
+The proof is complete but we can go one step further and expand the Radon-Nikodym derivative $p_{a_t}$of the $\de P_{a_t}$ with respect to an arbitrary measure $\lambda$ which dominates all of them, to obtain:
+\[\de\PP_\nu(h_n)=\prod_{t=1}^n \de P(a_t\vert a_s,x_s : s<t,\pi)\de\rho(a_t)\de\lambda(x_t)p_{a_t}(x_t)\,. \]
 \end{proof}
+
+\begin{lemma}[\citethm{banditalgs:6}]\label{lem:DivDecomp}%[Divergence decomposition]
+For two instances $\nu,\nu'\in\mathcal{E}_K$, with arms $P_i$ and $P_i'$ respectively, under the same policy $\pi$, we have:
+\[D_{KL}(\mathbb{P}_\nu \Vert \mathbb{P}_\nu') = \sum_{i=1}^K \mathbb{E}_\nu[T_i(n)]D_{KL}(P_i\Vert P_i') \,.\]
+
+\end{lemma}
 
 \begin{proof}
-%
-\begin{enumerate}
-\item This proof is based upon the regret decomposition identity (theorem \ref{thm:RDI}), where we will bound $\mathbb{E}[T_k(n)]$.
-We will investigate seperately the two possible scenarios leading to playing the suboptimal arm. First it is possible that our upper bound $U_i(t)$ is under the true value of $\mu_i(t)-\epsilon$: we have vastly underestimated the payoff of the optimal arm. In the second possible case there is a suboptimal arm whose exploration penalty leads it to be chose over the optimal arm. Formally we will separate $T_i(n)=\sum_{t=1}^n\mathbb{I}\{A_t=i\}$ into $S_1$ and $S_2$ corresponding to each case. Let $\mu_o$ denote the mean of the optimal arm.
-%
+We consider two instances, $\nu,\nu'\mathcal{E}_K$, with arm measures $P_i$ and $P_i'$, and assume $P_i\ll P_i'$. We devise the measure $\lambda:= \sum_{i\in\mathcal{K}}P_i + P_i'$. This means we can define Radon-Nikodym derivatives of all arms with respect to $\lambda$, denoted $p_i$ and $p_i'$ for arms $P_i$ and $P_i'$ respectively. Recall, that by definition:
+\[ D_{KL}(\PP_\nu \Vert \PP_{\nu'}):= \int \ln\left( \frac{\PP_\nu}{\PP_{\nu'}}\right)\de\PP_\nu = \EE_\nu\left[ \ln\left( \frac{\PP_\nu}{\PP_{\nu'}}\right)\right]\,.\]
+Using lemma \ref{lem:dPnu}, followed by the chain rule, noting that all policy, $\lambda$, and $\rho$ terms cancel:
+\[ \ln\left( \frac{\PP_\nu}{\PP_{\nu'}}\right) = \sum_{t=1}^n \ln\left( \frac{p_{A_t}(X_t)}{p_{A_t}'(X_t)}\right)\,.\]
+Now we apply the tower property and the fact that $p_{a_t}\de\lambda=\de P_{a_t}$ to rewrite the divergence as:
+\[ \EE_\nu\left[ \ln\left( \frac{p_{A_t}(X_t)}{p_{A_t}'(X_t)}\right)\right] =\EE_\nu\left[ D_{KL}(P_{a_t}\Vert P_{a_t})\right] \,.\]
+Combining both, we have:
 \begin{align*}
-S_1&=\sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \leq \mu_o -\epsilon\right\}\, . \\
-\mathbb{E}[S_1]&=\sum_{t=1}^nP\left( \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \leq \mu_o -\epsilon\right)\\
-&\leq \sum_{t=1}^n \sum_{s=1}^n P\left( \hat{\mu}_{o,s} + \sqrt{\frac{2\ln f(t)}{s}} \leq \mu_o -\epsilon\right)\,. 
-%
-\intertext{The above follows from redefining the rewards in terms of $s$ the number of times a specific arm is pulled instead of $t$. Let $(Z_{i,s})_s$ be a sequence of iid rewards from arm $s$. Note that $X_t=Z_{A_t,T_{A_t(t)}}$, and let $\hat{\mu}_{i,s}=\frac{1}{s}\sum_{j=1}^sZ_{i,j}$. Now that we have weeded $T_i(n)$ out of our mean, so we can move to again applying theorem \ref{thm:concentrationSGRV}:}
-%
-\mathbb{E}[S_1]&\leq \sum_{t=1}^n\sum_{s=1}^n\exp\left(- \frac{s}{2}\left( \sqrt{\frac{2\ln f(t)}{s}} + \epsilon\right)^2\right) \\
-&\leq \sum_{t=1}^n \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right)\\
-&\leq \sum_{t=1}^\infty \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
-&\leq \frac{5}{2}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
-&\leq \frac{5}{2}\int_0^\infty \exp\left\{ \frac{s\epsilon^2}{2}\right\}\de s\\
-&\leq \frac{5}{\epsilon^2}\,.
-%
-\end{align*}
-%
-Rearranging $S_2$ into a form to which we can apply lemma \ref{lem:proofUCB} yields:
-%
-\begin{align*}
-S_2&= \sum_{t=1}^n \mathbb{I}\left\{ \hat{\mu}_i(t-1)+\sqrt{\frac{2\ln f(t)}{T_i(t-1)}}\geq \mu_o-\epsilon, A_t=i\right\}\\
-\mathbb{E}[S_2]&\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}+\sqrt{\frac{2\ln f(t)}{s}}\geq \mu_o-\epsilon\right\}\right]\\
-&\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}-\mu_i+\sqrt{\frac{2\ln f(t)}{s}}\geq \Delta_i-\epsilon\right\}\right]\\
-&\leq 1+ \frac{2}{(\Delta_i-\epsilon)^2}\left(\ln f(n)+\sqrt{\pi\ln f(n)}+1\right)\, .
-\end{align*}
-
-Combining $S_1$ and $S_2$, and completing the regret decomposition identity, leads to the desired result. The infimum insures this bound is minimised for $\epsilon$, while not allowing the denominators in the regret bound to be zero.
-
-\item
-Taking $\epsilon=\ln^{-1/4}(n)$ in the first part of the theorem gives:
-\begin{align*}
-\bar{R}_n&\leq \sum_{i:\Delta_i>0}\inf_{\ln^{-\frac{1}{4}}(n)\in(0,\Delta_i)}\left\{1+5\ln^{\frac{1}{4}} + \frac{2}{\left(\Delta_i-\ln^{-\frac{1}{4}}(n)\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
-&\leq \sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\left( \Delta_i\sqrt[4]{\ln(n)} -1\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
-&\leq\sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\Delta_i\sqrt{\ln(n)}} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
-\intertext{Substituting in $f(t)$ and dividing by $\ln(n)$ and taking the limit superior yields the result.}
-\end{align*}
-\end{enumerate}
-\end{proof}
-
-The bonds of theorem \ref{thm:UCB_regret} can be simplified trivially by a clever choice of $\epsilon$, which is given in corollary \ref{cor:UCB_regret}. 
-
-\begin{corollary}[UCB Regret Bounds (Simplified)]\ref{cor:UCB_regret}
-Choosing $\epsilon=\frac{\Delta_i}{2}$ in theorem \ref{thm:UCB_regret} gives:
-\[ \bar{R}_n\leq \sum_{i:\Delta_i>0}\left[ \Delta_i +\frac{8}{\Delta_i}\left(\ln f(n)+\sqrt{\pi\ln f(n)} +\frac{7}{2}\right) \right]\,.\]
-Furthermore, for all $n\geq2$, there is some strictly positive universal constant $C$ such that:
-\[\bar{R}_n\leq \sum_{i:\Delta_i>0}\left(\Delta_i + \frac{C\ln(n)}{\Delta_i} \right) \, .\]
-\end{corollary}
-
-The second bound is particularly interesting, as it shows that the logarithmic growth of the regret of UCB is controlled by the sum inverse of the sub-optimality gaps, without the notion of limit superior outlined in theorem \ref{thm:UCB_regret}. To complete this overview of the regret of UCB, we will derive its order, in theorem \ref{thm:UCB_order}. 
-
-\begin{theorem}[Order of UCB Regret]\label{thm:UCB_order}
-The pseudo-regret of an instance of the UCB algorithm with $\Delta_i$ not small for all $i$ satisfies:
-\[\bar{R}_n=\mathcal{O}\left(\sqrt{Kn\ln(n)}\right)\,.\]
-\end{theorem}
-\begin{proof}
-Fixing $\Delta$, gives $\mathbb{E}[T_i(n)]\leq C\ln(n)\Delta_i^{-1}$ from which we obtain a distribution free bound:
-\begin{align*}
-\bar{R}_n&=\sum_{i=1}^n\Delta_i\mathbb{E}[T_i(n)]\\
-&\leq \sum_{i:\Delta_i<\Delta}\Delta_i\mathbb{E}[T_i(n)] + \sum_{i:\Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)] \\
-&\leq n\Delta +  \sum_{i:\Delta_i \geq \Delta}\frac{C\ln(n)}{\Delta_i}\\
-&\leq n\Delta+ K\frac{C\ln(n)}{\Delta}\,. 
-\intertext{Letting $\Delta=\sqrt{K\ln(n)n^{-1}}$ gives the result.}
+D_{KL}(\PP_\nu \Vert \PP_{\nu'})&=\sum_{t=1}^n \EE_\nu\left[ D_{KL}(P_{A_t}\Vert P_{A_t})\right]\\
+&=\sum_{i\in\mathcal{K}} \EE_\nu\left[ \sum_{t=1}^n D_{KL}(P_{A_t}\Vert P_{A_t}-)\mathbb{I}\{ A_t=i\}\right]\\
+&=\sum_{i\in\mathcal{K}} \EE_\nu[T_i(n)]D_{KL}(P_i\Vert P_i')\,.
 \end{align*}
 \end{proof}
 
 
+\par Lemma \ref{lem:dPnu} is not used directly in theorem \ref{thm:minimax}, but rather in the proof of lemma \ref{lem:DivDecomp}, which in turn is used in the proof of the theorem. This semantic aside is an artefact of the organisation of the proof and of the lemmas, but both will be required for our proof of the next theorem, which gives us a bound for the instance-independent minimax-regret.
 
-%
-\subsection{Minimax Regret}
-%
+%%%%%%%%%%% Thm and Proof of minimax
 
-%recall def of minimax 
-
-\par The {\em minimax} regret is a fundamental quantity of the difficulty of the stochastic bandit problem. It represents the smallest regret achievable in the worst case problem by any policy or algorithm. If the particular instance in $\mathcal{E}_K$ we are working with is reasonably well behaved, we can achieve lower regrets, but if we are in the worst possible instance, the minimax is a meaningful lower bound for the best performance of our algorithm.
-
-\begin{theorem}
-The worst case pseudo-regret of any bandit in the class $\mathcal{E}_K$, given $n>K-1$ is:
+\begin{theorem}[Minimax Regret Bound\cite{banditalgs:6}]\label{thm:minimax}
+The minimax pseudo-regret of the class $\mathcal{E}_K$, given $n>K-1$ is:
 \[\bar{R}^*_n(\mathcal{E}_K) \geq \frac{1}{27}\sqrt{n(K-1)}\,.\]
 \end{theorem}
 
 \begin{proof}
-Let $\mathcal{G}_K$ denote the class of bandits within $\mathcal{E}_K$ where specifically the distributions of the arms are exactly gaussian with unit variance. Throughout, let $\pi$ be a given policy. The idea behind the proof is to make $\pi$, which performs well on one bandit fail on another by designing the second environment entirely to trap the agent performing $\pi$. We begin with the first environment. Let $0\leq r\leq \frac{1}{2}$, the first environment in $\mathcal{G}_K$ has means $r$ for arm $1$ and $0$ otherwise. In this environment we denote $\mathbb{P}_1$ the distribution on the %canonical bandit H_n,F_n
-\par For the second environment we take the optimal arm $i$ to be arm least taken by $\pi$ in $1$: $i=\argmin_{j\neq1}\mathbb{E}_1[T_j(n)]$. We can now engineer a loss on this instance by taking the mean rewards from the first case and changing the reward for arm $i$ to $2r$. It remains now to combine these to show a bound. First we will rewrite both regrets $\bar{R}_n^1(\pi)$ and $\bar{R}_n^2(\pi)$, then apply the Pinsker-type inequality (theorem \ref{thm:PTI}) and finally the divergence decomposition lemma.
+Let $\mathcal{G}_K$ denote the class of bandits within $\mathcal{E}_K$ where specifically the distributions of the arms are exactly gaussian with unit variance. We will prove this result on $\mathcal{G}_K$, rather than $\mathcal{E}_K$. This slight lack of rigour is justified by the assumed sub-gaussianity of rewards in $\mathcal{E}_K$. Intuitively, if the arms have lighter tails than a gaussian distribution, then distinguishing arms should be easier, meaning that the minimax regret is presumably higher over the class $\mathcal{G}_K$ than of bandits with stricktly lighter reward tails.
+\par  Throughout, let $\pi$ be a given policy. The idea behind the proof is to make $\pi$, which performs well on one bandit fail on another by designing the second environment entirely to trap the agent performing $\pi$. We begin with the first environment. Let $0\leq r\leq \frac{1}{2}$, the first environment in $\mathcal{G}_K$ has means $r$ for arm $1$ and $0$ otherwise. In this environment we denote $\mathbb{P}_1$ the distribution on the canonical bandit $(\mathcal{H}_n,\mathcal{L}_n)$.
+\par For the second environment we take the optimal arm $i$ to be arm least taken by $\pi$ in $1$: $i=\argmin_{j\neq1}\mathbb{E}_1[T_j(n)]$. We can now engineer a loss on this instance by taking the mean rewards from the first case and changing the reward for arm $i$ to $2r$. It remains now to combine these to show a bound. First we will rewrite both regrets $\bar{R}_n^1(\pi)$ and $\bar{R}_n^2(\pi)$, then apply the Pinsker-type inequality (theorem \ref{thm:PTI}) and finally lemma \ref{lem:DivDecomp}.
 
 \begin{align}
-\bar{R}_n^1+ \bar{R}_n^2 &> \frac{nr}{2}\left( \mathbb{P}_1(T_1(n)\leq \frac{n}{2}) + \mathbb{P}_1(T_1(n)> \frac{n}{2})\right)\notag\\
+\bar{R}_n^1+ \bar{R}_n^2 &> \frac{nr}{2}\left( \mathbb{P}_1(T_1(n)\leq \frac{n}{2}) + \mathbb{P}_2(T_1(n)> \frac{n}{2})\right)\notag\\
 &>\frac{nr}{4}\exp\left(-D_{KL}(\mathbb{P}_1\Vert \mathbb{P}_2)\right)\,.\label{eq:DKL}
 \end{align}
-Now, we use the divergence decomposition lemma to bound $D_{KL}(\mathbb{P}_1\Vert \mathbb{P}_2)$.
+Now, we use lemma \ref{lem:DivDecomp} to bound $D_{KL}(\mathbb{P}_1\Vert \mathbb{P}_2)$.
 \[ D_{KL}(\mathbb{P}_1\Vert \mathbb{P}_2)= 2r^2\mathbb{E}_1[T_i(n)]\, . \]
 Here we use the fact that $\sum_{j>1}\mathbb{E}_1[T_j(n)]\leq n \Rightarrow \mathbb{E}_1[T_i(n)]\leq \frac{n}{K-1}$ to further complete our bound, which upon replacement in \ref{eq:DKL} yields:
 \[ \bar{R}_n^1+ \bar{R}_n^2 \geq \frac{nr}{4}\exp\left(-\frac{2nr^2}{K-1}\right)\,.\]
@@ -387,23 +356,11 @@ Finally, to obtain the result we take $r=\sqrt{\frac{K-1}{4n}}$, which means $n>
  &\geq \sqrt{n(K-1)}\times \frac{1}{8} \times \frac{29}{48}\\
  &\geq \frac{29}{384}\sqrt{n(K-1)}\,. 
 \intertext{The second line follows from the power series expansion of $\exp(-\frac{1}{2})$ up to the fourth term. Finally, from $\bar{R}_n^*=\max\{\bar{R}_n^1,\bar{R}_n^2\}\geq \frac{1}{2}(\bar{R}_n^1+\bar{R}_n^2)$, we recover:}
-\bar{R}_n^*&\geq \frac{29}{768}\sqrt{n(K-1)}\\
-&\geq \frac{1}{27}\sqrt{n(K-1)}\, . 
+\bar{R}_n^*&\geq \frac{29}{768}\sqrt{n(K-1)}\, . 
 \end{align*}
-In the last line, $\frac{1}{27}$ is the largest simple fraction less than the fraction on the previous line. This change only tidies up the formula. 
+ The largest simple fraction less than this is $\frac{1}{27}$. This change only tidies up the formula. 
 \end{proof}
 
-%
-\subsection{Lower Bounds}
 
-
-
-
-
-
-
-
-
-
-
-
+\par This theorem gives us guarantees on the worst-case regret of any algorithm over any possible stochastic bandit environment. In many instances the regret will be less than this bound, but unavoidably, some instances will suffer regret of $\Omega(\sqrt{nK})$. This does not mean however that we should aim for an algorithm which achieves $\mathcal{O}(\sqrt{nK})$ everywhere. Indeed this algorithm might perform terribly on nicer instances, where logarithmic asymptotic growth may be reached well before $n$. There is a design trade-off between approaching the optimal minimax regret in the worst-case and maintaining optimal regret in easier instances.  We will discuss this in more detail when we review algorithms in the next chapter and we will then nuance this apparent trade-off. 
+%MOSS bubeck

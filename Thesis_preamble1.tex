@@ -7,18 +7,66 @@
 
 
 %Fonts
-\usepackage{algorithm2e,listings,mathpazo}
+\usepackage{algorithm2e,listings,}
+
+%Palatino
+\usepackage{mathpazo}
 
 %Maths
-\usepackage{amsmath,amsfonts,amsthm,amsopn,amssymb,mathtools,bigints}
+\usepackage{amsmath,amsfonts,amsthm,amsopn,amssymb,mathtools,bigints,stmaryrd,mathrsfs}
 \allowdisplaybreaks
+
 %Presentation
 \usepackage{graphicx, tikz, caption,lettrine}
-
+\usepackage{xcolor}
+\definecolor{dropcap}{HTML}{b10000}
 
 %bib
 \usepackage[square,numbers,comma,super,sort&compress]{natbib}
 \bibliographystyle{humannat}
+
+\makeatletter
+\newcommand{\citethm}[2][]{%
+\begingroup
+  \let\NAT@mbox=\mbox
+  \let\@cite\NAT@citenum
+  \let\NAT@space\NAT@spacechar
+  \let\NAT@super@kern\relax
+  \renewcommand\NAT@open{[}%
+  \renewcommand\NAT@close{]}%
+  \cite[#1]{#2}%
+  \endgroup
+}
+\makeatother
+
+
+%notation index
+\usepackage{nomencl}
+\makenomenclature
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+	%preamble
+	\renewcommand{\nomname}{Index of Notation}
+ 
+\renewcommand{\nompreamble}{This index orders by domain the symbols used in this thesis which have an intrinsic meaning. Unless listed as different here, notation carries over from one chapter to the next.}
+	%creates groups
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+ 	\item[\bfseries
+ 	\ifstrequal{#1}{M}{Measure Theory}{%
+ 	\ifstrequal{#1}{I}{Information Theory}{%
+	\ifstrequal{#1}{B}{Bandit Theory}{%
+	\ifstrequal{#1}{Z}{Miscelaneous}{}}}}%
+]}
+
+%guarantees page n° are included in the citation super
+\makeatletter
+\renewcommand\NAT@citesuper[3]{\ifNAT@swa
+\if*#2*\else#2\NAT@spacechar\fi
+\unskip\kern\p@\textsuperscript{\NAT@@open#1\if*#3*\else,\NAT@spacechar#3\fi\NAT@@close}%
+   \else #1\fi\endgroup}
+\makeatother
+
 
 %===============================================================
 %Commands

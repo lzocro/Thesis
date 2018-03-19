@@ -1,0 +1,99 @@
+\begin{thenomenclature} 
+
+ \nomgroup{B}
+
+  \item [{$(\mathcal{H}_n,\mathcal{L}_n)$}]\begingroup The canonical bandit (a measurable space)\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\bar{R}_n$}]\begingroup The pseudo-regret in round $n$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\bar{R}_n^*(\cdot)$}]\begingroup The minimax pseudo-regret of the class of bandits\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\Delta_i$}]\begingroup The sub-optimality gap for arm $i$: $\mu^*-\mu_i$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\llbracket \cdot \rrbracket$}]\begingroup The interval in $\NN$ from $1$ up to $\cdot$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{E}$}]\begingroup The class of stochastic bandit instances\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{E}_K$}]\begingroup The class of all $K$-armed stochastic bandit instances\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{G}_K$}]\begingroup The class of $K$-armed stochastic gaussian bandits\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{H}_n,H_n,h_n$}]\begingroup Histories in the Canonical model, see definition \ref{def:hist}\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{K}$}]\begingroup The arm set\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{O}(\cdot),\Omega(\cdot)$}]\begingroup ``Big-O'' order notation\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mu^*$}]\begingroup The mean of the optimal arm\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\nu,\nu'$}]\begingroup Stochastic bandit instances\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\perp$}]\begingroup Independence\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\pi$}]\begingroup A policy\nomeqref {3.0}\nompageref{41}
+  \item [{$\PP_\nu$}]\begingroup The canonical measure on instance $\nu$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$A_t, I_t$}]\begingroup The action at time $t$, i.e. the arm played\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$K$}]\begingroup The number of arms\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$M,m$}]\begingroup Quantities related to fixed design strategies\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$N$}]\begingroup The horizon, or number of rounds\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$P_i (\text{or } P_i^\nu)$}]\begingroup The Probability measure of arm $i$, equivalently, its distributions (in instance $\nu$)\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$R_n$}]\begingroup The regret in round $n$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$T_i(n)$}]\begingroup The number of times arm $i$ is played up to round $n$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$U_i(t)$}]\begingroup The upper confidence bound on arm $i$ at round $t$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$X_{i,t}$}]\begingroup The reward observed by playing arm $i$ at time $t$\nomeqref {3.0}
+		\nompageref{41}
+
+ \nomgroup{I}
+
+  \item [{$\lambda,\mu$}]\begingroup Probability measures\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$D_{KL}(\cdot\Vert \cdot)$}]\begingroup The Kullback-Leibler Divergence\nomeqref {3.0}
+		\nompageref{41}
+
+ \nomgroup{M}
+
+  \item [{$(\mathcal{X},\mathcal{S})$}]\begingroup A measure space\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$(\mathcal{X},\mathcal{S},\mu)$}]\begingroup A measurable space\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\cdot\ll\cdot$}]\begingroup Absolute continuity\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\int$}]\begingroup The Lebesgue integral\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{B}$}]\begingroup The Borel $\sigma$-algebra\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{B}^*$}]\begingroup The extended Borel $\sigma$-algebra\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{E}$}]\begingroup A class of sets (e.g. a $\sigma$-algebra)\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{L}(\cdot)$}]\begingroup The Lebesgue $\sigma$-algebra over the set\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{P}\cdot$}]\begingroup The power set\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{S},\mathcal{F}$}]\begingroup $\sigma$-algebras\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mathcal{X}$}]\begingroup A topological space\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\mu(\cdot)$}]\begingroup A measure\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\Omega$}]\begingroup A sample space\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$\RR^*$}]\begingroup The extended real line $\RR\cup\{-\infty,\infty\}$\nomeqref {3.0}
+		\nompageref{41}
+  \item [{$f(\cdot)$}]\begingroup A density, defined as a Radon-Nikodym derivative\nomeqref {3.0}
+		\nompageref{41}
+
+ \nomgroup{Z}
+
+  \item [{$:$}]\begingroup ``such that''\nomeqref {3.0}\nompageref{41}
+
+\end{thenomenclature}
