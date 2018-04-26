@@ -1,27 +1,17 @@
 
 \chapter{Algorithms}\label{chap:algs}
-
-% In this next section we will design and review our first algorithm for competing in the stochastic bandit environment.
+% %
 %
+\lettrine[lines=4]{\textcolor{dropcap}{B}}{andit theory} has two main components, the derivation of general results characterising specific problems, which we have covered in the previous chapter, and the design and evaluation of algorithms. Naturally, this second component will be covered in this chapter, focusing on the two main families of algorithms used in the stochastic bandit problem. First we will introduce a class of simple, intuitive, but unfortunately flawed strategies. This will serve to demonstrate to the reader that the stochastic bandit problem is not trivially solved, and that the family of more complex strategies presented in section \ref{sec:ETC} is noteworthy. We will give multiple regret properties, some will be proven, and we will compare them to each other and to Theorem \ref{thm:LR}. 
 %
-
-
-
-\lettrine[lines=4]{\textcolor{dropcap}{B}}{andit theory} has two main components, the derivation of general results characterising specific problems, which we have covered in the previous chapter, and the design and evaluation of algorithms. Naturally, this second component will be covered in this chapter, focusing on the two main families of algorithms used in the stochastic bandit problem. First we will introduce a class of simple, intuitive, but unfortunately flawed strategies. This will serve to demonstrate to the reader that the stochastic bandit problem is not trivially solved, and that the family of more complex strategies presented in section \ref{sec:ETC} is noteworthy. Regret properties will be given, some simple ones proven, others taken from the literature, and will be compared to theorem \ref{thm:LR}. 
-
 \section{Explore-Then-Commit}\label{sec:ETC}
 %
-%
-%\par \lettrine[lines=3]{F}{ollowing} these mathematical notes, we have the tools required to begin designing and evaluating algorithms. Recalling the stochastic bandit problem, we begin by designing a simple and intuitive strategy, and then analyse its regret performance. What is the simplest strategy that comes to mind? Intuitively we need to do two things in sequence: find the best arm, and then repeatedly exploit it. Why not simply explore for a given number of rounds $M<N$, then take the arm with highest mean and play that arm the remaining $N-M$ rounds? This strategy is valid, and is called the explore-then-commit strategy. 
-
-\lettrine[lines=3, slope=0.5em]{A}{n} intuitive solution to the bandit problem would be to first deal with exploration, to determine the best arm, and then move on to exploitation for the rest of the given time. This class of policies are called {\em Explore-Then-Commit (ETC)} strategies, a term owed to \citet{Perchet:2016}. They are grouped into a class as one can use any valid stopping time to determine when to stop exploration without changing some fundamental regret properties which we will present. In this section we will specifically analyse the sub-class of {\em fixed design} strategies, where the stopping time is a natural number, and not a random variable. 
-
+\lettrine[lines=3, slope=0.5em]{A}{n} intuitive solution to the bandit problem would be to first deal with exploration to determine the best arm, and then move on to exploitation for the rest of the given time. This class of policies are called {\em Explore-Then-Commit (ETC)} strategies, a term owed to \citet{Perchet:2016}. They are grouped into a class as one can use any valid stopping time to determine when to stop exploration without changing some fundamental regret properties which we will present. In this section we will specifically analyse the sub-class of {\em fixed design} strategies, where the stopping time is a natural number, and not a random variable. 
 %
 \subsection{Algorithm}
 %
-
-\par In practice this fixed design means we will explore each arm $m$ times, to ensure uniform exploration, for a stopping time of $M:=mK$. Another strategy one could consider is that we explore until the mean of each arm is known with sufficient confidence relative to some parameter. While this second strategy may seem more effective, and indeed it might be, both strategies will suffer from the same fundament issues preventing them from achieving optimality. Therefore, we restrict ourselves to presenting the simplest strategy, the fixed design, whose algorithm can be found in algorithm \ref{alg:ETC}. For the reader's comprehension, we denote $a[\text{mod }b]$ the remainder in euclidian division of $a$ by $b$, and $\hat{\mu}_i(t)$ the sample mean of arm $i$ at time $t$.
-
+\par In practice this fixed design means we will explore each arm $m$ times, to ensure uniform exploration, for a stopping time of $M:=mK$. Another strategy one could consider is to explore until the mean of each arm is known with sufficient confidence relative to some parameter. While this second strategy may seem more effective, and it indeed can be, both strategies will suffer from the same fundamental issues preventing them from achieving optimality. Therefore, we restrict ourselves to presenting the simplest strategy, the fixed design, whose algorithm can be found in Algorithm \ref{alg:ETC}. For the reader's comprehension, we denote $a[\text{mod }b]$ the remainder in Euclidian division of $a$ by $b$, and $\hat{\mu}_i(t)$ the sample mean of arm $i$ at time $t$.
+%
 \begin{figure}[ht]
   \centering
   \begin{minipage}{.7\linewidth}
@@ -37,22 +27,18 @@ Store reward $X_t$\;}
 \end{algorithm}
 \end{minipage}
 \end{figure}
-
-\par As stated, algorithm \ref{alg:ETC}, explores uniformly for $M$ rounds, then commits to the arm with highest empirical mean. The strategy introduced, we will now make use of the results in chapter \ref{chap:2} to analyse the regret of this algorithm. We will see how, and why, this strategy fails and this will highlight why we need a more flexible strategy.
-
-
+%
+\par As stated, Algorithm \ref{alg:ETC}, explores uniformly for $M$ rounds, then commits to the arm with highest empirical mean. The strategy introduced, we will now make use of the results in Chapter \ref{chap:2} to analyse the regret of this algorithm. We will see how, and why, this strategy fails and this will highlight why we need a more flexible strategy.
 %
 \subsection{Regret Analysis}
 %
-
-\par The pseudo-regret is referred to simply as regret in this section, but the reader should recall the differences outlined in subsection \ref{subsec:regret-prop}. First, we shall present a general formula for the regret of the ETC strategy. After discussion this result we will use a simple case as an example, deriving an upper bound for the regret of ETC in a two-armed stochastic bandit.
-
-
-\begin{theorem}[General ETC regret\cite{banditalgs:3}]\label{thm:etc-regret}
+\par The pseudo-regret is referred to simply as regret in this section, but the reader should recall the differences outlined in Subsection \ref{subsec:regret-prop}. First, we shall present a general formula for the regret of the ETC strategy. After discussion of this result we will use a simple case as an example, deriving an upper bound for the regret of ETC in a two-armed stochastic bandit.
+%
+\begin{theorem}[General ETC regret\citethm{banditalgs:3}]\label{thm:etc-regret}
 In a stochastic bandit setting  with $1$-subgaussian noise the pseudo-regret of the ETC algorithm satisfies for $n\geq M$:
 \[ \bar{R}_n\leq m\sum_{i\in\mathcal{K}}\Delta_i + (n-mK)\sum_{i\in\mathcal{K}}\Delta_i\exp\left( -\frac{m\Delta^2_i}{4}\right)\,.\]
 \end{theorem}
-
+%
 \begin{proof}
 We begin with the regret decomposition identity, and separate the two phases of the algorithm, denoting $i'$ the arm committed to and $i^*$ the optimal arm: 
 \begin{align*}
@@ -63,18 +49,18 @@ We begin with the regret decomposition identity, and separate the two phases of 
 &\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)\geq 0)\\
 &\leq m\sum_{i\in\mathcal{K}}\Delta_i+  (n-M)\sum_{i\in\mathcal{K}}\Delta_iP(\hat{\mu}_i(M)-\hat{\mu}^*(M)-\Delta_i\geq \Delta_i)
 \end{align*}
-See that $\hat{\mu}_i(M)-\mu_i-\hat{\mu}^*(M)+\mu^*$ is $\frac{2}{m}$-sub-gaussian, as the difference of two $\frac{1}{m}$-sub-gaussian variables, which allows us to apply Hoeffding's bound from corollary \ref{cor:Hoeffding}, completing the proof. 
+See that $\hat{\mu}_i(M)-\mu_i-\hat{\mu}^*(M)+\mu^*$ is $\frac{2}{m}$-sub-gaussian, as the difference of two $\frac{1}{m}$-sub-gaussian variables, which allows us to apply Hoeffding's bound from Corollary \ref{cor:Hoeffding}, completing the proof. 
 \end{proof}
-
-\par This bound is not easily interpretable, and it can't be directly compared to other algorithms due to its dependence on $m$. We can however, outline within it the problems ETC suffers from. In the exploration phase, the agent has incurred regret linear in $m$, but which decreases with smaller sub-optimality gaps. In the exploitation phase, the agent chooses the right arm with a probability which decreases with smaller gaps, and increases with greater $m$. This is a good illustration of the exploration-exploitation trade-off. More exploration leads to less regret by increasing confidence, but also incurs a necessary penalty by taking sub-optimal arms. The parameter that controls this trade-off in ETC is $m$, but to choose a good $m$ we need knowledge of, at least, $N$ and preferably of the $\Delta_i$. While the horizon may be, the sub-optimality gaps are scarcely known in practice, if they were there would be no need for a bandit. To better illustrate the regret, we will focus on the simplest bandit case in corollary \ref{cor:ETC}. 
-
+%
+\par This bound is not easily interpretable, and it can't be directly compared to other algorithms due to its dependence on $m$. We can however, outline within it the problems ETC suffers from. In the exploration phase, the agent has incurred regret linear in $m$, but which decreases with smaller sub-optimality gaps. In the exploitation phase, the agent chooses the right arm with a probability which decreases with smaller gaps, and increases with greater $m$. This is a good illustration of the exploration-exploitation trade-off. More exploration leads to less regret by increasing confidence, but also incurs a inevitable penalty by taking sub-optimal arms. The parameter that controls this trade-off in ETC is $m$, but to choose a good $m$ we need knowledge of, at least, $N$ and preferably of the $\Delta_i$. While the horizon may be, the sub-optimality gaps are scarcely known in practice. Knowing the gaps removes the need for a bandit altogether. To better illustrate the regret, we will focus on the simplest bandit case in Corollary \ref{cor:ETC}. 
+%
 \begin{corollary}\label{cor:ETC}[ETC regret for two-armed bandits]
-In the case of a two-armed bernoulli stochastic bandit, the ETC algorithm's regret growth satisfies:
-\[ \limsup_{n\to\infty}\bar{R}_n \leq  \frac{2}{\Delta} \, . \]
+In the case of a two-armed Bernoulli stochastic bandit, the ETC algorithm's regret growth satisfies:
+\[ \limsup_{n\to\infty}\frac{\bar{R}_n}{\ln(n)} \leq  \frac{2}{\Delta} \, . \]
 \end{corollary}
-
+%
 \begin{proof}
-We apply theorem \ref{thm:etc-regret} to the two-armed bandit case:
+We apply Theorem \ref{thm:etc-regret} to the two-armed bandit case:
 \begin{align*}
 \bar{R}_n&\leq \frac{m}{2} \Delta + (n-2m)\Delta\exp\left(-\frac{m\Delta^2}{4} \right) \\
 &\leq  \frac{m}{2} \Delta + n\Delta\exp\left(-\frac{m\Delta^2}{4} \right)\,.
@@ -83,36 +69,28 @@ m&= \frac{4}{\Delta^2}\ln\left( \frac{n\Delta^2}{2}\right)\\
 \bar{R}_n &\leq  \frac{2}{\Delta}\ln\left(\frac{n\Delta^2}{2}\right) + \frac{2}{\Delta}\\
 &\leq \frac{2}{\Delta}\left(1+ \ln\left(\frac{n\Delta^2}{2}\right)\right)\,.
 \end{align*}
-Dividing by $\ln(n)$ and taking the limit superior gives the result.
+Dividing by $\ln(n)$ and taking the limit superior trivially gives the result.
 \end{proof}
-
 %
+\par Recalling from Theorem \ref{thm:LR}, and Corollary \ref{cor:bern} that the optimal asymptotic regret is  $\ln(n)/(2\Delta)$, how do ETC strategies perform? Corollary \ref{cor:ETC} suggests we are still quite far from optimality, but this could be due to our analysis. Unfortunately not. \citet{garivier_ETC:2016} showed that even policies which are optimal within the class of ETC strategies only achieve asymptotic growth of $\ln(n)/\Delta$. This is half the regret of fixed design strategies, but still two times the optimal rate. This is not catastrophic, as it is only a constant difference. However, ETC strategies suffer terribly if the sub-optimality gaps are not known as there is no good way to determine a stopping time $\tau$. In this case they have an un-improvable regret of $\mathcal{O}(n^{2/3})$\cite{Maurice:1957}\footnote{\citet{Perchet:2016} also credit \citeauthor{Somerville:1954} for this result, but the author could not verify this prior claim.}. In comparison to the minimax regret $\Omega(\sqrt{nK})$, this is an impractical gap in the domain where $K\leq \sqrt[3]{n}$. In short, ETC is viable on paper, if the sub-optimality gaps are known, which they is not the case in practice, making it highly sub-optimal.
 %
-%%%%%%%%%%%%%%%%
-%
-%
-
-\par Recalling from theorem \ref{thm:LR}, and corollary \ref{cor:bern} that the optimal asymptotic regret is  $\ln(n)/(2\Delta)$, how do ETC strategies perform? Corrollary \ref{cor:ETC} suggests we are still quite far from optimality, but this could be due to our analysis. Unfortunately, this is not the case. While more complicated and tighter bounds can be derived, \citet{garivier_ETC:2016} showed that even policies which are optimal within the class of ETC strategies only achieve asymptotic growth of $\ln(n)/\Delta$, which is already half that of fixed design strategies, but the algorithms presented in the next section can achieve half that. If the sub-optimality gap is unknown, however, explore-then-commit strategies suffer terribly as there is no good way to choose $m$, and in fact in the general case there is no good way to determine a stopping time $\tau$. This causes them to have an un-improvable regret of $\mathcal{O}(n^{2/3})$\cite{Maurice:1957}\footnote{\citet{Perchet:2016} also credit \citeauthor{Somerville:1954} for this result, but the author could not verify this prior claim.}. In comparison to the minimax regret $\Omega(\sqrt{nK})$, this is a catastrophic gap in the domain where $K\leq \sqrt[3]{n}$. 
-
-\par This notably sub-optimal results come from a simple fundamental problem with all ETC strategies, which is their separation of the exploration and exploitation into two phases. Use of heuristics such as the {\em doubling trick} cannot circumvent this issue, the only solution to achieve optimal behaviour is to design a fully sequential strategy which constantly evaluates wether to explore or exploit at each turn. Only this behaviour will allow the best arm to always be chosen asymptotically, which is key to deriving the optimal bounds. The typical, and easiest, way to design such an algorithm is to use an index for each arm and play the arm with highest index each turn until the end of the game. 
-
+\par These notably sub-optimal results come from a simple fundamental problem with all ETC strategies, which is their separation of the exploration and exploitation into two phases. The solution to achieve optimal behaviour is to design a fully sequential strategy which constantly evaluates whether to explore or exploit at each turn. Only this behaviour will allow the best arm to always be chosen asymptotically, which is key to deriving the optimal bounds. The typical, and easiest, way to design such an algorithm is to compute each round a numerical {\em index} for each arm which measures how valuable it is to play and then play each turn the arm with highest index. 
 %
 %
 \section{Upper Confidence Bound}
 %
 %
-
-\par \lettrine[lines=3]{I}{mprovements} to the explore-then-commit method are less obvious but can be understood as a different way of approaching the uncertainty in the means of arms. While we have so far attempted to quash uncertainty by finding the best arm with high confidence, in this section we will embrace the uncertainty. Using the upper bound of a fixed level confidence interval on the mean of the arms however isn't quite sufficient. The key modification is to allow arms which have been less explored to add an exploration bonus to their bound. This way, as the algorithm progresses, it plays  the arm with highest upper bound for a while, which shrinks its interval, until it is over taken by either an arm with similar sample mean, or an arm which has been under-sampled. It then will repeat this process. This bonus may seem like a burden, but is in fact what will allow us to always asymptotically choose the right arm, unlike ETC. 
+\par \lettrine[lines=3]{I}{mprovements} to the explore-then-commit method are less obvious but can be understood as a different way of approaching the uncertainty in the means of arms. While we have so far attempted to quash uncertainty by finding the best arm with high confidence, in this section we will embrace the uncertainty. Using the upper bound of a fixed level confidence interval on the mean of the arms however isn't quite sufficient. The key modification is to allow arms which have been less explored to add an exploration bonus to their bound. This way, as the algorithm progresses, it plays  the arm with highest upper bound for a while, which shrinks its interval, until it is over taken by either an arm with similar sample mean, or an arm which has been under-sampled. It then will repeat this process. This bonus may seem like a burden, but in fact is what will allow us to always asymptotically choose the right arm, unlike ETC strategies. 
 %
 \subsection{Algorithm}
 %
 \par The family of algorithms called {\em Upper Confidence Bound (UCB)} algorithms are all based around this optimistic principle, and an exploration bonus. Rigorously UCB algorithms are a family, beginning with the work of \citet{lai-robbins:1985} and so named by \citet{auer:2002}. The algorithm we present and refer to as {\em UCB} algorithm is given by \citet{banditalgs:4}. The reason we choose this algorithm is that it is a good middle ground between the original and more complicated UCB algorithms\cite{Garivier:2011}.  All UCB algorithms share the same principle and as such we must first explore the construction of the upper confidence bound itself.
-
-\par Recall Hoeffding's bound (corollary \ref{cor:Hoeffding}), which implies that for any $\epsilon>0$, letting $\delta:=\exp\left(-n\epsilon^2/2\right)$, we have $P(\hat{\mu}\geq \sqrt{2n^{-1}\ln(\delta^{-1})}\,)\leq \delta$. This is a plausible interval which we can adjust using the parameter $\delta$, which requires us to assume that the $X_i-\mu_i$ are sub-gaussian. 
+%
+\par Recall Hoeffding's bound (Corollary \ref{cor:Hoeffding}), which implies that for any $\epsilon>0$, letting $\delta:=\exp\left(-n\epsilon^2/2\right)$, we have $P(\hat{\mu}\geq \sqrt{2n^{-1}\ln(\delta^{-1})}\,)\leq \delta$. This is a plausible interval which we can adjust using the parameter $\delta$, which requires us to assume that the $X_i-\mu_i$ are sub-gaussian. 
 We can now deduce the smallest plausible (relative to $\delta,\epsilon$) upper bound for $\hat{\mu}_i$ to be: 
 \[ U_i(t):=\hat{\mu}_i(t-1)+\sqrt{\frac{2}{T_i(t-1)}\ln\left(\frac{1}{\delta}\right)}\, .\]
-We can continue this thread and choose a convenient $\delta$, implicitly $\epsilon$, so that the probability of ignoring the optimal arm at time $t$ is approximately proportional to $t^{-1}$. This specific choice will grant us constant instead of linear regret when accounting for accidentally disregarding the best arm. Specifically, we will take $\delta^{-1}=f(t):=1+t\log^2(t)$ in this particular UCB algorithm. We are now ready to introduce the UCB algorithm, whose pseudo-code is included in algorithm \ref{alg:UCB}.
-
+We can continue this thread and choose a convenient $\delta$, implicitly $\epsilon$, so that the probability of ignoring the optimal arm at time $t$ is approximately proportional to $t^{-1}$. This specific choice will grant us constant instead of linear regret when accounting for accidentally disregarding the best arm. Specifically, we will take $\delta^{-1}=f(t):=1+t\ln^2(t)$ in this particular UCB algorithm. We are now ready to introduce the UCB algorithm, whose pseudo-code is included in Algorithm \ref{alg:UCB}.
+%
 \begin{figure}[ht]
   \centering
   \begin{minipage}{.7\linewidth}
@@ -125,106 +103,103 @@ Store reward $X_t$\;}
 \end{algorithm}
 \end{minipage}
 \end{figure}
-
-
+%
 \par Variations on the theme of UCB often revolve around the specific index (UCB1\cite{auer:2002}) or the use of other mechanics (UCB2\cite{auer:2002}). There are also more general formulations which take several arguments\cite{bubeck:2012}, and expand the range of confidence bounds and exploration bonuses possible. We will analyse the regret only of this formulation of UCB, but more general results exist. 
-
+%
 %transition
-
 %
 \subsection{Regret Analysis}
 %
-
-\par Using the tools developed in section \ref{sec:Maths} we will now prove several results about the regret of the UCB algorithm. Using the results from sections \ref{sec:ETC} and \ref{sec:chars}, we will be able to compare the results to other algorithms and optimal policies. To begin, instance-dependent bounds on the finite-time and asymptotic regret will be given in \ref{thm:UCB_regret}. The finite-time bound serves to demonstrate the methodology of regret bound proofs, and will allow us to easily derive the asymptotic bounds which by corollary \ref{cor:gaus} shows this UCB algorithm to be asymptotically optimal for gaussian bandits.
-
-\begin{theorem}[UCB Regret Bounds\cite{banditalgs:4}]\label{thm:UCB_regret}
+\par Using the tools developed in section \ref{sec:Maths} we will now prove several results about the regret of the UCB algorithm. Using the results from sections \ref{sec:ETC} and \ref{sec:chars}, we will be able to compare the results to other algorithms and optimal policies. To begin, instance-dependent bounds on the finite-time and asymptotic regret will be given in \ref{thm:UCB_regret}. The finite-time bound serves to demonstrate the methodology of regret bound proofs, and will allow us to easily derive the asymptotic bounds which by Corollary \ref{cor:gaus} shows this UCB algorithm to be asymptotically optimal for gaussian bandits.
+%
+\begin{theorem}[UCB Regret Bounds, \citethm{banditalgs:4}]\label{thm:UCB_regret}
 The pseudo-regret of the UCB algorithm in a stochastic bandit satisfies:
 \begin{enumerate}
-\item $\!
+\item[{\emph 1.}] $\!
 \begin{aligned}\bar{R}_n\leq \sum_{i:\Delta_i>0}\inf_{\epsilon\in(0,\Delta_i)}\left\{1+\frac{5}{\epsilon} + \frac{2}{(\Delta_i-\epsilon)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\end{aligned}$,
-\item$\!
+\item[{\emph 2.}]$\!
 \begin{aligned}\limsup_{n\to\infty} \frac{\bar{R}_n}{\ln(n)}\leq \sum_{i:\Delta_i>0}\frac{2}{\Delta_i}\end{aligned}$.
 \end{enumerate}
 \end{theorem}
-
-Before proving this theorem, we present and prove a lemma\cite{banditsalgs:4} which will be required during the proof. This lemma provides a bound on the expectation of the sum of indicator variables of the form {\em a confidence interval's upper bound is greater than a value}. 
-
-\begin{lemma}\label{lem:proofUCB}
+%
+Before proving this theorem, we present and prove a lemma which will be required during the proof. This lemma provides a bound on the expectation of the sum of indicator variables of the form {\em a confidence interval's upper bound is greater than a value}. 
+%
+\begin{lemma}[\citethm{banditalgs:4}]\label{lem:proofUCB}
 Let $X_i-\mu$ be IID sub-gaussian random variables, take $\epsilon>0$ and let:
 \[ \hat{\mu}_t:=\frac{1}{t}\sum_{i=1}^tX_i, \, \kappa= \sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_t+ \sqrt{\frac{2a}{t}}\geq \epsilon\right\}\, .\]
 Then $\mathbb{E}[\kappa]\leq 1+ \frac{2(a+\sqrt{a\pi}+1)}{\epsilon^2}$.
 \end{lemma}
-
+%
 \begin{proof}
 Let $u=2a\epsilon^{-2}$, starting with the definition of $\kappa$ we have:
 \begin{align*}
 \mathbb{E}[\kappa]&=\sum_{t=1}^n\mathbb{E}\left[ \mathbb{I}\left\{\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon\right\}\right]\\
 &=\sum_{t=1}^nP\left(\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon \right)\\
 &\leq u+\sum_{t=\ceil{u}}^nP\left(\hat{\mu}_t+\sqrt{\frac{2a}{t}}\geq\epsilon \right)\, .
-\intertext{From theorem \ref{thm:concentrationSGRV}, it follows that: }
+\intertext{From Theorem \ref{thm:concentrationSGRV}, it follows that: }
 \mathbb{E}[\kappa]&\leq u + \sum_{t=\ceil{u}}^n\exp\left( -\frac{t}{2}\left(\epsilon-\sqrt{\frac{2a}{\epsilon}}\right)^2\right) \\
 &\leq 1+u + \bigintsss_u^\infty \exp\left( -\frac{t}{2}\left(\epsilon-\sqrt{\frac{2a}{\epsilon}}\right)^2\right) \de t \\
 &\leq 1+ \frac{2a}{\epsilon^2}+ \frac{2(\sqrt{a\pi}+1)}{\epsilon^2}\, . 
 \end{align*}
 \end{proof}
-
+%
 \begin{proof}
 %
 \begin{enumerate}
-\item This proof is based upon the regret decomposition identity (theorem \ref{thm:RDI}), where we will bound $\mathbb{E}[T_k(n)]$.
-We will investigate separately the two possible scenarios leading to playing the suboptimal arm. First it is possible that our upper bound $U_i(t)$ is under the true value of $\mu_i(t)-\epsilon$: we have vastly underestimated the payoff of the optimal arm. In the second possible case there is a suboptimal arm whose exploration penalty leads it to be chose over the optimal arm. Formally we will separate $T_i(n)=\sum_{t=1}^n\mathbb{I}\{A_t=i\}$ into $S_1$ and $S_2$ corresponding to each case. Let $\mu_o$ denote the mean of the optimal arm.
+\item This proof is based upon the regret decomposition identity (Theorem \ref{thm:RDI}), where we will bound $\mathbb{E}[T_k(n)]$.
+We will investigate separately the two possible scenarios leading to playing the suboptimal arm. First it is possible that our upper bound $U_i(t)$ is under the true value of $\mu_i(t)-\epsilon$: we have vastly underestimated the payoff of the optimal arm. In the second possible case there is a suboptimal arm whose exploration penalty leads it to be chosen over the optimal arm. Formally we will separate $T_i(n)=\sum_{t=1}^n\mathbb{I}\{A_t=i\}$ into $S_1$ and $S_2$ corresponding to each case. Let $\mu_o$ denote the mean of the optimal arm.
 %
 \begin{align*}
 S_1&=\sum_{t=1}^n\mathbb{I}\left\{ \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \leq \mu_o -\epsilon\right\}\, . \\
 \mathbb{E}[S_1]&=\sum_{t=1}^nP\left( \hat{\mu}_o(t-1) + \sqrt{\frac{2\ln f(t)}{T_i(t-1)}} \leq \mu_o -\epsilon\right)\\
-&\leq \sum_{t=1}^n \sum_{s=1}^n P\left( \hat{\mu}_{o,s} + \sqrt{\frac{2\ln f(t)}{s}} \leq \mu_o -\epsilon\right)\,. 
+\intertext{Now redefine the rewards in terms of $s$ the number of times a specific arm is pulled instead of $t$. Let $(Z_{i,s})_s$ be a sequence of iid rewards from arm $s$. Note that $X_t=Z_{A_t,T_{A_t(t)}}$, and let $\hat{\mu}_{i,s}=\frac{1}{s}\sum_{j=1}^sZ_{i,j}$. This replaces the random $T_i(n)$ with a constant $s$, and summing over the range of $T_i(n)$ we obtain:}
+\EE[S_1]&\leq \sum_{t=1}^n \sum_{s=1}^n P\left( \hat{\mu}_{o,s} + \sqrt{\frac{2\ln f(t)}{s}} \leq \mu_o -\epsilon\right)\,. 
 %
-\intertext{The above follows from redefining the rewards in terms of $s$ the number of times a specific arm is pulled instead of $t$. Let $(Z_{i,s})_s$ be a sequence of iid rewards from arm $s$. Note that $X_t=Z_{A_t,T_{A_t(t)}}$, and let $\hat{\mu}_{i,s}=\frac{1}{s}\sum_{j=1}^sZ_{i,j}$. Now that we have weeded $T_i(n)$ out of our mean, so we can move to again applying theorem \ref{thm:concentrationSGRV}:}
+\intertext{Applying Theorem \ref{thm:concentrationSGRV}, then simplifying with common identities and recalling $f(t)=1+t\ln^2(t)$, so that $\sum_{t=1}^{\infty}\frac{1}{f(t)}<\frac{5}{2}$ by numerical evaluation:}
 %
 \mathbb{E}[S_1]&\leq \sum_{t=1}^n\sum_{s=1}^n\exp\left(- \frac{s}{2}\left( \sqrt{\frac{2\ln f(t)}{s}} + \epsilon\right)^2\right) \\
-&\leq \sum_{t=1}^n \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right)\\
-&\leq \sum_{t=1}^\infty \frac{1}{f(t)}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
-&\leq \frac{5}{2}\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
-&\leq \frac{5}{2}\int_0^\infty \exp\left\{ \frac{s\epsilon^2}{2}\right\}\de s\\
+&\leq \sum_{t=1}^n \frac{1}{f(t)}\times\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right)\\
+&\leq \sum_{t=1}^\infty \frac{1}{f(t)}\times\sum_{s=1}^n \exp\left(\frac{-s\epsilon^2}{2}\right) \\
+&\leq \frac{5}{2}\times \int_0^\infty \exp\left(\frac{s\epsilon^2}{2}\right)\de s\\
 &\leq \frac{5}{\epsilon^2}\,.
 %
 \end{align*}
 %
-Rearranging $S_2$ into a form to which we can apply lemma \ref{lem:proofUCB} yields:
+Now, rearranging $S_2$ into a form to which we can apply Lemma \ref{lem:proofUCB} yields:
 %
 \begin{align*}
 S_2&= \sum_{t=1}^n \mathbb{I}\left\{ \hat{\mu}_i(t-1)+\sqrt{\frac{2\ln f(t)}{T_i(t-1)}}\geq \mu_o-\epsilon, A_t=i\right\}\\
 \mathbb{E}[S_2]&\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}+\sqrt{\frac{2\ln f(t)}{s}}\geq \mu_o-\epsilon\right\}\right]\\
-&\leq \mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}-\mu_i+\sqrt{\frac{2\ln f(t)}{s}}\geq \Delta_i-\epsilon\right\}\right]\\
+&=\mathbb{E}\left[ \sum_{s=1}^n \mathbb{I}\left\{ \hat{\mu}_{i,s}-\mu_i+\sqrt{\frac{2\ln f(t)}{s}}\geq \Delta_i-\epsilon\right\}\right]\\
 &\leq 1+ \frac{2}{(\Delta_i-\epsilon)^2}\left(\ln f(n)+\sqrt{\pi\ln f(n)}+1\right)\, .
 \end{align*}
 
-Combining $S_1$ and $S_2$, and completing the regret decomposition identity, leads to the desired result. The infimum insures this bound is minimised for $\epsilon$, while not allowing the denominators in the regret bound to be zero.
+Combining $S_1$ and $S_2$, and completing the regret decomposition identity, leads to the desired result. The infimum ensures this bound is minimised for $\epsilon$, while not allowing the denominators in the regret bound to be zero.
 
 \item
 Taking $\epsilon=\ln^{-1/4}(n)$ in the first part of the theorem gives:
 \begin{align*}
-\bar{R}_n&\leq \sum_{i:\Delta_i>0}\inf_{\ln^{-\frac{1}{4}}(n)\in(0,\Delta_i)}\left\{1+5\ln^{\frac{1}{4}} + \frac{2}{\left(\Delta_i-\ln^{-\frac{1}{4}}(n)\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
+\bar{R}_n&\leq \sum_{i:\Delta_i>0}\inf_{\epsilon\in(0,\Delta_i)}\left\{1+5\ln^{\frac{1}{4}} + \frac{2}{\left(\Delta_i-\ln^{-\frac{1}{4}}(n)\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
 &\leq \sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\left( \Delta_i\sqrt[4]{\ln(n)} -1\right)^2} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
 &\leq\sum_{i:\Delta_i>0} 1+\inf\left\{ 5\sqrt[4]{\ln(n)} + \frac{2\sqrt{\ln(n)}}{\Delta_i\sqrt{\ln(n)}} \left(1+ \ln(f(n)) + \sqrt{\pi\ln(f(n))}\right)\right\}\\
-\intertext{Substituting in $f(t)$ and dividing by $\ln(n)$ and taking the limit superior yields the result.}
+\intertext{Substituting in $f(n)$ and dividing by $\ln(n)$ and taking the limit superior yields the result.}
 \end{align*}
 \end{enumerate}
 \vspace{-5em}
 \end{proof}
 
-The bonds of theorem \ref{thm:UCB_regret} can be simplified trivially by a clever choice of $\epsilon$, which is given in corollary \ref{cor:UCB_regret}. 
+The bonds of Theorem \ref{thm:UCB_regret} can be simplified for legibility trivially by a clever choice of $\epsilon$, which is given in Corollary \ref{cor:UCB_regret}. 
 
-\begin{corollary}[UCB Regret Bounds (Simplified)\cite{banditalgs:4}]\label{cor:UCB_regret}
-Choosing $\epsilon=\frac{\Delta_i}{2}$ in theorem \ref{thm:UCB_regret} gives:
+\begin{corollary}[Simplified UCB Regret Bounds, \citethm{banditalgs:4}]\label{cor:UCB_regret}
+Choosing $\epsilon=\frac{\Delta_i}{2}$ in Theorem \ref{thm:UCB_regret} gives:
 \[ \bar{R}_n\leq \sum_{i:\Delta_i>0}\left[ \Delta_i +\frac{8}{\Delta_i}\left(\ln f(n)+\sqrt{\pi\ln f(n)} +\frac{7}{2}\right) \right]\,.\]
 Furthermore, for all $n\geq2$, there is some strictly positive universal constant $C$ such that:
 \[\bar{R}_n\leq \sum_{i:\Delta_i>0}\left(\Delta_i + \frac{C\ln(n)}{\Delta_i} \right) \, .\]
 \end{corollary}
 
-\par From theorem \ref{thm:UCB_regret} and corollary \ref{cor:gaus}, as stated, we can see that this UCB algorithm is asymptotically optimal for the class of gaussian bandits. There are related algorithms in the UCB family, such as KL-UCB\cite{Garivier:2011} which is optimal in the case of Bernoulli bandits, and its variants, which specialise in achieving the regret bound of theorem \ref{thm:LR} for various specific classes of stochastic bandits. This result also demonstrates the improvement compared to ETC strategies described earlier. Finally, we conclude this analysis by deriving an instance dependent bound, which we will be used to compare the UCB algorithm to the minimax regret achievable by theorem \ref{thm:minimax}.
+\par From Theorem \ref{thm:UCB_regret} and Corollary \ref{cor:gaus}, as stated, we can see that this UCB algorithm is asymptotically optimal for the class of gaussian bandits. There are related algorithms in the UCB family, such as KL-UCB\cite{Garivier:2011} which is optimal in the case of Bernoulli bandits, and its variants, which specialise in achieving the regret bound of Theorem \ref{thm:LR} for various specific classes of stochastic bandits. Thus UCB policies are asymptotically optimal. This result also demonstrates the improvement compared to ETC strategies described earlier. Finally, we conclude this analysis by deriving an instance dependent bound, which we will be used to compare the UCB algorithm to the minimax regret achievable by Theorem \ref{thm:minimax}.
 
-\begin{theorem}[Order of UCB Regret\cite{banditalgs:7}]\label{thm:UCB_order}
+\begin{theorem}[Order of UCB Regret, \citethm{banditalgs:7}]\label{thm:UCB_order}
 The pseudo-regret of a worst-case instance of the UCB algorithm with $\Delta_i$ not small for all $i$ satisfies:
 \[\bar{R}_n=\mathcal{O}\left(\sqrt{Kn\ln(n)}\right)\,.\]
 \end{theorem}
@@ -238,16 +213,24 @@ Fixing $\Delta>0$, we have $\mathbb{E}[T_i(n)]\leq C\ln(n)\Delta_i^{-1}$ from wh
 \end{align*}
 Minimising the bound by letting $\Delta=\sqrt{K\ln(n)n^{-1}}$ gives the result.
 \end{proof}
-
-\par This is only an $\sqrt{\ln(n)}$ factor away from being minimax optimal, which justifies calling UCB policies {\em near-minimax optimal}. To the best knowledge of the author, there are no known policies which are both minimax optimal and asymptotically optimal, like there are no algorithms that are perfectly asymptotically optimal for all classes of problems. A noteworthy alternative to UCB, while still a related index algorithm is the MOSS algorithm by \citet{bubeck:2009}. It achieves a different asymptotical regret, although it is of the same order, but achieves $\mathcal{O}(\sqrt{nK\ln(K)}\, )$ regret in the worst case, which is notably tighter.
-
-%conclusion paragraph: 
-% ETC is uncompetitive due to the Exp-Exp trade off, optimal asymptotic growth order, minimax order, UCB is optimal, near-minimax optimal. Other algorithms based on similar ideas achieve comparative regret and/or perform slightly better in certain cases.
-
-\par 
+%
+\par This is only an $\sqrt{\ln(n)}$ factor away from being minimax optimal, which justifies calling UCB policies {\em near-minimax optimal}. A noteworthy alternative to UCB, while still a related index algorithm, is the MOSS algorithm by \citet{bubeck:2009}. It achieves a different asymptotical regret, although it is of the same logarithmic order, but achieves the minimax bound of $\mathcal{O}(\sqrt{nK}\,)$, proving that $\bar{R}_n(\mathcal{E}_K)=\Theta(\sqrt{n(K)})$. 
 
 
-%THE END 
+%THE END
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

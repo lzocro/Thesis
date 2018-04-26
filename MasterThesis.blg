@@ -3,48 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: MasterThesis.aux
 The style file: humannat.bst
 Database file #1: BibThesis.bib
-Warning--I didn't find a database entry for "banditsalgs:4"
 Warning--can't use both volume and number fields in sutton:1998
 Warning--can't use both volume and number fields in valko:2014
-You've used 43 entries,
+You've used 38 entries,
             2155 wiz_defined-function locations,
-            764 strings with 10602 characters,
-and the built_in function-call counts, 16678 in all, are:
-= -- 1655
-> -- 581
-< -- 44
-+ -- 218
-- -- 199
-* -- 1410
-:= -- 2839
-add.period$ -- 136
-call.type$ -- 43
-change.case$ -- 302
-chr.to.int$ -- 36
-cite$ -- 45
-duplicate$ -- 675
-empty$ -- 1176
-format.name$ -- 280
-if$ -- 3319
-int.to.chr$ -- 8
+            742 strings with 10016 characters,
+and the built_in function-call counts, 14959 in all, are:
+= -- 1484
+> -- 512
+< -- 40
++ -- 191
+- -- 175
+* -- 1259
+:= -- 2528
+add.period$ -- 120
+call.type$ -- 38
+change.case$ -- 265
+chr.to.int$ -- 34
+cite$ -- 40
+duplicate$ -- 614
+empty$ -- 1069
+format.name$ -- 245
+if$ -- 2995
+int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 42
-newline$ -- 219
-num.names$ -- 135
-pop$ -- 261
+missing$ -- 39
+newline$ -- 193
+num.names$ -- 120
+pop$ -- 237
 preamble$ -- 1
-purify$ -- 309
+purify$ -- 272
 quote$ -- 0
-skip$ -- 539
+skip$ -- 489
 stack$ -- 0
-substring$ -- 1083
-swap$ -- 168
+substring$ -- 986
+swap$ -- 160
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 244
+type$ -- 214
 warning$ -- 2
-while$ -- 138
+while$ -- 125
 width$ -- 0
-write$ -- 558
-(There were 3 warnings)
+write$ -- 494
+(There were 2 warnings)

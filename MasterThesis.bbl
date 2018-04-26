@@ -92,22 +92,10 @@ Gittins, J., K.~Glazebrook, and R.~Weber\leavevmode\nopagebreak\newline 2011.
 \newblock {\em Multi-armed bandit allocation indices}.
 \newblock John Wiley \& Sons.
 
-\bibitem[\protect\astroncite{Gittins}{1979}]{gittins:1979}
-Gittins, J.~C.\leavevmode\nopagebreak\newline 1979.
-\newblock Bandit processes and dynamic allocation indices.
-\newblock {\em Journal of the Royal Statistical Society. Series B
-  (Methodological)}, 41(2):148--177.
-
 \bibitem[\protect\astroncite{Kullback}{1997}]{Kullback:1997}
 Kullback, S.\leavevmode\nopagebreak\newline 1997.
 \newblock {\em Information theory and statistics}.
 \newblock Courier Corporation.
-
-\bibitem[\protect\astroncite{Kveton et~al.}{2014}]{kveton:2014}
-Kveton, B., Z.~Wen, A.~Ashkan, H.~Eydgahi, and
-  M.~Valko\leavevmode\nopagebreak\newline 2014.
-\newblock Polymatroid bandits.
-\newblock {\em CoRR, abs/1405.7752}.
 
 \bibitem[\protect\astroncite{Lai and Robbins}{1985}]{lai-robbins:1985}
 Lai, T.~L. and H.~Robbins\leavevmode\nopagebreak\newline 1985.
@@ -115,54 +103,35 @@ Lai, T.~L. and H.~Robbins\leavevmode\nopagebreak\newline 1985.
 \newblock {\em Advances in applied mathematics}, 6(1):4--22.
 
 \bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016a}]{banditalgs:1}
+  Szepesv{\'a}ri}{2016a}]{banditalgs:3}
 Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016a.
-\newblock Bandits: A new beginning.
-\newblock \url{http://www.banditalgs.com/2016/09/04/bandits-a-new-beginning/}.
-
-\bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016b}]{banditalgs:2}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016b.
-\newblock Finite-armed stochastic bandits: Warming up.
-\newblock \url{http://banditalgs.com/2016/09/04/stochastic-bandits-warm-up/}.
-
-\bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016c}]{banditalgs:3}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016c.
 \newblock First steps: Explore-then-commit.
 \newblock
   \url{http://banditalgs.com/2016/09/14/first-steps-explore-then-commit/}.
 
 \bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016d}]{banditalgs:7}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016d.
+  Szepesv{\'a}ri}{2016b}]{banditalgs:7}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016b.
 \newblock Instance dependent lower bounds.
 \newblock
   \url{http://banditalgs.com/2016/09/30/instance-dependent-lower-bounds/}.
 
 \bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016e}]{banditalgs:6}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016e.
+  Szepesv{\'a}ri}{2016c}]{banditalgs:6}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016c.
 \newblock More information theory and minimax lower bounds.
 \newblock
   \url{http://banditalgs.com/2016/09/28/more-information-theory-and-minimax-lower-bounds/}.
 
 \bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016f}]{banditalgs:5}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016f.
-\newblock Optimality concepts and information theory.
-\newblock
-  \url{http://banditalgs.com/2016/09/22/optimality-concepts-and-information-theory/}.
-
-\bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016g}]{banditalgs:11}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016g.
+  Szepesv{\'a}ri}{2016d}]{banditalgs:11}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016d.
 \newblock Stochastic linear bandits and ucb.
 \newblock \url{http://banditalgs.com/2016/10/19/stochastic-linear-bandits/}.
 
 \bibitem[\protect\astroncite{Lattimore and
-  Szepesv{\'a}ri}{2016h}]{banditalgs:4}
-Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016h.
+  Szepesv{\'a}ri}{2016e}]{banditalgs:4}
+Lattimore, T. and C.~Szepesv{\'a}ri\leavevmode\nopagebreak\newline 2016e.
 \newblock The upper confidence bound algorithm.
 \newblock
   \url{http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/}.
@@ -186,16 +155,15 @@ Maurice, R.~J.\leavevmode\nopagebreak\newline 1957.
 \newblock {\em Journal of the Royal Statistical Society. Series B
   (Methodological)}, 19(2):255--261.
 
-\bibitem[\protect\astroncite{Minsky}{1961}]{minsky:1961}
-Minsky, M.\leavevmode\nopagebreak\newline 1961.
-\newblock Steps toward artificial intelligence.
-\newblock {\em Proceedings of the IRE}, 49(1):8--30.
-
 \bibitem[\protect\astroncite{Perchet et~al.}{2016}]{Perchet:2016}
 Perchet, V., P.~Rigollet, S.~Chassang, E.~Snowberg,
   et~al.\leavevmode\nopagebreak\newline 2016.
 \newblock Batched bandit problems.
 \newblock {\em The Annals of Statistics}, 44(2):660--681.
+
+\bibitem[\protect\astroncite{Rivasplata}{2012}]{Rivasplata:2012}
+Rivasplata, O.\leavevmode\nopagebreak\newline 2012.
+\newblock Subgaussian random variables: An expository note.
 
 \bibitem[\protect\astroncite{Robbins}{1985}]{robbins:1952}
 Robbins, H.\leavevmode\nopagebreak\newline 1985.
