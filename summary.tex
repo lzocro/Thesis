@@ -1,0 +1,62 @@
+\chapter*{Summary}
+
+\lettrine[lines=4]{\textcolor{dropcap}{\textbf{F}}}{or} the reader's convenience, we collate here the most important results and comments made in this thesis. This is to allow for easier comparison and comprehension of how these pieces fit together. However, the keys to thorough understanding can not all be collected here, in particular results from the first chapter will not be covered.  Mirroring the structure of the thesis we will first give the characterisation of the problem then compare algorithms. 
+
+\par First, let us recall what the key assumptions about $\mathcal{E}$ are. We assumed that rewards had low-variance, by either being subgaussian, but most importantly we assumed the environment is stationary and rewards are independent within and between arms. We defined the pseudo-regret $\bar{R}_n$, to be the loss relative to perfect information, and chose it as the measure of an agent's performance. 
+Under the above assumptions, in the stochastic bandit problem the optimal asymptotical regret growth attainable was shown by \citet{lai-robbins:1985} to be:
+\[ \bar{R}_n\sim \sum_{i\neq i^*}\frac{\Delta_i}{D_{KL}(P_i\Vert P_{i^*})}\ln(n)\,.\]
+
+\par This bound helps understand where difficulty lies in a bandit instance. Large gaps aren't so perilous if the underlying distributions are easily distinguished. Conversely, near-identical distributions with very small differences won't lead to a high regret as the large number of wrong guesses is compensated by the low cost of each error. This is asymptotic however and in on a hard instance the logarithmic domain may never be reached. In this case, we showed the minimax, the best achievable regret on the worst instance on $\mathcal{E}_K$, to be: 
+\[ \bar{R}_n^*(\mathcal{E}_K)=\Theta\left(\sqrt{n(K-1)}\right)\,.\]
+
+\par These two bounds allow us to evaluate algorithms based on their flexibility to difficult instances, with the minimax, and on their probable long-run behaviour on nicer instances, with the asymptotic bound. One would like to balance behaviour in both these domains, as a policy that for example achieves $\mathcal{O}(\sqrt{nK})$ everywhere is minimax-optimal but vastly sub-optimal in all other instances. To the knowledge of the author there is no known policy which is both asymptotically and minimax optimal. 
+
+\par Recall that all strategies that explore until a certain stopping time and later exploit the best arm were grouped in the class of ETC strategies. While they are intuitive, ETC strategies are held back by the ability to determine a good stopping time, which requires they know the horizon $N$ and if possible the sub-optimality gaps $\Delta_i$. In practice, the gaps are almost never known, and without them ETC strategies incur a regret of $\Omega(n^{2/3})$. In comparison to the minimax, this is highly sub-optimal. ETC strategies also fail on nicer instances as their regret growth can not be less than twice the optimal rate. Beyond the stopping time issue, the reason for the necessary sub-optimality of ETC is that the fundamental exploration-exploitation trade-off must be addressed at each time-step. Exploration and exploitation {\em must} both be spread out throughout the whole run-time. 
+
+\par Considering fully sequential strategies, we showed that the UCB family of algorithms can achieve the \citet{lai-robbins:1985} bound in asymptotic regret. Using confidence intervals designed with Hoeffding's bound we can naturally incorporate into an index a bonus for under-explored arms while still playing optimistically the arm of highest return most of the time. Members of this family achieve optimality in asymptotical regret growth, and are near-minimax optimal with a minimax regret of $\mathcal{O}(\sqrt{nK\ln(n)})$. We have reviewed one member\cite{banditalgs:4} and mentioned several more\cite{lai-robbins:1985,auer:2002,bubeck:2009,Garivier:2011} in this thesis. Each variation on the theme of an optimistic index algorithm share these properties to some extent. For example MOSS\cite{bubeck:2009} achieves the minimax regret order, but its asymptotic growth is $\mathcal{O}(K\ln(n))$, which is sub-optimal. The exact tuning of the algorithm's index guarantees its effectiveness in some settings at the price of sub-optimality in others. There is an implementation problem, then, of choosing exactly which UCB algorithm to use. This helps explain the range of algorithms in the family. 
+
+\par The author hopes that the reader has come away from this thesis comfortable enough with the minimax concept to take note of an essential fact. The minimax regret is exactly the regret order one can achieve in the adversarial bandit. If the reader recalls our proof, we designed an environment to trick our policies. We were, in fact, taking on the role of the adversary and bending the randomness of rewards to fit our design and trick the agent. It is no surprise then that this is also the worst regret in the adversarial case. This is a good reason in practice to not worry too much about exact minimax optimality in stochastic bandits, since if one is trying to compete in a very difficult environment reframing it as an adversarial bandit and applying optimal adversarial algorithms is more sensible. As this exemplifies, the best way to improve overall regret is to tailor the algorithm to the problem to exploit any and all available information by changing the paradigms and setting.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

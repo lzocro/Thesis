@@ -21,10 +21,9 @@
 \UniThesisVersion\space by Erick Chacon Montalvan, School of Statistics]
 
 % This document class is based on the 'book' document class
-%\DeclareOption{name}{\commands}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
-\ProcessOptions\relax
-\LoadClass[twoside,openany]{book} % select 2/1-side for print or pdf
+\ProcessOptions
+\LoadClass[twoside]{book} % select 2/1-side for print or pdf
 % ============================================================================
 % REQUIRED PACKAGES
 % ============================================================================
@@ -40,14 +39,14 @@
 \usepackage{graphicx}                                 % Include figures
 \usepackage{setspace}                                 % Control spacing
 \usepackage[latin1]{inputenc}                         % Coding latin1
-\usepackage[english]{babel}                           % English (babel)
-%\usepackage{palatino}                                   % Use palatino Font (mathpazo in preamble)
+\usepackage[english]{babel}                           % Spanish languaje
+%\usepackage{palatino}                                   % Use palatino Font (mathpazo in preamble
 \usepackage{color}                                    % Manage colors
 \usepackage{breakcites}                               % Break citation reference
 \usepackage[font=small,labelfont=bf,justification=centering]{caption} % Customize caption of tables or figures
 \usepackage{multirow}                                 % Allow multirow tables
-\usepackage{float}                                    % Exact location of figures: H
-\usepackage{enumerate}                                % Improved lists
+\usepackage{float}                                    % Exact location of figures Here
+\usepackage{enumerate}                                % Set item kind (I),(a),(A),...
 \usepackage{subcaption}                               % Subcaption of subtables or subfigures
 \usepackage{etoolbox} 
 \usepackage[export]{adjustbox} % figure position
@@ -65,11 +64,6 @@
 \newcommand{\hackplain}{\fancypagestyle{plain}{%
     \fancyhf{} % clear all header and footer fields
 }}
-%\usepackage{titleps}
-%\newpagestyle{mystyle}[\small]{
- % \sethead[\thepage][][\thesection~\sectiontitle]{\subsectiontitle}{}{\thepage}
-%}
-%\pagestyle{mystyle}
 
 \renewcommand{\appendixpagename}{Apendix}  % appendix name
 \appto\frontmatter{\pagestyle{plain}}       % pagestyle frontmatter
@@ -233,7 +227,7 @@
 \renewcommand{\maketitle}{
    \begin{titlepage}
    \newgeometry{top=2cm,bottom=4cm,right=2.5cm,left=3cm}
-   %\pagestyle{fancy} % do not put neither header nor footer
+   \pagestyle{fancy} % do not put neither header nor footer
                               
        \begin{center}
           \theLogo
@@ -241,7 +235,7 @@
           {\ }\\[12ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
-          {\sc \LARGE  \textbf \theTitle :}\\[3ex]
+          {\sc \LARGE  \textbf \theTitle}\\[3ex]
           { \Large \theSubtitle}\\[3ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
@@ -251,12 +245,12 @@
           {\Large \textbf \theSupervisor}\\[3ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
-          {\large Submitted in partial fulfilment for the degree of \\
-           \emph{\theMajor}.}\\[3ex]
+          {\large \theDocumentType submitted in partial fulfilment for the \\
+          degree of \emph{\theMajor}}\\[3ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
           {\ }\\[11ex]
-          { \theThesisYear}\\
+          {\large \theThesisYear}\\
 
        \end{center}
    \end{titlepage}
@@ -282,14 +276,14 @@
 % contains the page number.  Also, remove the headrule from all pages.
 % Finally, use the 'fancy' page style (which uses all the things we
 % just setup).
-%\lhead{\empty}
-%\chead{\empty}
-%\rhead{\thepage}
-%\lfoot{\empty}
+\lhead{\empty}
+\chead{\empty}
+\rhead{\thepage}
+\lfoot{\empty}
 \cfoot{\empty}
-%\rfoot{\empty}
-%\pagestyle{fancy}
-%\renewcommand{\headrulewidth}{0pt}
+\rfoot{\empty}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
 
 
 % Set the appendix to just have a letter not prepended by the main division

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.6)  22 JAN 2018 11:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.6)  21 MAR 2018 11:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -32,20 +32,20 @@ File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 
-./LancsThesis.cls:33: LaTeX Error: \usepackage before \documentclass.
+./LancsThesis.cls:32: LaTeX Error: \usepackage before \documentclass.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.33 ...,pdfpagelabels,hidelinks,breaklinks=true]{
+l.32 ...,pdfpagelabels,hidelinks,breaklinks=true]{
                                                   hyperref} % Get nice PDF d...
 
 ? 
-./LancsThesis.cls:33: Emergency stop.
+./LancsThesis.cls:32: Emergency stop.
  ...                                              
                                                   
-l.33 ...,pdfpagelabels,hidelinks,breaklinks=true]{
+l.32 ...,pdfpagelabels,hidelinks,breaklinks=true]{
                                                   hyperref} % Get nice PDF d...
 
 \usepackage may only appear in the document preamble, i.e.,
@@ -60,4 +60,4 @@ Here is how much of TeX's memory you used:
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  23i,0n,19p,130b,36s stack positions out of 5000i,500n,10000p,200000b,80000s
-./LancsThesis.cls:33:  ==> Fatal error occurred, no output PDF file produced!
+./LancsThesis.cls:32:  ==> Fatal error occurred, no output PDF file produced!
