@@ -1,7 +1,7 @@
 % Thesis.tex (Modification of ClemsonThesis - Andrew R. Dalton)
 % Universidad Nacional de Ingeniería Thesis/Dissertation file
 % Developed by Erick Chacon Montalvan, School of Statistics
-% Edited by Lorenzo Croissant Department of Mathematics Lancaster U.
+% Edited by Lorenzo Croissant Department of Mathematics and statistics Lancaster University
 
 % ============================================================================
 % HEADING OF TEX FILE (DEFINING PARAMETERS)
@@ -21,7 +21,7 @@
 \subtitle{Sequential Decision Agents in Stochastic Environments}
 
 
-\documentType{Dissertation}
+\documentType{Dissertation }%must include a space at the end. (to resolve before publishing template
 \major{Master in Science in Mathematics \& Statistics}
 \author{Lorenzo Croissant}
 \supervisor{Dr. Azadeh Khaleghi}
@@ -66,7 +66,6 @@
 	\tableofcontents %\clearpage                	 % Generate the Table of Contents
     %\addtotoc{Index of Tables}{\listoftables}        % Generate the List of Tables
     %\addtotoc{Index of Figures}{\listoffigures}		 % Generate the List of Figures
-    
     \let\cleardoublepage\clearpage
 %  ===========================================================================
     \mainmatter % Begin main matter (pages are numbered with Arabic numerals)
@@ -79,7 +78,7 @@
 \fancyhead[RO,LE]{\thepage}
 \fancyhead[LO]{\nouppercase\leftmark}
 \fancyhead[RE]{\nouppercase\rightmark}
-\headrulewidth{2pt}
+%\renewcommand{\headrulewidth}{\headrulewidth{2pt}}
     \addtotoc{Introduction}{\input{screwversioncontrol_introduction.tex}}  % Generate the introduction and label it apart from chapters
     \inputfile{sec1.tex}
     \inputfile{sec2.tex}
@@ -87,7 +86,7 @@
     %\inputfile{sec4.tex}
     %\inputfile{sec5.tex}
     %\inputfile{sec6.tex}
-\fancyhead{}
+
 \fancyhead[LO]{Summary}
 \fancyhead[RO,LE]{\thepage}
     \addtotoc{Summary}{\input{summary.tex}}

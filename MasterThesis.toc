@@ -1,28 +1,28 @@
 \select@language {english}
 \contentsline {chapter}{Acknowledgments}{ii}{section*.1}
 \contentsline {chapter}{Introduction}{1}{section*.2}
-\contentsline {chapter}{\numberline {1}Foundational Preliminaries}{6}{chapter.1}
-\contentsline {section}{\numberline {1.1}Elements in Measure Theory}{6}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Measures}{7}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}Integration and Density}{8}{subsection.1.1.2}
-\contentsline {section}{\numberline {1.2}Elements of Information Theory}{10}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Information and Divergence}{11}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Pinsker-type Inequalities}{12}{subsection.1.2.2}
-\contentsline {chapter}{\numberline {2}Stochastic Bandits}{15}{chapter.2}
-\contentsline {section}{\numberline {2.1}Mathematical notes}{15}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}The Bandit Problem}{16}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Regret Properties}{17}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Estimation of a Mean}{18}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Characterising the Stochastic Bandit Problem}{21}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Optimal Asymptotic Regret Growth}{21}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Minimax Regret bound}{25}{subsection.2.2.2}
-\contentsline {chapter}{\numberline {3}Algorithms}{30}{chapter.3}
-\contentsline {section}{\numberline {3.1}Explore-Then-Commit}{30}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Algorithm}{30}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Regret Analysis}{31}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Upper Confidence Bound}{34}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Algorithm}{34}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Regret Analysis}{35}{subsection.3.2.2}
-\contentsline {chapter}{Summary}{40}{section*.6}
-\contentsline {chapter}{Index of Notation}{42}{section*.8}
-\contentsline {chapter}{Bibliography}{44}{section*.10}
+\contentsline {chapter}{\numberline {1}Foundational Preliminaries}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}Elements in Measure Theory}{5}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Measures}{6}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Integration and Density}{7}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}Elements of Information Theory}{9}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Information and Divergence}{10}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Pinsker-type Inequalities}{11}{subsection.1.2.2}
+\contentsline {chapter}{\numberline {2}Stochastic Bandits}{14}{chapter.2}
+\contentsline {section}{\numberline {2.1}Mathematical notes}{14}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Formulation of the Bandit Problem}{15}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Regret Properties}{16}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Estimation of a Mean}{17}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Characterising the Stochastic Bandit Problem}{20}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Optimal Asymptotic Regret Growth}{20}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Minimax Regret bound}{24}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}Algorithms}{29}{chapter.3}
+\contentsline {section}{\numberline {3.1}Explore-Then-Commit}{29}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Algorithm}{29}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Regret Analysis}{30}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Upper Confidence Bound}{33}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Algorithm}{33}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Regret Analysis}{34}{subsection.3.2.2}
+\contentsline {chapter}{Summary}{39}{section*.6}
+\contentsline {chapter}{Index of Notation}{41}{section*.8}
+\contentsline {chapter}{Bibliography}{43}{section*.10}

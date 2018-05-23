@@ -251,8 +251,8 @@
           {\Large \textbf \theSupervisor}\\[3ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
-          {\large \theDocumentType submitted in partial fulfilment for the \\
-          degree of \emph{\theMajor}}\\[3ex]
+          {\large Submitted in partial fulfilment for the degree of \\
+           \emph{\theMajor}.}\\[3ex]
                                                   
           \noindent \rule[5mm]{\linewidth}{0.5mm}
           {\ }\\[11ex]
